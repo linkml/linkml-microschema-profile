@@ -1,0 +1,1003 @@
+name: common-data-elements-schema
+description: This is a LinkML schema for CDEs
+title: common-data-elements-schema
+see_also:
+- https://diatomsRcool.github.io/common-data-elements-schema
+id: https://w3id.org/diatomsRcool/common-data-elements-schema
+imports:
+- linkml:types
+license: MIT
+prefixes:
+  common_data_elements_schema:
+    prefix_prefix: common_data_elements_schema
+    prefix_reference: https://w3id.org/diatomsRcool/common-data-elements-schema/
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  biolink:
+    prefix_prefix: biolink
+    prefix_reference: https://w3id.org/biolink/vocab/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  PATO:
+    prefix_prefix: PATO
+    prefix_reference: http://purl.obolibrary.org/obo/PATO_
+  bdchm:
+    prefix_prefix: bdchm
+    prefix_reference: https://w3id.org/bdchm/
+  OBA:
+    prefix_prefix: OBA
+    prefix_reference: http://purl.obolibrary.org/obo/OBA_
+  OMOP:
+    prefix_prefix: OMOP
+    prefix_reference: https://athena.ohdsi.org/search-terms/terms/
+  LOINC:
+    prefix_prefix: LOINC
+    prefix_reference: https://loinc.org/
+  UCUM:
+    prefix_prefix: UCUM
+    prefix_reference: https://units-of-measurement.org/
+  UBERON:
+    prefix_prefix: UBERON
+    prefix_reference: http://purl.obolibrary.org/obo/UBERON_
+  MONDO:
+    prefix_prefix: MONDO
+    prefix_reference: http://purl.obolibrary.org/obo/MONDO_
+  HP:
+    prefix_prefix: HP
+    prefix_reference: http://purl.obolibrary.org/obo/HP_
+  RxNorm:
+    prefix_prefix: RxNorm
+    prefix_reference: http://purl.bioontology.org/ontology/RXNORM/
+  example:
+    prefix_prefix: example
+    prefix_reference: http://www.example.org/rdf#
+default_prefix: common_data_elements_schema
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
+      referenced with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  DataTypeEnum:
+    name: DataTypeEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/DataTypeEnum
+    description: The data type of an observation value
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      decimal:
+        text: decimal
+        description: Decimal number
+      integer:
+        text: integer
+        description: Integer number
+      enum:
+        text: enum
+        description: Enumerated value
+      boolean:
+        text: boolean
+        description: Boolean value
+  MethodEnum:
+    name: MethodEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/MethodEnum
+    description: The method used for a measurement or observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      placeholder:
+        text: placeholder
+        description: Placeholder value
+  InstrumentEnum:
+    name: InstrumentEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/InstrumentEnum
+    description: The instrument used for a measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      placeholder:
+        text: placeholder
+        description: Placeholder value
+  ReagentKitEnum:
+    name: ReagentKitEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/ReagentKitEnum
+    description: The reagent kit used for a measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      placeholder:
+        text: placeholder
+        description: Placeholder value
+  BodyPositionEnum:
+    name: BodyPositionEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/BodyPositionEnum
+    description: The body position during a measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      supine:
+        text: supine
+        description: Lying face up
+      standing:
+        text: standing
+        description: Standing upright
+      sitting:
+        text: sitting
+        description: Seated position
+  ContextEnum:
+    name: ContextEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/ContextEnum
+    description: The context in which a measurement was taken
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      fasted_8_hrs:
+        text: fasted_8_hrs
+        description: Fasted for 8 hours
+      fasted_12_hrs:
+        text: fasted_12_hrs
+        description: Fasted for 12 hours
+      before_bronchodilator:
+        text: before_bronchodilator
+        description: Before bronchodilator administration
+      after_bronchodilator:
+        text: after_bronchodilator
+        description: After bronchodilator administration
+      taking_lipid_lowering_medications:
+        text: taking_lipid_lowering_medications
+        description: While taking lipid-lowering medications
+      before_physical_activity:
+        text: before_physical_activity
+        description: Before physical activity
+      during_physical_activity:
+        text: during_physical_activity
+        description: During physical activity
+      after_physical_activity:
+        text: after_physical_activity
+        description: After physical activity
+      during_procedure:
+        text: during_procedure
+        description: During a procedure
+      taking_diabetes_medication:
+        text: taking_diabetes_medication
+        description: While taking diabetes medication
+      lowest:
+        text: lowest
+        description: Lowest recorded value
+  CollectedByEnum:
+    name: CollectedByEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/CollectedByEnum
+    description: Who collected the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      doctor:
+        text: doctor
+        description: Collected by a doctor
+      nurse:
+        text: nurse
+        description: Collected by a nurse
+      technician:
+        text: technician
+        description: Collected by a technician
+      self_administered:
+        text: self_administered
+        description: Self-administered by the patient
+      first_examiner:
+        text: first_examiner
+        description: Collected by the first examiner
+      second_examiner:
+        text: second_examiner
+        description: Collected by the second examiner
+  DiagnosisMethodEnum:
+    name: DiagnosisMethodEnum
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/DiagnosisMethodEnum
+    description: The method used for diagnosis
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    permissible_values:
+      placeholder:
+        text: placeholder
+        description: Placeholder value
+slots:
+  id:
+    name: id
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - schema:identifier
+    slot_uri: schema:identifier
+    identifier: true
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - schema:name
+    slot_uri: schema:name
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  description:
+    name: description
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - schema:description
+    slot_uri: schema:description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    range: string
+  measurement_type:
+    name: measurement_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/measurement_type
+    description: A CURIE from OBA, OMOP, or LOINC
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:observation_type
+    slot_uri: bdchm:observation_type
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: uriorcurie
+  unit:
+    name: unit
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/unit
+    description: A unit from UCUM
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:unit
+    slot_uri: bdchm:unit
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - SdohObservationCde
+    range: uriorcurie
+  method:
+    name: method
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/method
+    description: The method used for the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:method_type
+    slot_uri: bdchm:method_type
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - ConditionStatusCde
+    - DrugStatusCde
+    - ProcedureStatusCde
+    - SdohObservationCde
+    range: MethodEnum
+  instrument:
+    name: instrument
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/instrument
+    description: The instrument used for the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:instrument
+    owner: ConditionStatusCde
+    domain_of:
+    - MeasurementObservationCde
+    - ConditionStatusCde
+    range: InstrumentEnum
+  reagent_kit:
+    name: reagent_kit
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/reagent_kit
+    description: The reagent kit used for the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:reagent_kit
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: ReagentKitEnum
+  ulod:
+    name: ulod
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/ulod
+    description: Upper limit of detection
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:ulod
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  llod:
+    name: llod
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/llod
+    description: Lower limit of detection
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:llod
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  calculated_from:
+    name: calculated_from
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/calculated_from
+    description: An expression pointing at other CDE classes
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:calculated_from
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: string
+  body_location:
+    name: body_location
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/body_location
+    description: A CURIE from UBERON
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:BodySite
+    slot_uri: bdchm:BodySite
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: uriorcurie
+  body_position:
+    name: body_position
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/body_position
+    description: The body position during measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:body_position
+    owner: MeasurementObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    range: BodyPositionEnum
+  context:
+    name: context
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/context
+    description: The context of the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:context
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - SdohObservationCde
+    range: ContextEnum
+  collected_by:
+    name: collected_by
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/collected_by
+    description: Who collected the measurement
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:collected_by
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - DrugStatusCde
+    - ProcedureStatusCde
+    - SdohObservationCde
+    range: CollectedByEnum
+  condition_type:
+    name: condition_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/condition_type
+    description: A CURIE from MONDO or HPO
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:condition_concept
+    slot_uri: bdchm:condition_concept
+    owner: ConditionStatusCde
+    domain_of:
+    - ConditionStatusCde
+    range: uriorcurie
+  diagnosis_method:
+    name: diagnosis_method
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/diagnosis_method
+    description: The method used for diagnosis
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:diagnosis_method
+    owner: ConditionStatusCde
+    domain_of:
+    - ConditionStatusCde
+    range: DiagnosisMethodEnum
+  drug_type:
+    name: drug_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/drug_type
+    description: A CURIE from RxNorm
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:drug_concept
+    slot_uri: bdchm:drug_concept
+    owner: DrugStatusCde
+    domain_of:
+    - DrugStatusCde
+    range: uriorcurie
+  procedure_type:
+    name: procedure_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/procedure_type
+    description: A CURIE from OMOP
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:procedure_concept
+    slot_uri: bdchm:procedure_concept
+    owner: ProcedureStatusCde
+    domain_of:
+    - ProcedureStatusCde
+    range: uriorcurie
+  sdoh_type:
+    name: sdoh_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/sdoh_type
+    description: The type of SDOH observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:category
+    slot_uri: bdchm:category
+    owner: SdohObservationCde
+    domain_of:
+    - SdohObservationCde
+    range: uriorcurie
+  data_type:
+    name: data_type
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/data_type
+    description: The data type of the observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:data_type
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - SdohObservationCde
+    range: DataTypeEnum
+  age_at_observation:
+    name: age_at_observation
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_observation
+    description: Age of the subject at the time of observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_observation
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - SdohObservationCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  age_at_condition_start:
+    name: age_at_condition_start
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_condition_start
+    description: Age of the subject at the start of the condition
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_condition_start
+    owner: ConditionStatusCde
+    domain_of:
+    - ConditionStatusCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  age_at_condition_end:
+    name: age_at_condition_end
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_condition_end
+    description: Age of the subject at the end of the condition
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_condition_end
+    owner: ConditionStatusCde
+    domain_of:
+    - ConditionStatusCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  age_at_exposure_start:
+    name: age_at_exposure_start
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_exposure_start
+    description: Age of the subject at the start of drug exposure
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_exposure_start
+    owner: DrugStatusCde
+    domain_of:
+    - DrugStatusCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  age_at_exposure_end:
+    name: age_at_exposure_end
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_exposure_end
+    description: Age of the subject at the end of drug exposure
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_exposure_end
+    owner: DrugStatusCde
+    domain_of:
+    - DrugStatusCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  age_at_procedure:
+    name: age_at_procedure
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/age_at_procedure
+    description: Age of the subject at the time of the procedure
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:age_at_procedure
+    owner: ProcedureStatusCde
+    domain_of:
+    - ProcedureStatusCde
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  subject_identifier:
+    name: subject_identifier
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/subject_identifier
+    description: An identifier for the subject of the datum
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:subject_identifier
+    owner: SdohObservationCde
+    domain_of:
+    - MeasurementObservationCde
+    - ConditionStatusCde
+    - DrugStatusCde
+    - ProcedureStatusCde
+    - SdohObservationCde
+    range: string
+  quantity__value:
+    name: quantity__value
+    description: The numeric value
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:value
+    alias: value
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: decimal
+  quantity__unit:
+    name: quantity__unit
+    description: A unit from UCUM
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:unit
+    alias: unit
+    owner: Quantity
+    domain_of:
+    - Quantity
+    range: uriorcurie
+  cdeCollection__entries:
+    name: cdeCollection__entries
+    description: The collection of CDE objects
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slot_uri: common_data_elements_schema:entries
+    alias: entries
+    owner: CdeCollection
+    domain_of:
+    - CdeCollection
+    range: CdeThing
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+classes:
+  NamedThing:
+    name: NamedThing
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/NamedThing
+    description: A generic grouping for any identifiable entity
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - schema:Thing
+    slots:
+    - id
+    - name
+    - description
+    class_uri: schema:Thing
+  CdeThing:
+    name: CdeThing
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/CdeThing
+    description: Represents a CDE
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    is_a: NamedThing
+    slots:
+    - id
+    - name
+    - description
+    class_uri: common_data_elements_schema:CdeThing
+  Quantity:
+    name: Quantity
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/Quantity
+    description: A value with a unit
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slots:
+    - quantity__value
+    - quantity__unit
+    attributes:
+      value:
+        name: value
+        description: The numeric value
+        range: decimal
+      unit:
+        name: unit
+        description: A unit from UCUM
+        range: uriorcurie
+    class_uri: common_data_elements_schema:Quantity
+  MeasurementObservationCde:
+    name: MeasurementObservationCde
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/MeasurementObservationCde
+    description: A data structure with key and value attributes that represents a
+      single observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:MeasurementObservation
+    is_a: CdeThing
+    slots:
+    - id
+    - name
+    - description
+    - subject_identifier
+    - measurement_type
+    - unit
+    - method
+    - instrument
+    - reagent_kit
+    - ulod
+    - llod
+    - calculated_from
+    - body_location
+    - body_position
+    - context
+    - collected_by
+    - data_type
+    - age_at_observation
+    class_uri: bdchm:MeasurementObservation
+  ConditionStatusCde:
+    name: ConditionStatusCde
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/ConditionStatusCde
+    description: Record suggesting the presence of a disease or medical condition
+      stated as a diagnosis, sign, or symptom
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:Condition
+    is_a: CdeThing
+    slots:
+    - id
+    - name
+    - description
+    - subject_identifier
+    - condition_type
+    - method
+    - diagnosis_method
+    - instrument
+    - age_at_condition_start
+    - age_at_condition_end
+    class_uri: bdchm:Condition
+  DrugStatusCde:
+    name: DrugStatusCde
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/DrugStatusCde
+    description: Record suggesting exposure to a medication
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:DrugExposure
+    is_a: CdeThing
+    slots:
+    - id
+    - name
+    - description
+    - subject_identifier
+    - drug_type
+    - method
+    - collected_by
+    - age_at_exposure_start
+    - age_at_exposure_end
+    class_uri: bdchm:DrugExposure
+  ProcedureStatusCde:
+    name: ProcedureStatusCde
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/ProcedureStatusCde
+    description: Record of activity or process ordered by or carried out by a healthcare
+      provider for a diagnostic or theraputic reason
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:Procedure
+    is_a: CdeThing
+    slots:
+    - id
+    - name
+    - description
+    - subject_identifier
+    - procedure_type
+    - method
+    - collected_by
+    - age_at_procedure
+    class_uri: bdchm:Procedure
+  SdohObservationCde:
+    name: SdohObservationCde
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/SdohObservationCde
+    description: A data structure with key and value attributes that represents a
+      single Sdoh observation
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    mappings:
+    - bdchm:SdohObservation
+    is_a: CdeThing
+    slots:
+    - id
+    - name
+    - description
+    - subject_identifier
+    - sdoh_type
+    - unit
+    - method
+    - context
+    - collected_by
+    - data_type
+    - age_at_observation
+    class_uri: bdchm:SdohObservation
+  CdeCollection:
+    name: CdeCollection
+    definition_uri: https://w3id.org/diatomsRcool/common-data-elements-schema/CdeCollection
+    description: A holder for CDE objects
+    from_schema: https://w3id.org/diatomsRcool/common-data-elements-schema
+    slots:
+    - cdeCollection__entries
+    attributes:
+      entries:
+        name: entries
+        description: The collection of CDE objects
+        range: CdeThing
+        multivalued: true
+        inlined_as_list: true
+    class_uri: common_data_elements_schema:CdeCollection
+    tree_root: true
+metamodel_version: 1.7.0
+source_file: common_data_elements_schema.yaml
+source_file_date: '2026-01-16T23:25:30'
+source_file_size: 9125
+generation_date: '2026-01-16T23:25:40'
+
