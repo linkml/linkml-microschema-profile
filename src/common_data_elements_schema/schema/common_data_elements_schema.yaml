@@ -11,10 +11,19 @@ see_also:
 prefixes:
   common_data_elements_schema: https://w3id.org/diatomsRcool/common-data-elements-schema/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/
+  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
-  example: https://example.org/
+  bdchm: https://w3id.org/bdchm/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+  LOINC: https://loinc.org/
+  UCUM: https://units-of-measurement.org/
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  HP: http://purl.obolibrary.org/obo/HP_
+  RxNorm: http://purl.bioontology.org/ontology/RXNORM/
+  example: http://www.example.org/rdf#
 default_prefix: common_data_elements_schema
 default_range: string
 
@@ -32,26 +41,106 @@ classes:
       - description
     class_uri: schema:Thing
 
-  Person:
+  CdeThing:
     is_a: NamedThing
     description: >-
-      Represents a Person
-    slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
-    slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      Represents a CDE
 
-  PersonCollection:
+  Quantity:
+    description: >-
+      A value with a unit
+    attributes:
+      value:
+        range: decimal
+        description: The numeric value
+      unit:
+        range: uriorcurie
+        description: A unit from UCUM
+
+  MeasurementObservationCde:
+    is_a: CdeThing
+    description: >-
+      A data structure with key and value attributes that represents a single observation
+    class_uri: bdchm:MeasurementObservation
+    slots:
+      - subject_identifier
+      - measurement_type
+      - unit
+      - method
+      - instrument
+      - reagent_kit
+      - ulod
+      - llod
+      - calculated_from
+      - body_location
+      - body_position
+      - context
+      - collected_by
+      - data_type
+      - age_at_observation
+
+  ConditionStatusCde:
+    is_a: CdeThing
+    description: >-
+      Record suggesting the presence of a disease or medical condition stated as a diagnosis, sign, or symptom
+    class_uri: bdchm:Condition
+    slots:
+      - subject_identifier
+      - condition_type
+      - method
+      - diagnosis_method
+      - instrument
+      - age_at_condition_start
+      - age_at_condition_end
+
+  DrugStatusCde:
+    is_a: CdeThing
+    description: >-
+      Record suggesting exposure to a medication
+    class_uri: bdchm:DrugExposure
+    slots:
+      - subject_identifier
+      - drug_type
+      - method
+      - collected_by
+      - age_at_exposure_start
+      - age_at_exposure_end
+
+  ProcedureStatusCde:
+    is_a: CdeThing
+    description: >-
+      Record of activity or process ordered by or carried out by a healthcare provider for a diagnostic or theraputic reason
+    class_uri: bdchm:Procedure
+    slots:
+      - subject_identifier
+      - procedure_type
+      - method
+      - collected_by
+      - age_at_procedure
+
+  SdohObservationCde:
+    is_a: CdeThing
+    description: >-
+      A data structure with key and value attributes that represents a single Sdoh observation
+    class_uri: bdchm:SdohObservation
+    slots:
+      - subject_identifier
+      - sdoh_type
+      - unit
+      - method
+      - context
+      - collected_by
+      - data_type
+      - age_at_observation
+
+  CdeCollection:
     tree_root: true
     description: >-
-      A holder for Person objects
+      A holder for CDE objects
     attributes:
       entries:
-        range: Person
+        description: The collection of CDE objects
+        range: CdeThing
         multivalued: true
         inlined_as_list: true
 
@@ -67,30 +156,167 @@ slots:
   description:
     slot_uri: schema:description
     description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+  measurement_type:
+    range: uriorcurie
+    slot_uri: bdchm:observation_type
+    description: A CURIE from OBA, OMOP, or LOINC
+  unit:
+    range: uriorcurie
+    slot_uri: bdchm:unit
+    description: A unit from UCUM
+  method:
+    range: MethodEnum
+    slot_uri: bdchm:method_type
+    description: The method used for the measurement
+  instrument:
+    range: InstrumentEnum
+    description: The instrument used for the measurement
+  reagent_kit:
+    range: ReagentKitEnum
+    description: The reagent kit used for the measurement
+  ulod:
+    range: Quantity
+    description: Upper limit of detection
+  llod:
+    range: Quantity
+    description: Lower limit of detection
+  calculated_from:
+    description: An expression pointing at other CDE classes
+  body_location:
+    range: uriorcurie
+    slot_uri: bdchm:BodySite
+    description: A CURIE from UBERON
+  body_position:
+    range: BodyPositionEnum
+    description: The body position during measurement
+  context:
+    range: ContextEnum
+    description: The context of the measurement
+  collected_by:
+    range: CollectedByEnum
+    description: Who collected the measurement
+  condition_type:
+    range: uriorcurie
+    slot_uri: bdchm:condition_concept
+    description: A CURIE from MONDO or HPO
+  diagnosis_method:
+    range: DiagnosisMethodEnum
+    description: The method used for diagnosis
+  drug_type:
+    range: uriorcurie
+    slot_uri: bdchm:drug_concept
+    description: A CURIE from RxNorm
+  procedure_type:
+    range: uriorcurie
+    slot_uri: bdchm:procedure_concept
+    description: A CURIE from OMOP
+  sdoh_type:
+    range: uriorcurie
+    slot_uri: bdchm:category
+    description: The type of SDOH observation
+  data_type:
+    range: DataTypeEnum
+    description: The data type of the observation
+  age_at_observation:
+    range: Quantity
+    description: Age of the subject at the time of observation
+  age_at_condition_start:
+    range: Quantity
+    description: Age of the subject at the start of the condition
+  age_at_condition_end:
+    range: Quantity
+    description: Age of the subject at the end of the condition
+  age_at_exposure_start:
+    range: Quantity
+    description: Age of the subject at the start of drug exposure
+  age_at_exposure_end:
+    range: Quantity
+    description: Age of the subject at the end of drug exposure
+  age_at_procedure:
+    range: Quantity
+    description: Age of the subject at the time of the procedure
+  subject_identifier:
+    range: string
+    description: An identifier for the subject of the datum
 
 enums:
-  PersonStatus:
+  DataTypeEnum:
+    description: The data type of an observation value
     permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+      decimal:
+        description: Decimal number
+      integer:
+        description: Integer number
+      enum:
+        description: Enumerated value
+      boolean:
+        description: Boolean value
+  MethodEnum:
+    description: The method used for a measurement or observation
+    permissible_values:
+      placeholder:
+        description: Placeholder value
+  InstrumentEnum:
+    description: The instrument used for a measurement
+    permissible_values:
+      placeholder:
+        description: Placeholder value
+  ReagentKitEnum:
+    description: The reagent kit used for a measurement
+    permissible_values:
+      placeholder:
+        description: Placeholder value
+  BodyPositionEnum:
+    description: The body position during a measurement
+    permissible_values:
+      supine:
+        description: Lying face up
+      standing:
+        description: Standing upright
+      sitting:
+        description: Seated position
+  ContextEnum:
+    description: The context in which a measurement was taken
+    permissible_values:
+      fasted_8_hrs:
+        description: Fasted for 8 hours
+      fasted_12_hrs:
+        description: Fasted for 12 hours
+      before_bronchodilator:
+        description: Before bronchodilator administration
+      after_bronchodilator:
+        description: After bronchodilator administration
+      taking_lipid_lowering_medications:
+        description: While taking lipid-lowering medications
+      before_physical_activity:
+        description: Before physical activity
+      during_physical_activity:
+        description: During physical activity
+      after_physical_activity:
+        description: After physical activity
+      during_procedure:
+        description: During a procedure
+      taking_diabetes_medication:
+        description: While taking diabetes medication
+      lowest:
+        description: Lowest recorded value
+  CollectedByEnum:
+    description: Who collected the measurement
+    permissible_values:
+      doctor:
+        description: Collected by a doctor
+      nurse:
+        description: Collected by a nurse
+      technician:
+        description: Collected by a technician
+      self_administered:
+        description: Self-administered by the patient
+      first_examiner:
+        description: Collected by the first examiner
+      second_examiner:
+        description: Collected by the second examiner
+  DiagnosisMethodEnum:
+    description: The method used for diagnosis
+    permissible_values:
+      placeholder:
+        description: Placeholder value
