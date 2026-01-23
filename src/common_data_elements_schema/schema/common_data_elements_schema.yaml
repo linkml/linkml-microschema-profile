@@ -1,15 +1,15 @@
 ---
-id: https://w3id.org/diatomsRcool/common-data-elements-schema
+id: https://w3id.org/linkml/common-data-elements-schema
 name: common-data-elements-schema
 title: common-data-elements-schema
 description: |-
   This is a LinkML schema for CDEs
 license: MIT
 see_also:
-  - https://diatomsRcool.github.io/common-data-elements-schema
+  - https://linkml.github.io/common-data-elements-schema
 
 prefixes:
-  common_data_elements_schema: https://w3id.org/diatomsRcool/common-data-elements-schema/
+  common_data_elements_schema: https://w3id.org/linkml/common-data-elements-schema/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
