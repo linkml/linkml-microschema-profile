@@ -1,12 +1,12 @@
 <a href="https://github.com/dalito/linkml-project-copier"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-teal.json" alt="Copier Badge" style="max-width:100%;"/></a>
 
-# common-data-elements-schema
+# linkml-microschema-profile
 
 This is a LinkML schema for CDEs
 
 ## Documentation Website
 
-[https://diatomsRcool.github.io/common-data-elements-schema](https://diatomsRcool.github.io/common-data-elements-schema)
+[https://linkml.github.io/linkml-microschema-profile](https://linkml.github.io/linkml-microschema-profile)
 
 ## Repository Structure
 
@@ -15,10 +15,10 @@ This is a LinkML schema for CDEs
 * [examples/](examples/) - Examples of using the schema
 * [project/](project/) - project files (these files are auto-generated, do not edit)
 * [src/](src/) - source files (edit these)
-  * [common_data_elements_schema](src/common_data_elements_schema)
-    * [schema/](src/common_data_elements_schema/schema) -- LinkML schema
+  * [linkml_microschema_profile](src/linkml_microschema_profile)
+    * [schema/](src/linkml_microschema_profile/schema) -- LinkML schema
       (edit this)
-    * [datamodel/](src/common_data_elements_schema/datamodel) -- generated
+    * [datamodel/](src/linkml_microschema_profile/datamodel) -- generated
       Python datamodel
 * [tests/](tests/) - Python tests
   * [data/](tests/data) - Example data

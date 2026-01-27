@@ -1,5 +1,5 @@
 try:
-    from common_data_elements_schema._version import __version__, __version_tuple__
+    from linkml_microschema_profile._version import __version__, __version_tuple__
 except ImportError:  # pragma: no cover
     __version__ = "0.0.0"
     __version_tuple__ = (0, 0, 0)

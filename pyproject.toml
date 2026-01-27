@@ -3,7 +3,7 @@ requires = ["hatchling", "uv-dynamic-versioning"]
 build-backend = "hatchling.build"
 
 [project]
-name = "common_data_elements_schema"
+name = "linkml_microschema_profile"
 description = "This is a LinkML schema for CDEs"
 authors = [
   {name = "diatomsRcool", email = "annethessen@gmail.com"},
@@ -50,8 +50,8 @@ skip = [
   "pyproject.toml",
   "uv.lock",
   "project/*",
-  "src/common_data_elements_schema/datamodel/common_data_elements_schema_pydantic.py",
-  "src/common_data_elements_schema/datamodel/common_data_elements_schema.py",
+  "src/linkml_microschema_profile/datamodel/linkml_microschema_profile_pydantic.py",
+  "src/linkml_microschema_profile/datamodel/linkml_microschema_profile.py",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -67,6 +67,6 @@ extend-exclude = [
   "uv.lock",
   "pyproject.toml",
   "project/*",
-  "src/common_data_elements_schema/datamodel/common_data_elements_schema_pydantic.py",
-  "src/common_data_elements_schema/datamodel/common_data_elements_schema.py",
+  "src/linkml_microschema_profile/datamodel/linkml_microschema_profile_pydantic.py",
+  "src/linkml_microschema_profile/datamodel/linkml_microschema_profile.py",
 ]

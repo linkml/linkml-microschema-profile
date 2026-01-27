@@ -9,7 +9,7 @@
 /docs/schema/
 
 # generated datamodels
-/src/common_data_elements_schema/datamodel/
+/src/linkml_microschema_profile/datamodel/
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 

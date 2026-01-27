@@ -1,15 +1,15 @@
 ---
-id: https://w3id.org/linkml/common-data-elements-schema
-name: common-data-elements-schema
-title: common-data-elements-schema
+id: https://w3id.org/linkml/linkml-microschema-profile
+name: linkml-microschema-profile
+title: linkml-microschema-profile
 description: |-
   This is a LinkML schema for CDEs
 license: MIT
 see_also:
-  - https://linkml.github.io/common-data-elements-schema
+  - https://linkml.github.io/linkml-microschema-profile
 
 prefixes:
-  common_data_elements_schema: https://w3id.org/linkml/common-data-elements-schema/
+  linkml_microschema_profile: https://w3id.org/linkml/linkml-microschema-profile/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
@@ -24,7 +24,7 @@ prefixes:
   HP: http://purl.obolibrary.org/obo/HP_
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   example: http://www.example.org/rdf#
-default_prefix: common_data_elements_schema
+default_prefix: linkml_microschema_profile
 default_range: string
 
 imports:

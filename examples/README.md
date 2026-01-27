@@ -1,4 +1,4 @@
-# Examples of using common-data-elements-schema
+# Examples of using linkml-microschema-profile
 
 This folder contains examples using the datamodel.
 

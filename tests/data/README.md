@@ -1,4 +1,4 @@
-# Example data for common_data_elements_schema
+# Example data for linkml_microschema_profile
 
 This folder contains example data for testing and demonstrating the datamodel`
 sorted in subfolders:

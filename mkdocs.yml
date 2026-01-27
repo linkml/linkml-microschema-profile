@@ -1,5 +1,5 @@
 ---
-site_name: "common-data-elements-schema"
+site_name: "linkml-microschema-profile"
 theme:
   name: material
   # palette:
@@ -22,7 +22,7 @@ plugins:
   #       - gen_pages.py  # or any other name or path
 
 watch:
-  - src/common_data_elements_schema/schema
+  - src/linkml_microschema_profile/schema
 
 nav:
   - Home: index.md
@@ -32,8 +32,8 @@ nav:
 exclude_docs: |
   /templates-linkml/
 
-site_url: https://diatomsRcool.github.io/common-data-elements-schema
-repo_url: https://github.com/diatomsRcool/common-data-elements-schema
+site_url: https://linkml.github.io/linkml-microschema-profile
+repo_url: https://github.com/linkml/linkml-microschema-profile
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.

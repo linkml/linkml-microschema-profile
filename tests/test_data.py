@@ -4,7 +4,7 @@ import glob
 import pytest
 from pathlib import Path
 
-import common_data_elements_schema.datamodel.common_data_elements_schema
+import linkml_microschema_profile.datamodel.linkml_microschema_profile
 from linkml_runtime.loaders import yaml_loader
 
 DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
@@ -19,7 +19,7 @@ def test_valid_data_files(filepath):
     """Test loading of all valid data files."""
     target_class_name = Path(filepath).stem.split("-")[0]
     tgt_class = getattr(
-        common_data_elements_schema.datamodel.common_data_elements_schema,
+        linkml_microschema_profile.datamodel.linkml_microschema_profile,
         target_class_name,
     )
     obj = yaml_loader.load(filepath, target_class=tgt_class)

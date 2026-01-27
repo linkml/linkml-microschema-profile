@@ -1,1 +1,1 @@
-"""Tests for common-data-elements-schema."""
+"""Tests for linkml-microschema-profile."""
