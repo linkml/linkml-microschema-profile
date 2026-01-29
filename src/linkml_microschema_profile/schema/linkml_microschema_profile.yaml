@@ -140,7 +140,12 @@ classes:
     attributes:
       entries:
         description: The collection of CDE objects
-        range: CdeThing
+        any_of:
+          - range: MeasurementObservationCde
+          - range: ConditionStatusCde
+          - range: DrugStatusCde
+          - range: ProcedureStatusCde
+          - range: SdohObservationCde
         multivalued: true
         inlined_as_list: true
 
