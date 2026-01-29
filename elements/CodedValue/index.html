@@ -171,15 +171,6 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
-<span class="md-ellipsis">
-      
-        Inheritance
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -263,27 +254,15 @@
 <div class="mermaid"> classDiagram
     class CodedValue
     click CodedValue href "../CodedValue/"
-      ValueMicroschemaDefinition &lt;|-- CodedValue
-        click ValueMicroschemaDefinition href "../ValueMicroschemaDefinition/"
-
       CodedValue : code
 
-      CodedValue : domain_of_use
-
       CodedValue : label
-
-      CodedValue : profile_version
-
-      CodedValue : semantic_mapping
 
       CodedValue : system
 
 
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>CodedValue</strong> [ <a href="../ValueMicroschemaDefinition/">ValueMicroschemaDefinition</a>]</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -312,24 +291,6 @@
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>The code system URI</td>
 <td>direct</td>
-</tr>
-<tr>
-<td><a href="../profile_version/">profile_version</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Version of microschema profile this conforms to</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
-</tr>
-<tr>
-<td><a href="../semantic_mapping/">semantic_mapping</a></td>
-<td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>URIs/CURIEs mapping this microschema to external standards (ISO-11179 DEC, NI...</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
-</tr>
-<tr>
-<td><a href="../domain_of_use/">domain_of_use</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>Domains where this microschema is applicable</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
 </tr>
 </tbody>
 </table>
@@ -362,10 +323,10 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: CodedValue
+instantiates:
+- ValueMicroschemaDefinition
 description: A value from a controlled vocabulary
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixins:
-- ValueMicroschemaDefinition
 attributes:
   code:
     name: code
@@ -398,10 +359,10 @@ attributes:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: CodedValue
+instantiates:
+- ValueMicroschemaDefinition
 description: A value from a controlled vocabulary
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixins:
-- ValueMicroschemaDefinition
 attributes:
   code:
     name: code
@@ -434,39 +395,6 @@ attributes:
     domain_of:
     - CodedValue
     range: uriorcurie
-  profile_version:
-    name: profile_version
-    description: Version of microschema profile this conforms to
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: profile_version
-    owner: CodedValue
-    domain_of:
-    - MicroschemaDefinition
-    range: string
-  semantic_mapping:
-    name: semantic_mapping
-    description: URIs/CURIEs mapping this microschema to external standards (ISO-11179
-      DEC, NIH CDE, etc.)
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: semantic_mapping
-    owner: CodedValue
-    domain_of:
-    - MicroschemaDefinition
-    range: uriorcurie
-    multivalued: true
-  domain_of_use:
-    name: domain_of_use
-    description: Domains where this microschema is applicable
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: domain_of_use
-    owner: CodedValue
-    domain_of:
-    - MicroschemaDefinition
-    range: string
-    multivalued: true
 
 </code></pre>
 </details>

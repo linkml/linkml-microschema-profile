@@ -189,15 +189,6 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mixin-usage">
-<span class="md-ellipsis">
-      
-        Mixin Usage
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#comments">
 <span class="md-ellipsis">
       
@@ -277,22 +268,15 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-microschemadefinition">Class: MicroschemaDefinition</h1>
 <p><em>A metaclass for classes that conform to the Microschema profile. Classes that instantiate this are designed for inline composition.</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
 <p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition">coms:MicroschemaDefinition</a></p>
 <div class="mermaid"> classDiagram
     class MicroschemaDefinition
     click MicroschemaDefinition href "../MicroschemaDefinition/"
       MicroschemaDefinition &lt;|-- ValueMicroschemaDefinition
         click ValueMicroschemaDefinition href "../ValueMicroschemaDefinition/"
-      MicroschemaDefinition &lt;|-- MeasurementObservationCde
-        click MeasurementObservationCde href "../MeasurementObservationCde/"
-      MicroschemaDefinition &lt;|-- ConditionStatusCde
-        click ConditionStatusCde href "../ConditionStatusCde/"
-      MicroschemaDefinition &lt;|-- DrugStatusCde
-        click DrugStatusCde href "../DrugStatusCde/"
-      MicroschemaDefinition &lt;|-- ProcedureStatusCde
-        click ProcedureStatusCde href "../ProcedureStatusCde/"
-      MicroschemaDefinition &lt;|-- SdohObservationCde
-        click SdohObservationCde href "../SdohObservationCde/"
 
       MicroschemaDefinition : domain_of_use
 
@@ -340,37 +324,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="mixin-usage">Mixin Usage</h2>
-<table>
-<thead>
-<tr>
-<th>mixed into</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single obser...</td>
-</tr>
-<tr>
-<td><a href="../ConditionStatusCde/">ConditionStatusCde</a></td>
-<td>Record suggesting the presence of a disease or medical condition stated as a ...</td>
-</tr>
-<tr>
-<td><a href="../DrugStatusCde/">DrugStatusCde</a></td>
-<td>Record suggesting exposure to a medication</td>
-</tr>
-<tr>
-<td><a href="../ProcedureStatusCde/">ProcedureStatusCde</a></td>
-<td>Record of activity or process ordered by or carried out by a healthcare provi...</td>
-</tr>
-<tr>
-<td><a href="../SdohObservationCde/">SdohObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single SDOH ...</td>
-</tr>
-</tbody>
-</table>
 <h2 id="comments">Comments</h2>
 <ul>
 <li>Classes instantiating this SHOULD NOT have identifier slots</li>
@@ -413,7 +366,7 @@ comments:
 - Classes instantiating this SHOULD be used with inlined=true
 - Classes instantiating this MAY compose other microschemas via attributes
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixin: true
+abstract: true
 slots:
 - profile_version
 - semantic_mapping
@@ -432,7 +385,7 @@ comments:
 - Classes instantiating this SHOULD be used with inlined=true
 - Classes instantiating this MAY compose other microschemas via attributes
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixin: true
+abstract: true
 attributes:
   profile_version:
     name: profile_version

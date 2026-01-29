@@ -171,28 +171,10 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
-<span class="md-ellipsis">
-      
-        Inheritance
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
         Slots
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#usages">
-<span class="md-ellipsis">
-      
-        Usages
       
     </span>
 </a>
@@ -272,9 +254,6 @@
 <div class="mermaid"> classDiagram
     class MeasurementObservationCde
     click MeasurementObservationCde href "../MeasurementObservationCde/"
-      MicroschemaDefinition &lt;|-- MeasurementObservationCde
-        click MicroschemaDefinition href "../MicroschemaDefinition/"
-
       MeasurementObservationCde : age_at_observation
 
 
@@ -334,8 +313,6 @@
 
 
 
-      MeasurementObservationCde : domain_of_use
-
       MeasurementObservationCde : instrument
 
 
@@ -371,8 +348,6 @@
 
 
 
-      MeasurementObservationCde : profile_version
-
       MeasurementObservationCde : reagent_kit
 
 
@@ -383,8 +358,6 @@
         click ReagentKitEnum href "../ReagentKitEnum/"
 
 
-
-      MeasurementObservationCde : semantic_mapping
 
       MeasurementObservationCde : subject_identifier
 
@@ -403,10 +376,7 @@
 
 
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>MeasurementObservationCde</strong> [ <a href="../MicroschemaDefinition/">MicroschemaDefinition</a>]</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -508,43 +478,6 @@
 <td>Age of the subject at the time of observation</td>
 <td>direct</td>
 </tr>
-<tr>
-<td><a href="../profile_version/">profile_version</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Version of microschema profile this conforms to</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
-</tr>
-<tr>
-<td><a href="../semantic_mapping/">semantic_mapping</a></td>
-<td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>URIs/CURIEs mapping this microschema to external standards (ISO-11179 DEC, NI...</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
-</tr>
-<tr>
-<td><a href="../domain_of_use/">domain_of_use</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>Domains where this microschema is applicable</td>
-<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="usages">Usages</h2>
-<table>
-<thead>
-<tr>
-<th>used by</th>
-<th>used in</th>
-<th>type</th>
-<th>used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../CdeCollection/">CdeCollection</a></td>
-<td><a href="../entries/">entries</a></td>
-<td>any_of[range]</td>
-<td><a href="./">MeasurementObservationCde</a></td>
-</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -576,11 +509,11 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: MeasurementObservationCde
+instantiates:
+- MicroschemaDefinition
 description: A data structure with key and value attributes that represents a single
   observation
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixins:
-- MicroschemaDefinition
 slots:
 - subject_identifier
 - measurement_type
@@ -604,11 +537,11 @@ class_uri: bdchm:MeasurementObservation
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: MeasurementObservationCde
+instantiates:
+- MicroschemaDefinition
 description: A data structure with key and value attributes that represents a single
   observation
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
-mixins:
-- MicroschemaDefinition
 attributes:
   subject_identifier:
     name: subject_identifier
@@ -781,39 +714,6 @@ attributes:
     - MeasurementObservationCde
     - SdohObservationCde
     range: Quantity
-  profile_version:
-    name: profile_version
-    description: Version of microschema profile this conforms to
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: profile_version
-    owner: MeasurementObservationCde
-    domain_of:
-    - MicroschemaDefinition
-    range: string
-  semantic_mapping:
-    name: semantic_mapping
-    description: URIs/CURIEs mapping this microschema to external standards (ISO-11179
-      DEC, NIH CDE, etc.)
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: semantic_mapping
-    owner: MeasurementObservationCde
-    domain_of:
-    - MicroschemaDefinition
-    range: uriorcurie
-    multivalued: true
-  domain_of_use:
-    name: domain_of_use
-    description: Domains where this microschema is applicable
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: domain_of_use
-    owner: MeasurementObservationCde
-    domain_of:
-    - MicroschemaDefinition
-    range: string
-    multivalued: true
 class_uri: bdchm:MeasurementObservation
 
 </code></pre>

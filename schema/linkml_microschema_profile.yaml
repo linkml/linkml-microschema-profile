@@ -947,24 +947,6 @@ slots:
     domain_of:
     - CodedValue
     range: uriorcurie
-  cdeCollection__entries:
-    name: cdeCollection__entries
-    description: The collection of CDE objects
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:entries
-    alias: entries
-    owner: CdeCollection
-    domain_of:
-    - CdeCollection
-    range: string
-    multivalued: true
-    inlined_as_list: true
-    any_of:
-    - range: MeasurementObservationCde
-    - range: ConditionStatusCde
-    - range: DrugStatusCde
-    - range: ProcedureStatusCde
-    - range: SdohObservationCde
 classes:
   MicroschemaDefinition:
     name: MicroschemaDefinition
@@ -978,7 +960,7 @@ classes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - coms:MicroschemaDefinition
-    mixin: true
+    abstract: true
     slots:
     - profile_version
     - semantic_mapping
@@ -993,7 +975,7 @@ classes:
     mappings:
     - coms:ValueMicroschemaDefinition
     is_a: MicroschemaDefinition
-    mixin: true
+    abstract: true
     slots:
     - profile_version
     - semantic_mapping
@@ -1002,19 +984,16 @@ classes:
   Quantity:
     name: Quantity
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/Quantity
+    instantiates:
+    - ValueMicroschemaDefinition
     description: A value with optional unit
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - schema:QuantitativeValue
-    mixins:
-    - ValueMicroschemaDefinition
     slots:
     - quantity__value
     - quantity__unit
     - quantity__comparator
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     attributes:
       value:
         name: value
@@ -1035,17 +1014,14 @@ classes:
   Timepoint:
     name: Timepoint
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/Timepoint
+    instantiates:
+    - ValueMicroschemaDefinition
     description: A point in time, potentially relative
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mixins:
-    - ValueMicroschemaDefinition
     slots:
     - timepoint__datetime
     - timepoint__relative_to_event
     - timepoint__offset
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     attributes:
       datetime:
         name: datetime
@@ -1064,17 +1040,14 @@ classes:
   TimeInterval:
     name: TimeInterval
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/TimeInterval
+    instantiates:
+    - ValueMicroschemaDefinition
     description: A period between two timepoints
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mixins:
-    - ValueMicroschemaDefinition
     slots:
     - timeInterval__start
     - timeInterval__end
     - timeInterval__duration
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     attributes:
       start:
         name: start
@@ -1095,17 +1068,14 @@ classes:
   CodedValue:
     name: CodedValue
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/CodedValue
+    instantiates:
+    - ValueMicroschemaDefinition
     description: A value from a controlled vocabulary
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mixins:
-    - ValueMicroschemaDefinition
     slots:
     - codedValue__code
     - codedValue__label
     - codedValue__system
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     attributes:
       code:
         name: code
@@ -1124,13 +1094,13 @@ classes:
   MeasurementObservationCde:
     name: MeasurementObservationCde
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/MeasurementObservationCde
+    instantiates:
+    - MicroschemaDefinition
     description: A data structure with key and value attributes that represents a
       single observation
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - bdchm:MeasurementObservation
-    mixins:
-    - MicroschemaDefinition
     slots:
     - subject_identifier
     - measurement_type
@@ -1147,20 +1117,17 @@ classes:
     - collected_by
     - data_type
     - age_at_observation
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     class_uri: bdchm:MeasurementObservation
   ConditionStatusCde:
     name: ConditionStatusCde
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ConditionStatusCde
+    instantiates:
+    - MicroschemaDefinition
     description: Record suggesting the presence of a disease or medical condition
       stated as a diagnosis, sign, or symptom
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - bdchm:Condition
-    mixins:
-    - MicroschemaDefinition
     slots:
     - subject_identifier
     - condition_type
@@ -1169,19 +1136,16 @@ classes:
     - instrument
     - age_at_condition_start
     - age_at_condition_end
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     class_uri: bdchm:Condition
   DrugStatusCde:
     name: DrugStatusCde
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DrugStatusCde
+    instantiates:
+    - MicroschemaDefinition
     description: Record suggesting exposure to a medication
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - bdchm:DrugExposure
-    mixins:
-    - MicroschemaDefinition
     slots:
     - subject_identifier
     - drug_type
@@ -1189,40 +1153,34 @@ classes:
     - collected_by
     - age_at_exposure_start
     - age_at_exposure_end
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     class_uri: bdchm:DrugExposure
   ProcedureStatusCde:
     name: ProcedureStatusCde
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ProcedureStatusCde
+    instantiates:
+    - MicroschemaDefinition
     description: Record of activity or process ordered by or carried out by a healthcare
       provider for a diagnostic or therapeutic reason
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - bdchm:Procedure
-    mixins:
-    - MicroschemaDefinition
     slots:
     - subject_identifier
     - procedure_type
     - method
     - collected_by
     - age_at_procedure
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     class_uri: bdchm:Procedure
   SdohObservationCde:
     name: SdohObservationCde
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/SdohObservationCde
+    instantiates:
+    - MicroschemaDefinition
     description: A data structure with key and value attributes that represents a
       single SDOH observation
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
     - bdchm:SdohObservation
-    mixins:
-    - MicroschemaDefinition
     slots:
     - subject_identifier
     - sdoh_type
@@ -1232,34 +1190,10 @@ classes:
     - collected_by
     - data_type
     - age_at_observation
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
     class_uri: bdchm:SdohObservation
-  CdeCollection:
-    name: CdeCollection
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/CdeCollection
-    description: A holder for CDE objects
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slots:
-    - cdeCollection__entries
-    attributes:
-      entries:
-        name: entries
-        description: The collection of CDE objects
-        multivalued: true
-        inlined_as_list: true
-        any_of:
-        - range: MeasurementObservationCde
-        - range: ConditionStatusCde
-        - range: DrugStatusCde
-        - range: ProcedureStatusCde
-        - range: SdohObservationCde
-    class_uri: coms:CdeCollection
-    tree_root: true
 metamodel_version: 1.7.0
 source_file: linkml_microschema_profile.yaml
-source_file_date: '2026-01-29T16:20:12'
-source_file_size: 14773
-generation_date: '2026-01-29T16:20:26'
+source_file_date: '2026-01-29T20:08:01'
+source_file_size: 13961
+generation_date: '2026-01-29T20:08:12'
 
