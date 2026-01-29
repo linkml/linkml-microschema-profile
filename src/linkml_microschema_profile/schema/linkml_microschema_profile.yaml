@@ -9,7 +9,7 @@ see_also:
   - https://linkml.github.io/linkml-microschema-profile
 
 prefixes:
-  linkml_microschema_profile: https://w3id.org/linkml/linkml-microschema-profile/
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
@@ -24,7 +24,7 @@ prefixes:
   HP: http://purl.obolibrary.org/obo/HP_
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   example: http://www.example.org/rdf#
-default_prefix: linkml_microschema_profile
+default_prefix: coms
 default_range: string
 
 imports:
