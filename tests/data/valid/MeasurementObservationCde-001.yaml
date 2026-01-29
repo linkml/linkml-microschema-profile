@@ -1,8 +1,5 @@
 # Example MeasurementObservationCde
 ---
-id: example:glucose001
-name: Fasting Blood Glucose
-description: Fasting blood glucose measurement CDE
 subject_identifier: subject001
 measurement_type: LOINC:1558-6
 unit: UCUM:mg/dL

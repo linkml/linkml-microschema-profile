@@ -1,9 +1,6 @@
 # Example CdeCollection with MeasurementObservationCde entries
 entries:
-  - id: example:measurement001
-    name: Blood Pressure Systolic
-    description: Systolic blood pressure measurement CDE
-    subject_identifier: subject001
+  - subject_identifier: subject001
     measurement_type: LOINC:8480-6
     unit: UCUM:mm[Hg]
     method: placeholder
@@ -11,10 +8,7 @@ entries:
     context: fasted_8_hrs
     collected_by: nurse
     data_type: integer
-  - id: example:measurement002
-    name: Body Mass Index
-    description: BMI measurement CDE
-    subject_identifier: subject001
+  - subject_identifier: subject001
     measurement_type: LOINC:39156-5
     unit: UCUM:kg/m2
     method: placeholder

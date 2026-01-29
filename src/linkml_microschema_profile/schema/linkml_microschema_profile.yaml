@@ -1,9 +1,11 @@
 ---
 id: https://w3id.org/linkml/linkml-microschema-profile
 name: linkml-microschema-profile
-title: linkml-microschema-profile
+title: LinkML Microschema Profile
+version: "0.2.0"
 description: |-
-  This is a LinkML schema for CDEs
+  A LinkML schema defining the Microschema Profile for composable data elements.
+  Microschemas are designed for inline composition without identifiers.
 license: MIT
 see_also:
   - https://linkml.github.io/linkml-microschema-profile
@@ -11,7 +13,6 @@ see_also:
 prefixes:
   coms: https://w3id.org/linkml/linkml-microschema-profile/
   linkml: https://w3id.org/linkml/
-  biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
   bdchm: https://w3id.org/bdchm/
@@ -23,6 +24,7 @@ prefixes:
   MONDO: http://purl.obolibrary.org/obo/MONDO_
   HP: http://purl.obolibrary.org/obo/HP_
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
+  ISO11179: http://purl.org/iso11179/
   example: http://www.example.org/rdf#
 default_prefix: coms
 default_range: string
@@ -32,21 +34,40 @@ imports:
 
 classes:
 
-  NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
-    slots:
-      - id
-      - name
-      - description
-    class_uri: schema:Thing
+  #────────────────────────────────────────────────────────────────
+  # METACLASSES: Define what makes a class a "Microschema"
+  #────────────────────────────────────────────────────────────────
 
-  CdeThing:
-    is_a: NamedThing
+  MicroschemaDefinition:
+    class_uri: coms:MicroschemaDefinition
+    mixin: true
     description: >-
-      Represents a CDE
+      A metaclass for classes that conform to the Microschema profile.
+      Classes that instantiate this are designed for inline composition.
+    comments:
+      - Classes instantiating this SHOULD NOT have identifier slots
+      - Classes instantiating this SHOULD be used with inlined=true
+      - Classes instantiating this MAY compose other microschemas via attributes
+    slots:
+      - profile_version
+      - semantic_mapping
+      - domain_of_use
+
+  ValueMicroschemaDefinition:
+    class_uri: coms:ValueMicroschemaDefinition
+    is_a: MicroschemaDefinition
+    mixin: true
+    description: >-
+      A microschema representing a typed value with optional unit/system.
+      Examples: Quantity, Timepoint, CodedValue, Range.
+
+  #────────────────────────────────────────────────────────────────
+  # VALUE MICROSCHEMAS: Leaf value types
+  #────────────────────────────────────────────────────────────────
 
   Quantity:
+    mixins:
+      - ValueMicroschemaDefinition
     description: >-
       A value with a unit
     attributes:
@@ -57,8 +78,13 @@ classes:
         range: uriorcurie
         description: A unit from UCUM
 
+  #────────────────────────────────────────────────────────────────
+  # CDE MICROSCHEMAS: Domain-specific composable data elements
+  #────────────────────────────────────────────────────────────────
+
   MeasurementObservationCde:
-    is_a: CdeThing
+    mixins:
+      - MicroschemaDefinition
     description: >-
       A data structure with key and value attributes that represents a single observation
     class_uri: bdchm:MeasurementObservation
@@ -80,7 +106,8 @@ classes:
       - age_at_observation
 
   ConditionStatusCde:
-    is_a: CdeThing
+    mixins:
+      - MicroschemaDefinition
     description: >-
       Record suggesting the presence of a disease or medical condition stated as a diagnosis, sign, or symptom
     class_uri: bdchm:Condition
@@ -94,7 +121,8 @@ classes:
       - age_at_condition_end
 
   DrugStatusCde:
-    is_a: CdeThing
+    mixins:
+      - MicroschemaDefinition
     description: >-
       Record suggesting exposure to a medication
     class_uri: bdchm:DrugExposure
@@ -107,9 +135,10 @@ classes:
       - age_at_exposure_end
 
   ProcedureStatusCde:
-    is_a: CdeThing
+    mixins:
+      - MicroschemaDefinition
     description: >-
-      Record of activity or process ordered by or carried out by a healthcare provider for a diagnostic or theraputic reason
+      Record of activity or process ordered by or carried out by a healthcare provider for a diagnostic or therapeutic reason
     class_uri: bdchm:Procedure
     slots:
       - subject_identifier
@@ -119,9 +148,10 @@ classes:
       - age_at_procedure
 
   SdohObservationCde:
-    is_a: CdeThing
+    mixins:
+      - MicroschemaDefinition
     description: >-
-      A data structure with key and value attributes that represents a single Sdoh observation
+      A data structure with key and value attributes that represents a single SDOH observation
     class_uri: bdchm:SdohObservation
     slots:
       - subject_identifier
@@ -132,6 +162,10 @@ classes:
       - collected_by
       - data_type
       - age_at_observation
+
+  #────────────────────────────────────────────────────────────────
+  # CONTAINER: For collecting CDE instances
+  #────────────────────────────────────────────────────────────────
 
   CdeCollection:
     tree_root: true
@@ -149,18 +183,32 @@ classes:
         multivalued: true
         inlined_as_list: true
 
+#────────────────────────────────────────────────────────────────
+# SLOTS
+#────────────────────────────────────────────────────────────────
+
 slots:
-  id:
-    identifier: true
-    slot_uri: schema:identifier
+  # Microschema profile slots
+  profile_version:
+    range: string
+    description: Version of microschema profile this conforms to
+
+  semantic_mapping:
     range: uriorcurie
-    description: A unique identifier for a thing
-  name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
+    multivalued: true
+    description: >-
+      URIs/CURIEs mapping this microschema to external standards
+      (ISO-11179 DEC, NIH CDE, etc.)
+
+  domain_of_use:
+    range: string
+    multivalued: true
+    description: Domains where this microschema is applicable
+
+  # Domain slots
+  subject_identifier:
+    range: string
+    description: An identifier for the subject of the datum
   measurement_type:
     range: uriorcurie
     slot_uri: bdchm:observation_type
@@ -240,9 +288,10 @@ slots:
   age_at_procedure:
     range: Quantity
     description: Age of the subject at the time of the procedure
-  subject_identifier:
-    range: string
-    description: An identifier for the subject of the datum
+
+#────────────────────────────────────────────────────────────────
+# ENUMS
+#────────────────────────────────────────────────────────────────
 
 enums:
   DataTypeEnum:
