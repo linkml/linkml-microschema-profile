@@ -257,15 +257,6 @@
       CdeCollection : entries
 
 
-
-
-
-        CdeCollection --&gt; "*" CdeThing : entries
-        click CdeThing href "../CdeThing/"
-
-
-
-
 </div>
 <!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
@@ -281,7 +272,7 @@
 <tbody>
 <tr>
 <td><a href="../entries/">entries</a></td>
-<td>* <br/> <a href="../CdeThing/">CdeThing</a></td>
+<td>* <br/> <a href="../String/">String</a> or <br/><a href="../MeasurementObservationCde/">MeasurementObservationCde</a> or <br/><a href="../ConditionStatusCde/">ConditionStatusCde</a> or <br/><a href="../DrugStatusCde/">DrugStatusCde</a> or <br/><a href="../ProcedureStatusCde/">ProcedureStatusCde</a> or <br/><a href="../SdohObservationCde/">SdohObservationCde</a></td>
 <td>The collection of CDE objects</td>
 <td>direct</td>
 </tr>
@@ -326,10 +317,15 @@ attributes:
     rank: 1000
     domain_of:
     - CdeCollection
-    range: CdeThing
     multivalued: true
     inlined: true
     inlined_as_list: true
+    any_of:
+    - range: MeasurementObservationCde
+    - range: ConditionStatusCde
+    - range: DrugStatusCde
+    - range: ProcedureStatusCde
+    - range: SdohObservationCde
 tree_root: true
 
 </code></pre>
@@ -349,10 +345,16 @@ attributes:
     owner: CdeCollection
     domain_of:
     - CdeCollection
-    range: CdeThing
+    range: string
     multivalued: true
     inlined: true
     inlined_as_list: true
+    any_of:
+    - range: MeasurementObservationCde
+    - range: ConditionStatusCde
+    - range: DrugStatusCde
+    - range: ProcedureStatusCde
+    - range: SdohObservationCde
 tree_root: true
 
 </code></pre>

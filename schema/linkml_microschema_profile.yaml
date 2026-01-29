@@ -823,10 +823,15 @@ slots:
     owner: CdeCollection
     domain_of:
     - CdeCollection
-    range: CdeThing
+    range: string
     multivalued: true
-    inlined: true
     inlined_as_list: true
+    any_of:
+    - range: MeasurementObservationCde
+    - range: ConditionStatusCde
+    - range: DrugStatusCde
+    - range: ProcedureStatusCde
+    - range: SdohObservationCde
 classes:
   NamedThing:
     name: NamedThing
@@ -990,14 +995,19 @@ classes:
       entries:
         name: entries
         description: The collection of CDE objects
-        range: CdeThing
         multivalued: true
         inlined_as_list: true
+        any_of:
+        - range: MeasurementObservationCde
+        - range: ConditionStatusCde
+        - range: DrugStatusCde
+        - range: ProcedureStatusCde
+        - range: SdohObservationCde
     class_uri: coms:CdeCollection
     tree_root: true
 metamodel_version: 1.7.0
 source_file: linkml_microschema_profile.yaml
-source_file_date: '2026-01-29T15:39:58'
-source_file_size: 9056
-generation_date: '2026-01-29T15:40:10'
+source_file_date: '2026-01-29T15:54:33'
+source_file_size: 9240
+generation_date: '2026-01-29T15:54:46'
 
