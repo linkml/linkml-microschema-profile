@@ -2,282 +2,282 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/about/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/BodyPositionEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Boolean/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/CdeCollection/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/CdeThing/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/CollectedByEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/ConditionStatusCde/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/ContextEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Curie/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/DataTypeEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Date/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/DateOrDatetime/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Datetime/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Decimal/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/DiagnosisMethodEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Double/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/DrugStatusCde/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Float/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/InstrumentEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Integer/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Jsonpath/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Jsonpointer/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/MeasurementObservationCde/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/MethodEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/NamedThing/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Ncname/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Nodeidentifier/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Objectidentifier/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/ProcedureStatusCde/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Quantity/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/ReagentKitEnum/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/SdohObservationCde/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Sparqlpath/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/String/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Time/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Uri/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/Uriorcurie/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_condition_end/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_condition_start/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_exposure_end/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_exposure_start/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_observation/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/age_at_procedure/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/body_location/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/body_position/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/calculated_from/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/collected_by/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/condition_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/context/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/data_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/description/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/diagnosis_method/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/drug_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/entries/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/id/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/instrument/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/linkml-microschema-profile/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/llod/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/measurement_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/method/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/name/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/procedure_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/reagent_kit/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/sdoh_type/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/subject_identifier/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/ulod/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/unit/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
     <url>
          <loc>https://linkml.github.io/linkml-microschema-profile/elements/value/</loc>
-         <lastmod>2026-01-27</lastmod>
+         <lastmod>2026-01-29</lastmod>
     </url>
 </urlset>
