@@ -7,15 +7,15 @@ method: placeholder
 instrument: placeholder
 reagent_kit: placeholder
 ulod:
-  value: 500.0
-  unit: UCUM:mg/dL
+  quantity_value: 500.0
+  quantity_unit: UCUM:mg/dL
 llod:
-  value: 10.0
-  unit: UCUM:mg/dL
+  quantity_value: 10.0
+  quantity_unit: UCUM:mg/dL
 body_position: sitting
 context: fasted_12_hrs
 collected_by: technician
 data_type: decimal
 age_at_measurement:
-  value: 45.5
-  unit: UCUM:a
+  quantity_value: 45.5
+  quantity_unit: UCUM:a

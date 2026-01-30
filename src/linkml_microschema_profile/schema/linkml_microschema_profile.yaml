@@ -71,71 +71,40 @@ classes:
     class_uri: schema:QuantitativeValue
     description: >-
       A value with optional unit
-    attributes:
-      value:
-        range: decimal
-        required: true
-        description: The numeric value
-      unit:
-        range: uriorcurie
-        slot_uri: schema:unitCode
-        description: Unit (UCUM, UO, QUDT, etc.)
-      comparator:
-        range: ComparatorEnum
-        description: Comparison operator (less than, greater than, etc.) or exact if null
+    slots:
+      - quantity_value
+      - quantity_unit
+      - comparator
 
   Timepoint:
     instantiates:
       - ValueMicroschemaDefinition
     description: >-
       A point in time, potentially relative
-    attributes:
-      datetime:
-        range: datetime
-        description: Absolute timestamp
-      relative_to_event:
-        range: uriorcurie
-        description: Event this is relative to
-      offset:
-        range: Quantity
-        inlined: true
-        description: Offset from event (e.g., "+3 days")
+    slots:
+      - datetime
+      - relative_to_event
+      - offset
 
   TimeInterval:
     instantiates:
       - ValueMicroschemaDefinition
     description: >-
       A period between two timepoints
-    attributes:
-      start:
-        range: Timepoint
-        inlined: true
-        description: Start of the interval
-      end:
-        range: Timepoint
-        inlined: true
-        description: End of the interval
-      duration:
-        range: Quantity
-        inlined: true
-        description: Alternative to start/end
+    slots:
+      - interval_start
+      - interval_end
+      - duration
 
   CodedValue:
     instantiates:
       - ValueMicroschemaDefinition
     description: >-
       A value from a controlled vocabulary
-    attributes:
-      code:
-        range: uriorcurie
-        required: true
-        description: The code value as a CURIE
-      label:
-        range: string
-        description: Human-readable label for the code
-      system:
-        range: uriorcurie
-        description: The code system URI
+    slots:
+      - code
+      - code_label
+      - code_system
 
   #────────────────────────────────────────────────────────────────
   # RECORD MICROSCHEMAS: Domain-specific composable data elements
@@ -237,6 +206,62 @@ slots:
     range: string
     multivalued: true
     description: Domains where this microschema is applicable
+
+  # Value microschema slots
+  quantity_value:
+    range: decimal
+    required: true
+    description: The numeric value
+
+  quantity_unit:
+    range: uriorcurie
+    slot_uri: schema:unitCode
+    description: Unit (UCUM, UO, QUDT, etc.)
+
+  comparator:
+    range: ComparatorEnum
+    description: Comparison operator (less than, greater than, etc.) or exact if null
+
+  datetime:
+    range: datetime
+    description: Absolute timestamp
+
+  relative_to_event:
+    range: uriorcurie
+    description: Event this is relative to
+
+  offset:
+    range: Quantity
+    inlined: true
+    description: Offset from event (e.g., "+3 days")
+
+  interval_start:
+    range: Timepoint
+    inlined: true
+    description: Start of the interval
+
+  interval_end:
+    range: Timepoint
+    inlined: true
+    description: End of the interval
+
+  duration:
+    range: Quantity
+    inlined: true
+    description: Duration as alternative to start/end
+
+  code:
+    range: uriorcurie
+    required: true
+    description: The code value as a CURIE
+
+  code_label:
+    range: string
+    description: Human-readable label for the code
+
+  code_system:
+    range: uriorcurie
+    description: The code system URI
 
   # Domain slots
   subject_identifier:
