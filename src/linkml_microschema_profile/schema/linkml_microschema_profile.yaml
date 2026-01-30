@@ -138,15 +138,19 @@ classes:
         description: The code system URI
 
   #────────────────────────────────────────────────────────────────
-  # CDE MICROSCHEMAS: Domain-specific composable data elements
+  # RECORD MICROSCHEMAS: Domain-specific composable data elements
   #────────────────────────────────────────────────────────────────
 
-  MeasurementObservationCde:
+  ClinicalMeasurementRecord:
     instantiates:
       - MicroschemaDefinition
     description: >-
-      A data structure with key and value attributes that represents a single observation
-    class_uri: bdchm:MeasurementObservation
+      A data structure with key and value attributes that represents a single observation.
+      This can include results of clinical labs, scores and indices, socioeconomic, or
+      behavioral observations.
+    class_uri: bdchm:Observation
+    annotations:
+      domain_of_use: clinical
     slots:
       - subject_identifier
       - measurement_type
@@ -162,14 +166,16 @@ classes:
       - context
       - collected_by
       - data_type
-      - age_at_observation
+      - age_at_measurement
 
-  ConditionStatusCde:
+  ConditionStatusRecord:
     instantiates:
       - MicroschemaDefinition
     description: >-
       Record suggesting the presence of a disease or medical condition stated as a diagnosis, sign, or symptom
     class_uri: bdchm:Condition
+    annotations:
+      domain_of_use: clinical
     slots:
       - subject_identifier
       - condition_type
@@ -179,48 +185,36 @@ classes:
       - age_at_condition_start
       - age_at_condition_end
 
-  DrugStatusCde:
+  DrugStatusRecord:
     instantiates:
       - MicroschemaDefinition
     description: >-
       Record suggesting exposure to a medication
     class_uri: bdchm:DrugExposure
+    annotations:
+      domain_of_use: clinical
     slots:
       - subject_identifier
       - drug_type
       - method
       - collected_by
-      - age_at_exposure_start
-      - age_at_exposure_end
+      - age_at_drug_start
+      - age_at_drug_end
 
-  ProcedureStatusCde:
+  ProcedureStatusRecord:
     instantiates:
       - MicroschemaDefinition
     description: >-
       Record of activity or process ordered by or carried out by a healthcare provider for a diagnostic or therapeutic reason
     class_uri: bdchm:Procedure
+    annotations:
+      domain_of_use: clinical
     slots:
       - subject_identifier
       - procedure_type
       - method
       - collected_by
       - age_at_procedure
-
-  SdohObservationCde:
-    instantiates:
-      - MicroschemaDefinition
-    description: >-
-      A data structure with key and value attributes that represents a single SDOH observation
-    class_uri: bdchm:SdohObservation
-    slots:
-      - subject_identifier
-      - sdoh_type
-      - unit
-      - method
-      - context
-      - collected_by
-      - data_type
-      - age_at_observation
 
 #────────────────────────────────────────────────────────────────
 # SLOTS
@@ -302,26 +296,22 @@ slots:
     range: uriorcurie
     slot_uri: bdchm:procedure_concept
     description: A CURIE from OMOP
-  sdoh_type:
-    range: uriorcurie
-    slot_uri: bdchm:category
-    description: The type of SDOH observation
   data_type:
     range: DataTypeEnum
     description: The data type of the observation
-  age_at_observation:
+  age_at_measurement:
     range: Quantity
-    description: Age of the subject at the time of observation
+    description: Age of the subject at the time of measurement
   age_at_condition_start:
     range: Quantity
     description: Age of the subject at the start of the condition
   age_at_condition_end:
     range: Quantity
     description: Age of the subject at the end of the condition
-  age_at_exposure_start:
+  age_at_drug_start:
     range: Quantity
     description: Age of the subject at the start of drug exposure
-  age_at_exposure_end:
+  age_at_drug_end:
     range: Quantity
     description: Age of the subject at the end of drug exposure
   age_at_procedure:
