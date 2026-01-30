@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://linkml.github.io/linkml-microschema-profile/elements/SdohObservationCde/" rel="canonical"/>
+<link href="https://linkml.github.io/linkml-microschema-profile/elements/ConditionStatusRecord/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Class: SdohObservationCde - linkml-microschema-profile</title>
+<title>Class: ConditionStatusRecord - linkml-microschema-profile</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-sdohobservationcde">
+<a class="md-skip" href="#class-conditionstatusrecord">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: SdohObservationCde
+              Class: ConditionStatusRecord
             
           </span>
 </div>
@@ -190,6 +190,15 @@
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
       
@@ -248,72 +257,70 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-sdohobservationcde">Class: SdohObservationCde</h1>
-<p><em>A data structure with key and value attributes that represents a single SDOH observation</em></p>
-<p>URI: <a href="https://w3id.org/bdchm/SdohObservation">bdchm:SdohObservation</a></p>
+<h1 id="class-conditionstatusrecord">Class: ConditionStatusRecord</h1>
+<p><em>Record suggesting the presence of a disease or medical condition stated as a diagnosis, sign, or symptom</em></p>
+<p>URI: <a href="https://w3id.org/bdchm/Condition">bdchm:Condition</a></p>
 <div class="mermaid"> classDiagram
-    class SdohObservationCde
-    click SdohObservationCde href "../SdohObservationCde/"
-      SdohObservationCde : age_at_observation
+    class ConditionStatusRecord
+    click ConditionStatusRecord href "../ConditionStatusRecord/"
+      ConditionStatusRecord : age_at_condition_end
 
 
 
 
 
-        SdohObservationCde --&gt; "0..1" Quantity : age_at_observation
+        ConditionStatusRecord --&gt; "0..1" Quantity : age_at_condition_end
         click Quantity href "../Quantity/"
 
 
 
-      SdohObservationCde : collected_by
+      ConditionStatusRecord : age_at_condition_start
 
 
 
 
 
-        SdohObservationCde --&gt; "0..1" CollectedByEnum : collected_by
-        click CollectedByEnum href "../CollectedByEnum/"
+        ConditionStatusRecord --&gt; "0..1" Quantity : age_at_condition_start
+        click Quantity href "../Quantity/"
 
 
 
-      SdohObservationCde : context
+      ConditionStatusRecord : condition_type
 
-
-
-
-
-        SdohObservationCde --&gt; "0..1" ContextEnum : context
-        click ContextEnum href "../ContextEnum/"
-
-
-
-      SdohObservationCde : data_type
+      ConditionStatusRecord : diagnosis_method
 
 
 
 
 
-        SdohObservationCde --&gt; "0..1" DataTypeEnum : data_type
-        click DataTypeEnum href "../DataTypeEnum/"
+        ConditionStatusRecord --&gt; "0..1" DiagnosisMethodEnum : diagnosis_method
+        click DiagnosisMethodEnum href "../DiagnosisMethodEnum/"
 
 
 
-      SdohObservationCde : method
+      ConditionStatusRecord : instrument
 
 
 
 
 
-        SdohObservationCde --&gt; "0..1" MethodEnum : method
+        ConditionStatusRecord --&gt; "0..1" InstrumentEnum : instrument
+        click InstrumentEnum href "../InstrumentEnum/"
+
+
+
+      ConditionStatusRecord : method
+
+
+
+
+
+        ConditionStatusRecord --&gt; "0..1" MethodEnum : method
         click MethodEnum href "../MethodEnum/"
 
 
 
-      SdohObservationCde : sdoh_type
-
-      SdohObservationCde : subject_identifier
-
-      SdohObservationCde : unit
+      ConditionStatusRecord : subject_identifier
 
 
 </div>
@@ -336,15 +343,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../sdoh_type/">sdoh_type</a></td>
+<td><a href="../condition_type/">condition_type</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The type of SDOH observation</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../unit/">unit</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A unit from UCUM</td>
+<td>A CURIE from MONDO or HPO</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -354,32 +355,47 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../context/">context</a></td>
-<td>0..1 <br/> <a href="../ContextEnum/">ContextEnum</a></td>
-<td>The context of the measurement</td>
+<td><a href="../diagnosis_method/">diagnosis_method</a></td>
+<td>0..1 <br/> <a href="../DiagnosisMethodEnum/">DiagnosisMethodEnum</a></td>
+<td>The method used for diagnosis</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../collected_by/">collected_by</a></td>
-<td>0..1 <br/> <a href="../CollectedByEnum/">CollectedByEnum</a></td>
-<td>Who collected the measurement</td>
+<td><a href="../instrument/">instrument</a></td>
+<td>0..1 <br/> <a href="../InstrumentEnum/">InstrumentEnum</a></td>
+<td>The instrument used for the measurement</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../data_type/">data_type</a></td>
-<td>0..1 <br/> <a href="../DataTypeEnum/">DataTypeEnum</a></td>
-<td>The data type of the observation</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../age_at_observation/">age_at_observation</a></td>
+<td><a href="../age_at_condition_start/">age_at_condition_start</a></td>
 <td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Age of the subject at the time of observation</td>
+<td>Age of the subject at the start of the condition</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../age_at_condition_end/">age_at_condition_end</a></td>
+<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
+<td>Age of the subject at the end of the condition</td>
 <td>direct</td>
 </tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_of_use</td>
+<td>clinical</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/linkml/linkml-microschema-profile</li>
@@ -395,11 +411,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>bdchm:SdohObservation</td>
+<td>bdchm:Condition</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:SdohObservationCde</td>
+<td>coms:ConditionStatusRecord</td>
 </tr>
 </tbody>
 </table>
@@ -407,32 +423,39 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: SdohObservationCde
+<pre><code class="language-yaml">name: ConditionStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: A data structure with key and value attributes that represents a single
-  SDOH observation
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record suggesting the presence of a disease or medical condition stated
+  as a diagnosis, sign, or symptom
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 slots:
 - subject_identifier
-- sdoh_type
-- unit
+- condition_type
 - method
-- context
-- collected_by
-- data_type
-- age_at_observation
-class_uri: bdchm:SdohObservation
+- diagnosis_method
+- instrument
+- age_at_condition_start
+- age_at_condition_end
+class_uri: bdchm:Condition
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: SdohObservationCde
+<pre><code class="language-yaml">name: ConditionStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: A data structure with key and value attributes that represents a single
-  SDOH observation
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record suggesting the presence of a disease or medical condition stated
+  as a diagnosis, sign, or symptom
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 attributes:
   subject_identifier:
@@ -441,37 +464,23 @@ attributes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: subject_identifier
-    owner: SdohObservationCde
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: string
-  sdoh_type:
-    name: sdoh_type
-    description: The type of SDOH observation
+  condition_type:
+    name: condition_type
+    description: A CURIE from MONDO or HPO
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    slot_uri: bdchm:category
-    alias: sdoh_type
-    owner: SdohObservationCde
+    slot_uri: bdchm:condition_concept
+    alias: condition_type
+    owner: ConditionStatusRecord
     domain_of:
-    - SdohObservationCde
-    range: uriorcurie
-  unit:
-    name: unit
-    description: A unit from UCUM
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    slot_uri: bdchm:unit
-    alias: unit
-    owner: SdohObservationCde
-    domain_of:
-    - Quantity
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ConditionStatusRecord
     range: uriorcurie
   method:
     name: method
@@ -480,61 +489,55 @@ attributes:
     rank: 1000
     slot_uri: bdchm:method_type
     alias: method
-    owner: SdohObservationCde
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: MethodEnum
-  context:
-    name: context
-    description: The context of the measurement
+  diagnosis_method:
+    name: diagnosis_method
+    description: The method used for diagnosis
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    alias: context
-    owner: SdohObservationCde
+    alias: diagnosis_method
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
-    range: ContextEnum
-  collected_by:
-    name: collected_by
-    description: Who collected the measurement
+    - ConditionStatusRecord
+    range: DiagnosisMethodEnum
+  instrument:
+    name: instrument
+    description: The instrument used for the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    alias: collected_by
-    owner: SdohObservationCde
+    alias: instrument
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
-    range: CollectedByEnum
-  data_type:
-    name: data_type
-    description: The data type of the observation
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    range: InstrumentEnum
+  age_at_condition_start:
+    name: age_at_condition_start
+    description: Age of the subject at the start of the condition
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    alias: data_type
-    owner: SdohObservationCde
+    alias: age_at_condition_start
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
-    range: DataTypeEnum
-  age_at_observation:
-    name: age_at_observation
-    description: Age of the subject at the time of observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: age_at_observation
-    owner: SdohObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ConditionStatusRecord
     range: Quantity
-class_uri: bdchm:SdohObservation
+  age_at_condition_end:
+    name: age_at_condition_end
+    description: Age of the subject at the end of the condition
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: age_at_condition_end
+    owner: ConditionStatusRecord
+    domain_of:
+    - ConditionStatusRecord
+    range: Quantity
+class_uri: bdchm:Condition
 
 </code></pre>
 </details>

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/age_at_observation/">
+        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/age_at_measurement/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: age_at_observation - linkml-microschema-profile</title>
+        <title>Slot: age_at_measurement - linkml-microschema-profile</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-age_at_observation" class="md-skip">
+        <a href="#slot-age_at_measurement" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: age_at_observation
+              Slot: age_at_measurement
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-age_at_observation">Slot: age_at_observation</h1>
-<p><em>Age of the subject at the time of observation</em></p>
-<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/age_at_observation">coms:age_at_observation</a>
-Alias: age_at_observation</p>
+<h1 id="slot-age_at_measurement">Slot: age_at_measurement</h1>
+<p><em>Age of the subject at the time of measurement</em></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/age_at_measurement">coms:age_at_measurement</a>
+Alias: age_at_measurement</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,13 +433,8 @@ Alias: age_at_observation</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
+<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
 <td>A data structure with key and value attributes that represents a single obser...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SdohObservationCde/">SdohObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single SDOH ...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -464,25 +459,24 @@ Alias: age_at_observation</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>coms:age_at_observation</td>
+<td>coms:age_at_measurement</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:age_at_observation</td>
+<td>coms:age_at_measurement</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: age_at_observation
-description: Age of the subject at the time of observation
+<pre><code class="language-yaml">name: age_at_measurement
+description: Age of the subject at the time of measurement
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 rank: 1000
-alias: age_at_observation
+alias: age_at_measurement
 domain_of:
-- MeasurementObservationCde
-- SdohObservationCde
+- ClinicalMeasurementRecord
 range: Quantity
 
 </code></pre>

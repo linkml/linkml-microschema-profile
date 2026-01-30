@@ -523,13 +523,12 @@ slots:
     description: An identifier for the subject of the datum
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:subject_identifier
-    owner: SdohObservationCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: string
   measurement_type:
     name: measurement_type
@@ -539,9 +538,9 @@ slots:
     mappings:
     - bdchm:observation_type
     slot_uri: bdchm:observation_type
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: uriorcurie
   unit:
     name: unit
@@ -551,10 +550,9 @@ slots:
     mappings:
     - bdchm:unit
     slot_uri: bdchm:unit
-    owner: SdohObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: uriorcurie
   method:
     name: method
@@ -564,13 +562,12 @@ slots:
     mappings:
     - bdchm:method_type
     slot_uri: bdchm:method_type
-    owner: SdohObservationCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: MethodEnum
   instrument:
     name: instrument
@@ -578,10 +575,10 @@ slots:
     description: The instrument used for the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:instrument
-    owner: ConditionStatusCde
+    owner: ConditionStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
     range: InstrumentEnum
   reagent_kit:
     name: reagent_kit
@@ -589,9 +586,9 @@ slots:
     description: The reagent kit used for the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:reagent_kit
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: ReagentKitEnum
   ulod:
     name: ulod
@@ -599,9 +596,9 @@ slots:
     description: Upper limit of detection
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:ulod
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -611,9 +608,9 @@ slots:
     description: Lower limit of detection
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:llod
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -623,9 +620,9 @@ slots:
     description: An expression pointing at other CDE classes
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:calculated_from
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: string
   body_location:
     name: body_location
@@ -635,9 +632,9 @@ slots:
     mappings:
     - bdchm:BodySite
     slot_uri: bdchm:BodySite
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: uriorcurie
   body_position:
     name: body_position
@@ -645,9 +642,9 @@ slots:
     description: The body position during measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:body_position
-    owner: MeasurementObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
+    - ClinicalMeasurementRecord
     range: BodyPositionEnum
   context:
     name: context
@@ -655,10 +652,9 @@ slots:
     description: The context of the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:context
-    owner: SdohObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: ContextEnum
   collected_by:
     name: collected_by
@@ -666,12 +662,11 @@ slots:
     description: Who collected the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:collected_by
-    owner: SdohObservationCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: CollectedByEnum
   condition_type:
     name: condition_type
@@ -681,9 +676,9 @@ slots:
     mappings:
     - bdchm:condition_concept
     slot_uri: bdchm:condition_concept
-    owner: ConditionStatusCde
+    owner: ConditionStatusRecord
     domain_of:
-    - ConditionStatusCde
+    - ConditionStatusRecord
     range: uriorcurie
   diagnosis_method:
     name: diagnosis_method
@@ -691,9 +686,9 @@ slots:
     description: The method used for diagnosis
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:diagnosis_method
-    owner: ConditionStatusCde
+    owner: ConditionStatusRecord
     domain_of:
-    - ConditionStatusCde
+    - ConditionStatusRecord
     range: DiagnosisMethodEnum
   drug_type:
     name: drug_type
@@ -703,9 +698,9 @@ slots:
     mappings:
     - bdchm:drug_concept
     slot_uri: bdchm:drug_concept
-    owner: DrugStatusCde
+    owner: DrugStatusRecord
     domain_of:
-    - DrugStatusCde
+    - DrugStatusRecord
     range: uriorcurie
   procedure_type:
     name: procedure_type
@@ -715,21 +710,9 @@ slots:
     mappings:
     - bdchm:procedure_concept
     slot_uri: bdchm:procedure_concept
-    owner: ProcedureStatusCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - ProcedureStatusCde
-    range: uriorcurie
-  sdoh_type:
-    name: sdoh_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/sdoh_type
-    description: The type of SDOH observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:category
-    slot_uri: bdchm:category
-    owner: SdohObservationCde
-    domain_of:
-    - SdohObservationCde
+    - ProcedureStatusRecord
     range: uriorcurie
   data_type:
     name: data_type
@@ -737,21 +720,19 @@ slots:
     description: The data type of the observation
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:data_type
-    owner: SdohObservationCde
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: DataTypeEnum
-  age_at_observation:
-    name: age_at_observation
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_observation
-    description: Age of the subject at the time of observation
+  age_at_measurement:
+    name: age_at_measurement
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_measurement
+    description: Age of the subject at the time of measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_observation
-    owner: SdohObservationCde
+    slot_uri: coms:age_at_measurement
+    owner: ClinicalMeasurementRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -761,9 +742,9 @@ slots:
     description: Age of the subject at the start of the condition
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:age_at_condition_start
-    owner: ConditionStatusCde
+    owner: ConditionStatusRecord
     domain_of:
-    - ConditionStatusCde
+    - ConditionStatusRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -773,33 +754,33 @@ slots:
     description: Age of the subject at the end of the condition
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:age_at_condition_end
-    owner: ConditionStatusCde
+    owner: ConditionStatusRecord
     domain_of:
-    - ConditionStatusCde
+    - ConditionStatusRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
-  age_at_exposure_start:
-    name: age_at_exposure_start
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_exposure_start
+  age_at_drug_start:
+    name: age_at_drug_start
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_drug_start
     description: Age of the subject at the start of drug exposure
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_exposure_start
-    owner: DrugStatusCde
+    slot_uri: coms:age_at_drug_start
+    owner: DrugStatusRecord
     domain_of:
-    - DrugStatusCde
+    - DrugStatusRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
-  age_at_exposure_end:
-    name: age_at_exposure_end
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_exposure_end
+  age_at_drug_end:
+    name: age_at_drug_end
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_drug_end
     description: Age of the subject at the end of drug exposure
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_exposure_end
-    owner: DrugStatusCde
+    slot_uri: coms:age_at_drug_end
+    owner: DrugStatusRecord
     domain_of:
-    - DrugStatusCde
+    - DrugStatusRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -809,9 +790,9 @@ slots:
     description: Age of the subject at the time of the procedure
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     slot_uri: coms:age_at_procedure
-    owner: ProcedureStatusCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - ProcedureStatusCde
+    - ProcedureStatusRecord
     range: Quantity
     inlined: true
     inlined_as_list: true
@@ -1091,16 +1072,21 @@ classes:
         description: The code system URI
         range: uriorcurie
     class_uri: coms:CodedValue
-  MeasurementObservationCde:
-    name: MeasurementObservationCde
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/MeasurementObservationCde
+  ClinicalMeasurementRecord:
+    name: ClinicalMeasurementRecord
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ClinicalMeasurementRecord
     instantiates:
     - MicroschemaDefinition
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: clinical
     description: A data structure with key and value attributes that represents a
-      single observation
+      single observation. This can include results of clinical labs, scores and indices,
+      socioeconomic, or behavioral observations.
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
-    - bdchm:MeasurementObservation
+    - bdchm:Observation
     slots:
     - subject_identifier
     - measurement_type
@@ -1116,13 +1102,17 @@ classes:
     - context
     - collected_by
     - data_type
-    - age_at_observation
-    class_uri: bdchm:MeasurementObservation
-  ConditionStatusCde:
-    name: ConditionStatusCde
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ConditionStatusCde
+    - age_at_measurement
+    class_uri: bdchm:Observation
+  ConditionStatusRecord:
+    name: ConditionStatusRecord
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ConditionStatusRecord
     instantiates:
     - MicroschemaDefinition
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: clinical
     description: Record suggesting the presence of a disease or medical condition
       stated as a diagnosis, sign, or symptom
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
@@ -1137,11 +1127,15 @@ classes:
     - age_at_condition_start
     - age_at_condition_end
     class_uri: bdchm:Condition
-  DrugStatusCde:
-    name: DrugStatusCde
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DrugStatusCde
+  DrugStatusRecord:
+    name: DrugStatusRecord
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DrugStatusRecord
     instantiates:
     - MicroschemaDefinition
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: clinical
     description: Record suggesting exposure to a medication
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     mappings:
@@ -1151,14 +1145,18 @@ classes:
     - drug_type
     - method
     - collected_by
-    - age_at_exposure_start
-    - age_at_exposure_end
+    - age_at_drug_start
+    - age_at_drug_end
     class_uri: bdchm:DrugExposure
-  ProcedureStatusCde:
-    name: ProcedureStatusCde
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ProcedureStatusCde
+  ProcedureStatusRecord:
+    name: ProcedureStatusRecord
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ProcedureStatusRecord
     instantiates:
     - MicroschemaDefinition
+    annotations:
+      domain_of_use:
+        tag: domain_of_use
+        value: clinical
     description: Record of activity or process ordered by or carried out by a healthcare
       provider for a diagnostic or therapeutic reason
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
@@ -1171,29 +1169,9 @@ classes:
     - collected_by
     - age_at_procedure
     class_uri: bdchm:Procedure
-  SdohObservationCde:
-    name: SdohObservationCde
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/SdohObservationCde
-    instantiates:
-    - MicroschemaDefinition
-    description: A data structure with key and value attributes that represents a
-      single SDOH observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:SdohObservation
-    slots:
-    - subject_identifier
-    - sdoh_type
-    - unit
-    - method
-    - context
-    - collected_by
-    - data_type
-    - age_at_observation
-    class_uri: bdchm:SdohObservation
 metamodel_version: 1.7.0
 source_file: linkml_microschema_profile.yaml
-source_file_date: '2026-01-29T20:08:01'
-source_file_size: 13961
-generation_date: '2026-01-29T20:08:12'
+source_file_date: '2026-01-30T20:29:23'
+source_file_size: 13754
+generation_date: '2026-01-30T20:29:35'
 

@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://linkml.github.io/linkml-microschema-profile/elements/DrugStatusCde/" rel="canonical"/>
+<link href="https://linkml.github.io/linkml-microschema-profile/elements/ProcedureStatusRecord/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Class: DrugStatusCde - linkml-microschema-profile</title>
+<title>Class: ProcedureStatusRecord - linkml-microschema-profile</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-drugstatuscde">
+<a class="md-skip" href="#class-procedurestatusrecord">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: DrugStatusCde
+              Class: ProcedureStatusRecord
             
           </span>
 </div>
@@ -190,6 +190,15 @@
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
       
@@ -248,59 +257,48 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-drugstatuscde">Class: DrugStatusCde</h1>
-<p><em>Record suggesting exposure to a medication</em></p>
-<p>URI: <a href="https://w3id.org/bdchm/DrugExposure">bdchm:DrugExposure</a></p>
+<h1 id="class-procedurestatusrecord">Class: ProcedureStatusRecord</h1>
+<p><em>Record of activity or process ordered by or carried out by a healthcare provider for a diagnostic or therapeutic reason</em></p>
+<p>URI: <a href="https://w3id.org/bdchm/Procedure">bdchm:Procedure</a></p>
 <div class="mermaid"> classDiagram
-    class DrugStatusCde
-    click DrugStatusCde href "../DrugStatusCde/"
-      DrugStatusCde : age_at_exposure_end
+    class ProcedureStatusRecord
+    click ProcedureStatusRecord href "../ProcedureStatusRecord/"
+      ProcedureStatusRecord : age_at_procedure
 
 
 
 
 
-        DrugStatusCde --&gt; "0..1" Quantity : age_at_exposure_end
+        ProcedureStatusRecord --&gt; "0..1" Quantity : age_at_procedure
         click Quantity href "../Quantity/"
 
 
 
-      DrugStatusCde : age_at_exposure_start
+      ProcedureStatusRecord : collected_by
 
 
 
 
 
-        DrugStatusCde --&gt; "0..1" Quantity : age_at_exposure_start
-        click Quantity href "../Quantity/"
-
-
-
-      DrugStatusCde : collected_by
-
-
-
-
-
-        DrugStatusCde --&gt; "0..1" CollectedByEnum : collected_by
+        ProcedureStatusRecord --&gt; "0..1" CollectedByEnum : collected_by
         click CollectedByEnum href "../CollectedByEnum/"
 
 
 
-      DrugStatusCde : drug_type
-
-      DrugStatusCde : method
+      ProcedureStatusRecord : method
 
 
 
 
 
-        DrugStatusCde --&gt; "0..1" MethodEnum : method
+        ProcedureStatusRecord --&gt; "0..1" MethodEnum : method
         click MethodEnum href "../MethodEnum/"
 
 
 
-      DrugStatusCde : subject_identifier
+      ProcedureStatusRecord : procedure_type
+
+      ProcedureStatusRecord : subject_identifier
 
 
 </div>
@@ -323,9 +321,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../drug_type/">drug_type</a></td>
+<td><a href="../procedure_type/">procedure_type</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A CURIE from RxNorm</td>
+<td>A CURIE from OMOP</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -341,20 +339,29 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../age_at_exposure_start/">age_at_exposure_start</a></td>
+<td><a href="../age_at_procedure/">age_at_procedure</a></td>
 <td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Age of the subject at the start of drug exposure</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../age_at_exposure_end/">age_at_exposure_end</a></td>
-<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Age of the subject at the end of drug exposure</td>
+<td>Age of the subject at the time of the procedure</td>
 <td>direct</td>
 </tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_of_use</td>
+<td>clinical</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/linkml/linkml-microschema-profile</li>
@@ -370,11 +377,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>bdchm:DrugExposure</td>
+<td>bdchm:Procedure</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:DrugStatusCde</td>
+<td>coms:ProcedureStatusRecord</td>
 </tr>
 </tbody>
 </table>
@@ -382,28 +389,37 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: DrugStatusCde
+<pre><code class="language-yaml">name: ProcedureStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: Record suggesting exposure to a medication
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record of activity or process ordered by or carried out by a healthcare
+  provider for a diagnostic or therapeutic reason
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 slots:
 - subject_identifier
-- drug_type
+- procedure_type
 - method
 - collected_by
-- age_at_exposure_start
-- age_at_exposure_end
-class_uri: bdchm:DrugExposure
+- age_at_procedure
+class_uri: bdchm:Procedure
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: DrugStatusCde
+<pre><code class="language-yaml">name: ProcedureStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: Record suggesting exposure to a medication
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record of activity or process ordered by or carried out by a healthcare
+  provider for a diagnostic or therapeutic reason
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 attributes:
   subject_identifier:
@@ -412,24 +428,23 @@ attributes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: subject_identifier
-    owner: DrugStatusCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: string
-  drug_type:
-    name: drug_type
-    description: A CURIE from RxNorm
+  procedure_type:
+    name: procedure_type
+    description: A CURIE from OMOP
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    slot_uri: bdchm:drug_concept
-    alias: drug_type
-    owner: DrugStatusCde
+    slot_uri: bdchm:procedure_concept
+    alias: procedure_type
+    owner: ProcedureStatusRecord
     domain_of:
-    - DrugStatusCde
+    - ProcedureStatusRecord
     range: uriorcurie
   method:
     name: method
@@ -438,13 +453,12 @@ attributes:
     rank: 1000
     slot_uri: bdchm:method_type
     alias: method
-    owner: DrugStatusCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: MethodEnum
   collected_by:
     name: collected_by
@@ -452,34 +466,23 @@ attributes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: collected_by
-    owner: DrugStatusCde
+    owner: ProcedureStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: CollectedByEnum
-  age_at_exposure_start:
-    name: age_at_exposure_start
-    description: Age of the subject at the start of drug exposure
+  age_at_procedure:
+    name: age_at_procedure
+    description: Age of the subject at the time of the procedure
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    alias: age_at_exposure_start
-    owner: DrugStatusCde
+    alias: age_at_procedure
+    owner: ProcedureStatusRecord
     domain_of:
-    - DrugStatusCde
+    - ProcedureStatusRecord
     range: Quantity
-  age_at_exposure_end:
-    name: age_at_exposure_end
-    description: Age of the subject at the end of drug exposure
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: age_at_exposure_end
-    owner: DrugStatusCde
-    domain_of:
-    - DrugStatusCde
-    range: Quantity
-class_uri: bdchm:DrugExposure
+class_uri: bdchm:Procedure
 
 </code></pre>
 </details>

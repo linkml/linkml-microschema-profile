@@ -336,56 +336,50 @@
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
+<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
 <td><a href="../ulod/">ulod</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
+<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
 <td><a href="../llod/">llod</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
-<td><a href="../age_at_observation/">age_at_observation</a></td>
+<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
+<td><a href="../age_at_measurement/">age_at_measurement</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../ConditionStatusCde/">ConditionStatusCde</a></td>
+<td><a href="../ConditionStatusRecord/">ConditionStatusRecord</a></td>
 <td><a href="../age_at_condition_start/">age_at_condition_start</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../ConditionStatusCde/">ConditionStatusCde</a></td>
+<td><a href="../ConditionStatusRecord/">ConditionStatusRecord</a></td>
 <td><a href="../age_at_condition_end/">age_at_condition_end</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../DrugStatusCde/">DrugStatusCde</a></td>
-<td><a href="../age_at_exposure_start/">age_at_exposure_start</a></td>
+<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
+<td><a href="../age_at_drug_start/">age_at_drug_start</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../DrugStatusCde/">DrugStatusCde</a></td>
-<td><a href="../age_at_exposure_end/">age_at_exposure_end</a></td>
+<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
+<td><a href="../age_at_drug_end/">age_at_drug_end</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
-<td><a href="../ProcedureStatusCde/">ProcedureStatusCde</a></td>
+<td><a href="../ProcedureStatusRecord/">ProcedureStatusRecord</a></td>
 <td><a href="../age_at_procedure/">age_at_procedure</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../SdohObservationCde/">SdohObservationCde</a></td>
-<td><a href="../age_at_observation/">age_at_observation</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
@@ -441,8 +435,7 @@ attributes:
     slot_uri: schema:unitCode
     domain_of:
     - Quantity
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: uriorcurie
   comparator:
     name: comparator
@@ -484,8 +477,7 @@ attributes:
     owner: Quantity
     domain_of:
     - Quantity
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
     range: uriorcurie
   comparator:
     name: comparator

@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://linkml.github.io/linkml-microschema-profile/elements/MeasurementObservationCde/" rel="canonical"/>
+<link href="https://linkml.github.io/linkml-microschema-profile/elements/DrugStatusRecord/" rel="canonical"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
-<title>Class: MeasurementObservationCde - linkml-microschema-profile</title>
+<title>Class: DrugStatusRecord - linkml-microschema-profile</title>
 <link href="../../assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-measurementobservationcde">
+<a class="md-skip" href="#class-drugstatusrecord">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: MeasurementObservationCde
+              Class: DrugStatusRecord
             
           </span>
 </div>
@@ -190,6 +190,15 @@
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
       
@@ -248,131 +257,59 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-measurementobservationcde">Class: MeasurementObservationCde</h1>
-<p><em>A data structure with key and value attributes that represents a single observation</em></p>
-<p>URI: <a href="https://w3id.org/bdchm/MeasurementObservation">bdchm:MeasurementObservation</a></p>
+<h1 id="class-drugstatusrecord">Class: DrugStatusRecord</h1>
+<p><em>Record suggesting exposure to a medication</em></p>
+<p>URI: <a href="https://w3id.org/bdchm/DrugExposure">bdchm:DrugExposure</a></p>
 <div class="mermaid"> classDiagram
-    class MeasurementObservationCde
-    click MeasurementObservationCde href "../MeasurementObservationCde/"
-      MeasurementObservationCde : age_at_observation
+    class DrugStatusRecord
+    click DrugStatusRecord href "../DrugStatusRecord/"
+      DrugStatusRecord : age_at_drug_end
 
 
 
 
 
-        MeasurementObservationCde --&gt; "0..1" Quantity : age_at_observation
+        DrugStatusRecord --&gt; "0..1" Quantity : age_at_drug_end
         click Quantity href "../Quantity/"
 
 
 
-      MeasurementObservationCde : body_location
-
-      MeasurementObservationCde : body_position
+      DrugStatusRecord : age_at_drug_start
 
 
 
 
 
-        MeasurementObservationCde --&gt; "0..1" BodyPositionEnum : body_position
-        click BodyPositionEnum href "../BodyPositionEnum/"
+        DrugStatusRecord --&gt; "0..1" Quantity : age_at_drug_start
+        click Quantity href "../Quantity/"
 
 
 
-      MeasurementObservationCde : calculated_from
-
-      MeasurementObservationCde : collected_by
-
+      DrugStatusRecord : collected_by
 
 
 
 
-        MeasurementObservationCde --&gt; "0..1" CollectedByEnum : collected_by
+
+        DrugStatusRecord --&gt; "0..1" CollectedByEnum : collected_by
         click CollectedByEnum href "../CollectedByEnum/"
 
 
 
-      MeasurementObservationCde : context
+      DrugStatusRecord : drug_type
+
+      DrugStatusRecord : method
 
 
 
 
 
-        MeasurementObservationCde --&gt; "0..1" ContextEnum : context
-        click ContextEnum href "../ContextEnum/"
-
-
-
-      MeasurementObservationCde : data_type
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" DataTypeEnum : data_type
-        click DataTypeEnum href "../DataTypeEnum/"
-
-
-
-      MeasurementObservationCde : instrument
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" InstrumentEnum : instrument
-        click InstrumentEnum href "../InstrumentEnum/"
-
-
-
-      MeasurementObservationCde : llod
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" Quantity : llod
-        click Quantity href "../Quantity/"
-
-
-
-      MeasurementObservationCde : measurement_type
-
-      MeasurementObservationCde : method
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" MethodEnum : method
+        DrugStatusRecord --&gt; "0..1" MethodEnum : method
         click MethodEnum href "../MethodEnum/"
 
 
 
-      MeasurementObservationCde : reagent_kit
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" ReagentKitEnum : reagent_kit
-        click ReagentKitEnum href "../ReagentKitEnum/"
-
-
-
-      MeasurementObservationCde : subject_identifier
-
-      MeasurementObservationCde : ulod
-
-
-
-
-
-        MeasurementObservationCde --&gt; "0..1" Quantity : ulod
-        click Quantity href "../Quantity/"
-
-
-
-      MeasurementObservationCde : unit
+      DrugStatusRecord : subject_identifier
 
 
 </div>
@@ -395,15 +332,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../measurement_type/">measurement_type</a></td>
+<td><a href="../drug_type/">drug_type</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A CURIE from OBA, OMOP, or LOINC</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../unit/">unit</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A unit from UCUM</td>
+<td>A CURIE from RxNorm</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -413,74 +344,41 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../instrument/">instrument</a></td>
-<td>0..1 <br/> <a href="../InstrumentEnum/">InstrumentEnum</a></td>
-<td>The instrument used for the measurement</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../reagent_kit/">reagent_kit</a></td>
-<td>0..1 <br/> <a href="../ReagentKitEnum/">ReagentKitEnum</a></td>
-<td>The reagent kit used for the measurement</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../ulod/">ulod</a></td>
-<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Upper limit of detection</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../llod/">llod</a></td>
-<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Lower limit of detection</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../calculated_from/">calculated_from</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>An expression pointing at other CDE classes</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../body_location/">body_location</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>A CURIE from UBERON</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../body_position/">body_position</a></td>
-<td>0..1 <br/> <a href="../BodyPositionEnum/">BodyPositionEnum</a></td>
-<td>The body position during measurement</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../context/">context</a></td>
-<td>0..1 <br/> <a href="../ContextEnum/">ContextEnum</a></td>
-<td>The context of the measurement</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../collected_by/">collected_by</a></td>
 <td>0..1 <br/> <a href="../CollectedByEnum/">CollectedByEnum</a></td>
 <td>Who collected the measurement</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../data_type/">data_type</a></td>
-<td>0..1 <br/> <a href="../DataTypeEnum/">DataTypeEnum</a></td>
-<td>The data type of the observation</td>
+<td><a href="../age_at_drug_start/">age_at_drug_start</a></td>
+<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
+<td>Age of the subject at the start of drug exposure</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../age_at_observation/">age_at_observation</a></td>
+<td><a href="../age_at_drug_end/">age_at_drug_end</a></td>
 <td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
-<td>Age of the subject at the time of observation</td>
+<td>Age of the subject at the end of drug exposure</td>
 <td>direct</td>
 </tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain_of_use</td>
+<td>clinical</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/linkml/linkml-microschema-profile</li>
@@ -496,11 +394,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>bdchm:MeasurementObservation</td>
+<td>bdchm:DrugExposure</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:MeasurementObservationCde</td>
+<td>coms:DrugStatusRecord</td>
 </tr>
 </tbody>
 </table>
@@ -508,39 +406,36 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: MeasurementObservationCde
+<pre><code class="language-yaml">name: DrugStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: A data structure with key and value attributes that represents a single
-  observation
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record suggesting exposure to a medication
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 slots:
 - subject_identifier
-- measurement_type
-- unit
+- drug_type
 - method
-- instrument
-- reagent_kit
-- ulod
-- llod
-- calculated_from
-- body_location
-- body_position
-- context
 - collected_by
-- data_type
-- age_at_observation
-class_uri: bdchm:MeasurementObservation
+- age_at_drug_start
+- age_at_drug_end
+class_uri: bdchm:DrugExposure
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: MeasurementObservationCde
+<pre><code class="language-yaml">name: DrugStatusRecord
 instantiates:
 - MicroschemaDefinition
-description: A data structure with key and value attributes that represents a single
-  observation
+annotations:
+  domain_of_use:
+    tag: domain_of_use
+    value: clinical
+description: Record suggesting exposure to a medication
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 attributes:
   subject_identifier:
@@ -549,37 +444,23 @@ attributes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: subject_identifier
-    owner: MeasurementObservationCde
+    owner: DrugStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: string
-  measurement_type:
-    name: measurement_type
-    description: A CURIE from OBA, OMOP, or LOINC
+  drug_type:
+    name: drug_type
+    description: A CURIE from RxNorm
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    slot_uri: bdchm:observation_type
-    alias: measurement_type
-    owner: MeasurementObservationCde
+    slot_uri: bdchm:drug_concept
+    alias: drug_type
+    owner: DrugStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    range: uriorcurie
-  unit:
-    name: unit
-    description: A unit from UCUM
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    slot_uri: bdchm:unit
-    alias: unit
-    owner: MeasurementObservationCde
-    domain_of:
-    - Quantity
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - DrugStatusRecord
     range: uriorcurie
   method:
     name: method
@@ -588,133 +469,46 @@ attributes:
     rank: 1000
     slot_uri: bdchm:method_type
     alias: method
-    owner: MeasurementObservationCde
+    owner: DrugStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - ConditionStatusRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: MethodEnum
-  instrument:
-    name: instrument
-    description: The instrument used for the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: instrument
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    - ConditionStatusCde
-    range: InstrumentEnum
-  reagent_kit:
-    name: reagent_kit
-    description: The reagent kit used for the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: reagent_kit
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: ReagentKitEnum
-  ulod:
-    name: ulod
-    description: Upper limit of detection
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: ulod
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: Quantity
-  llod:
-    name: llod
-    description: Lower limit of detection
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: llod
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: Quantity
-  calculated_from:
-    name: calculated_from
-    description: An expression pointing at other CDE classes
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: calculated_from
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: string
-  body_location:
-    name: body_location
-    description: A CURIE from UBERON
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    slot_uri: bdchm:BodySite
-    alias: body_location
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: uriorcurie
-  body_position:
-    name: body_position
-    description: The body position during measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: body_position
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    range: BodyPositionEnum
-  context:
-    name: context
-    description: The context of the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: context
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
-    range: ContextEnum
   collected_by:
     name: collected_by
     description: Who collected the measurement
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: collected_by
-    owner: MeasurementObservationCde
+    owner: DrugStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - DrugStatusCde
-    - ProcedureStatusCde
-    - SdohObservationCde
+    - ClinicalMeasurementRecord
+    - DrugStatusRecord
+    - ProcedureStatusRecord
     range: CollectedByEnum
-  data_type:
-    name: data_type
-    description: The data type of the observation
+  age_at_drug_start:
+    name: age_at_drug_start
+    description: Age of the subject at the start of drug exposure
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
-    alias: data_type
-    owner: MeasurementObservationCde
+    alias: age_at_drug_start
+    owner: DrugStatusRecord
     domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
-    range: DataTypeEnum
-  age_at_observation:
-    name: age_at_observation
-    description: Age of the subject at the time of observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: age_at_observation
-    owner: MeasurementObservationCde
-    domain_of:
-    - MeasurementObservationCde
-    - SdohObservationCde
+    - DrugStatusRecord
     range: Quantity
-class_uri: bdchm:MeasurementObservation
+  age_at_drug_end:
+    name: age_at_drug_end
+    description: Age of the subject at the end of drug exposure
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: age_at_drug_end
+    owner: DrugStatusRecord
+    domain_of:
+    - DrugStatusRecord
+    range: Quantity
+class_uri: bdchm:DrugExposure
 
 </code></pre>
 </details>

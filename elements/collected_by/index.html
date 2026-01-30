@@ -433,22 +433,17 @@ Alias: collected_by</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../MeasurementObservationCde/">MeasurementObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single obser...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ProcedureStatusCde/">ProcedureStatusCde</a></td>
+<td><a href="../ProcedureStatusRecord/">ProcedureStatusRecord</a></td>
 <td>Record of activity or process ordered by or carried out by a healthcare provi...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../SdohObservationCde/">SdohObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single SDOH ...</td>
+<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
+<td>A data structure with key and value attributes that represents a single obser...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DrugStatusCde/">DrugStatusCde</a></td>
+<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
 <td>Record suggesting exposure to a medication</td>
 <td>no</td>
 </tr>
@@ -491,10 +486,9 @@ from_schema: https://w3id.org/linkml/linkml-microschema-profile
 rank: 1000
 alias: collected_by
 domain_of:
-- MeasurementObservationCde
-- DrugStatusCde
-- ProcedureStatusCde
-- SdohObservationCde
+- ClinicalMeasurementRecord
+- DrugStatusRecord
+- ProcedureStatusRecord
 range: CollectedByEnum
 
 </code></pre>

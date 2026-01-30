@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/sdoh_type/">
+        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/age_at_drug_start/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: sdoh_type - linkml-microschema-profile</title>
+        <title>Slot: age_at_drug_start - linkml-microschema-profile</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-sdoh_type" class="md-skip">
+        <a href="#slot-age_at_drug_start" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: sdoh_type
+              Slot: age_at_drug_start
             
           </span>
         </div>
@@ -416,10 +416,10 @@
   
 
 
-<h1 id="slot-sdoh_type">Slot: sdoh_type</h1>
-<p><em>The type of SDOH observation</em></p>
-<p>URI: <a href="https://w3id.org/bdchm/category">bdchm:category</a>
-Alias: sdoh_type</p>
+<h1 id="slot-age_at_drug_start">Slot: age_at_drug_start</h1>
+<p><em>Age of the subject at the start of drug exposure</em></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/age_at_drug_start">coms:age_at_drug_start</a>
+Alias: age_at_drug_start</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -433,15 +433,15 @@ Alias: sdoh_type</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../SdohObservationCde/">SdohObservationCde</a></td>
-<td>A data structure with key and value attributes that represents a single SDOH ...</td>
+<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
+<td>Record suggesting exposure to a medication</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Uriorcurie/">Uriorcurie</a></li>
+<li>Range: <a href="../Quantity/">Quantity</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -459,26 +459,25 @@ Alias: sdoh_type</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>bdchm:category</td>
+<td>coms:age_at_drug_start</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:sdoh_type</td>
+<td>coms:age_at_drug_start</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: sdoh_type
-description: The type of SDOH observation
+<pre><code class="language-yaml">name: age_at_drug_start
+description: Age of the subject at the start of drug exposure
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 rank: 1000
-slot_uri: bdchm:category
-alias: sdoh_type
+alias: age_at_drug_start
 domain_of:
-- SdohObservationCde
-range: uriorcurie
+- DrugStatusRecord
+range: Quantity
 
 </code></pre>
 
