@@ -169,6 +169,7 @@ classes:
       - collected_by
       - age_at_drug_start
       - age_at_drug_end
+      - route_of_administration
 
   ProcedureStatusRecord:
     instantiates:
@@ -342,12 +343,82 @@ slots:
   age_at_procedure:
     range: Quantity
     description: Age of the subject at the time of the procedure
+  route_of_administration:
+    range: RouteAdminEnum
+    description: Routes of drug administration
 
 #────────────────────────────────────────────────────────────────
 # ENUMS
 #────────────────────────────────────────────────────────────────
 
 enums:
+  RouteAdminEnum:
+    description: Routes of drug administration
+    permissible_values:
+      oral:
+        description: Oral administration
+        meaning: OMOP:4132161
+      intravenous:
+        description: Intravenous administration
+        meaning: OMOP:4171047
+      intramuscular:
+        description: Intramuscular administration
+        meaning: OMOP:4302612
+      subcutaneous:
+        description: Subcutaneous administration
+        meaning: OMOP:4142048
+      intradermal:
+        description: Intradermal administration
+        meaning: OMOP:4156706
+      transdermal:
+        description: Transdermal administration
+        meaning: OMOP:4262099
+      rectal:
+        description: Rectal administration
+        meaning: OMOP:4290759
+      vaginal:
+        description: Vaginal administration
+        meaning: OMOP:4057765
+      nasal:
+        description: Nasal administration
+        meaning: OMOP:4262914
+      topical:
+        description: Topical administration
+        meaning: OMOP:4263689
+      sublingual:
+        description: Sublingual administration
+        meaning: OMOP:4292110
+      buccal:
+        description: Buccal administration
+        meaning: OMOP:4181897
+      intra_articular:
+        description: Intra-articular administration
+        meaning: OMOP:4006860
+      intraperitoneal:
+        description: Intraperitoneal administration
+        meaning: OMOP:4243022
+      intrathecal:
+        description: Intrathecal administration
+        meaning: OMOP:4217202
+      epidural:
+        description: Epidural administration
+        meaning: OMOP:4225555
+      intra_arterial:
+        description: Intra-arterial administration
+        meaning: OMOP:4240824
+      ophthalmic:
+        description: Ophthalmic administration
+        meaning: OMOP:4184451
+      otic:
+        description: Otic (ear) administration
+        meaning: OMOP:4023156
+      enteral:
+        description: Enteral administration
+        meaning: OMOP:4167540
+      percutaneous:
+        description: Percutaneous administration
+        meaning: OMOP:4177987
+
   ComparatorEnum:
     description: Comparator for quantity values
     permissible_values:
