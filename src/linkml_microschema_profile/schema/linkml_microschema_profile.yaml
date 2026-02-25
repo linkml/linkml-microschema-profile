@@ -201,7 +201,7 @@ classes:
     rules:
       - preconditions:
           slot_conditions:
-            meaurement_type:
+            measurement_type:
               any_of:
                 - equals_string: OBA:VT0001253
                 - equals_string: OMOP:903133
@@ -250,7 +250,7 @@ classes:
                 - equals_string: standing
       - postconditions:
           slot_conditions:
-            value:
+            measurement_value:
               range: decimal
               maximum_value: 220
               minimum_value: 20
