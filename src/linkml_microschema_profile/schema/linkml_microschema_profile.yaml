@@ -257,6 +257,45 @@ classes:
             unit:
               equals_string: cm
   #────────────────────────────────────────────────────────────────
+  # Body Weight Microschemas
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - LOINC:29463-7 "Body weight" (PhenX/LOINC)
+  #   - LOINC:3141-9 "Body weight Measured" (PhenX/LOINC)
+  #   - LOINC:3142-7 "Body weight Stated" (PhenX/LOINC)
+  #────────────────────────────────────────────────────────────────
+
+  BodyWeightRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Measurement of the force exerted by a human body on a scale due to gravity
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OBA:VT0001259
+                - equals_string: OMOP:903121
+                - equals_string: LOINC:29463-7
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: kg
+                - equals_string: [lb_av]
+                - equals_string: g
+            instrument:
+              any_of:
+                - equals_string: mechanical_beam_balance_scale
+                - equals_string: digital_scale
+                - equals_string: spring_scale
+            data_type: decimal
+            measurement_value:
+              range: decimal
+                maximum_value: 700
+                minimum_value: 0
+
+  #────────────────────────────────────────────────────────────────
   # Body Mass Index (BMI) Microschemas
   #────────────────────────────────────────────────────────────────
   # Aligned CDEs from cde-harmonization:
@@ -272,32 +311,30 @@ classes:
     description: >-
       A calculated numerical quantity representing an individual's weight-to-height
       ratio. BMI is calculated as weight (kg) divided by height (m) squared.
-    slots:
-      - semantic_mapping
-    slot_usage:
-      semantic_mapping:
-        equals_string_in:
-          - LOINC:39156-5
-          - caDSR:2006410
-      measurement_type:
-        equals_string_in:
-          - OBA:0002045455
-          - OMOP:3038553
-          - LOINC:39156-5
-      unit:
-        equals_string_in:
-          - UCUM:kg/m2
-          - UCUM:[lb_av]/[in_i]2
-      method:
-        equals_string: calculated
-      data_type:
-        equals_string: decimal
-      measurement_value:
-        range: decimal
-        minimum_value: 5
-        maximum_value: 200
-      calculated_from:
-        equals_expression: "{weight_kg} / ({height_cm} / 100)^2"
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OBA:0002045455
+                - equals_string: OMOP:3038553
+                - equals_string: LOINC:39156-5
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: kg/m2
+                - equals_string: [lb_av]/[in_i]2
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type: decimal
+            measurement_value:
+              range: decimal
+                maximum_value: 200
+                minimum_value: 5
+            calculated_from:
+              equals_expression: "{BodyWeightRecord} / ({HumanBodyHeightRecord} / 100)^2"
 
 #────────────────────────────────────────────────────────────────
 # SLOTS
@@ -683,6 +720,13 @@ enums:
         description: >-
           medical device used to measure human weight
         meaning: MMO:0000087
+      digital_scale:
+        description: >-
+          electronic device used to measure human weight using strain gauge sensors
+        meaning: MMO:0000087
+      spring_scale:
+        description: >-
+          mechanical device that measures weight by the displacement of a spring
   ReagentKitEnum:
     description: The reagent kit used for a measurement
     permissible_values:
