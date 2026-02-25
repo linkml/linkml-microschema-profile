@@ -193,100 +193,69 @@ classes:
 # EXAMPLES
 #────────────────────────────────────────────────────────────────
 
-HumanBodyHeightRecord:
-  is_a: ClinicalMeasurementRecord
-  id: ?????? #this would be the CDE repo identifier that I would use in the BDC variable 
-    #library. multiple BDC variables would use the same CDE identifier.
-  description: >-
-    Measurement of linear distance of a human body from the bottom of a flat foot
-    to the top-most point of the head
-  rules:
-    - preconditions:
-        slot_conditions:
-          meaurement_type:
-            any_of:
-              - equals_string: OBA:VT0001253
-              - equals_string: OMOP:903133
-              - equals_string: LOINC:3036277
-    - postconditions:
-        slot_conditions:
-          unit: 
-            any_of: 
-              - equals_string: cm
-              - equals_string: [in_i]
-              - equals_string: m
-              - equals_string: [ft_i]
-          instrument: 
-            any_of:
-              - equals_string: wall_mounted_stadiometer
-              - equals_string: flexible_measuring_tape
-              - equals_string: portable_stadiometer
-              - equals_string: anthropometer_rod
-              - equals_string: sonar_stadiometer
-          body_position:
-            any_of:
-              - range: BodyPositionEnum
-          data_type: decimal
-          measurement_value: 
-            range: decimal
+  HumanBodyHeightRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Measurement of linear distance of a human body from the bottom of a flat foot
+      to the top-most point of the head
+    rules:
+      - preconditions:
+          slot_conditions:
+            meaurement_type:
+              any_of:
+                - equals_string: OBA:VT0001253
+                - equals_string: OMOP:903133
+                - equals_string: LOINC:3036277
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: cm
+                - equals_string: "[in_i]"
+                - equals_string: m
+                - equals_string: "[ft_i]"
+            instrument:
+              any_of:
+                - equals_string: wall_mounted_stadiometer
+                - equals_string: flexible_measuring_tape
+                - equals_string: portable_stadiometer
+                - equals_string: anthropometer_rod
+                - equals_string: sonar_stadiometer
+            body_position:
+              any_of:
+                - range: BodyPositionEnum
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
               maximum_value: 300
               minimum_value: 0
 
-HumanBodyHeightRecord001:
-  is_a: HumanBodyHeightRecord
-  id: ?????
-  description: >-
-    Measurement of linear distance of a standing human body from the bottom of a flat foot
-    to the top-most point of the head measured with a wall-mounted stadiometer
-  rules:
-    - preconditions:
-        slot_conditions:
-          instrument:
-            any_of:
-              - equals_string: wall_mounted_stadiometer
-          unit:
-            any_of:
-              - equals_string: cm
-          body_position:
-            any_of:
-              - equals_string: standing
-    - postconditions:
-        slot_conditions:
-          value:
-            range: decimal
+  HumanBodyHeightRecord001:
+    is_a: HumanBodyHeightRecord
+    description: >-
+      Measurement of linear distance of a standing human body from the bottom of a flat foot
+      to the top-most point of the head measured with a wall-mounted stadiometer
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wall_mounted_stadiometer
+            unit:
+              any_of:
+                - equals_string: cm
+            body_position:
+              any_of:
+                - equals_string: standing
+      - postconditions:
+          slot_conditions:
+            value:
+              range: decimal
               maximum_value: 220
               minimum_value: 20
-          unit:
-            ucum_unit: cm
-#---------------
-# IGNORE
-#----------------
-BodyWeightRecord001:
-  is_a: ClinicalMeasurementRecord
-  id: ?????
-  description: >-
-    Measurement of the weight of a human body measured with 
-  measurement_type: OBA:VT0001259
-  unit: kg
-  instrument: mechanical_beam_balance_scale
-  minimum_value: 0.05
-  maximum_value: 220
-  data_type: decimal
-  
-BMIRecord001:
-  is_a: ClinicalMeasurementRecord
-  id: ????
-  description: >-
-    body mass index calculated as weight divided by height squared
-  measurement_type: OBA:2045455
-  unit: kg/m2
-  method: calculated
-  minimum_value: 5
-  maximum_value: 300
-  data_type: decimal
-  calculated_from:
-    equals_expression: "{BodyWeightRecord001} / ({BodyHeightRecord001} / 100)^2"
-  
+            unit:
+              equals_string: cm
 #────────────────────────────────────────────────────────────────
 # SLOTS
 #────────────────────────────────────────────────────────────────
