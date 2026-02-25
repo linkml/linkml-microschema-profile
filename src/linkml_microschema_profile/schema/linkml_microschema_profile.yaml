@@ -258,34 +258,48 @@ HumanBodyHeightRecord001:
               minimum_value: 20
           unit:
             ucum_unit: cm
-#---------------
-# IGNORE
-#----------------
-BodyWeightRecord001:
-  is_a: ClinicalMeasurementRecord
-  id: ?????
-  description: >-
-    Measurement of the weight of a human body measured with 
-  measurement_type: OBA:VT0001259
-  unit: kg
-  instrument: mechanical_beam_balance_scale
-  minimum_value: 0.05
-  maximum_value: 220
-  data_type: decimal
-  
-BMIRecord001:
-  is_a: ClinicalMeasurementRecord
-  id: ????
-  description: >-
-    body mass index calculated as weight divided by height squared
-  measurement_type: OBA:2045455
-  unit: kg/m2
-  method: calculated
-  minimum_value: 5
-  maximum_value: 300
-  data_type: decimal
-  calculated_from:
-    equals_expression: "{BodyWeightRecord001} / ({BodyHeightRecord001} / 100)^2"
+  #────────────────────────────────────────────────────────────────
+  # Body Mass Index (BMI) Microschemas
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - LOINC:39156-5 "BMI" (PhenX/LOINC)
+  #   - caDSR:2006410 v3 "Person Body Mass Index Value" (NCI/NIDA)
+  #   - NINDS:C11131 v3 "Body mass index value" (NINDS)
+  #   - NHLBI ISTH:18:43:27:613 "Body Mass Index (BMI)"
+  #   - PhenX PX570101 "BMI Kilogram Per Squaremeter" / "Pound Per Squareinch"
+  #────────────────────────────────────────────────────────────────
+
+  BodyMassIndexRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A calculated numerical quantity representing an individual's weight-to-height
+      ratio. BMI is calculated as weight (kg) divided by height (m) squared.
+    slots:
+      - semantic_mapping
+    slot_usage:
+      semantic_mapping:
+        equals_string_in:
+          - LOINC:39156-5
+          - caDSR:2006410
+      measurement_type:
+        equals_string_in:
+          - OBA:0002045455
+          - OMOP:3038553
+          - LOINC:39156-5
+      unit:
+        equals_string_in:
+          - UCUM:kg/m2
+          - UCUM:[lb_av]/[in_i]2
+      method:
+        equals_string: calculated
+      data_type:
+        equals_string: decimal
+      measurement_value:
+        range: decimal
+        minimum_value: 5
+        maximum_value: 200
+      calculated_from:
+        equals_expression: "{weight_kg} / ({height_cm} / 100)^2"
   
 #────────────────────────────────────────────────────────────────
 # SLOTS
