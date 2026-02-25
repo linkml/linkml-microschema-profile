@@ -404,6 +404,23 @@ slots:
   age_at_condition:
     range: TimeInterval
     description: Age of the subject at the start and end of the condition
+  condition_status:
+    range: HistoricalStatusEnum
+    description: >-
+      A value indicating whether the medical condition described in this record
+      is present, absent, historically present, or unknown for this individual patient.
+  condition_provenance:
+    range: ProvenanceEnum
+    description: A value representing the provenance of the Condition record.
+  condition_severity:
+    range: ConditionSeverityEnum
+    description: A subjective assessment of the severity of the condition.
+  relationship_to_participant:
+    range: FamilyRelationshipEnum
+    description: >-
+      A value indicating the relationship between the Participant to which the Condition
+      is attributed and the individual who had the reported Condition. If the Condition
+      is affecting the participant themselves, then 'Self' is the appropriate relationship.
   age_at_drug:
     range: TimeInterval
     description: Age of the subject at the start and end of drug exposure
@@ -422,6 +439,96 @@ slots:
 #────────────────────────────────────────────────────────────────
 
 enums:
+  HistoricalStatusEnum:
+    description: >-
+      Indicates whether something is present, absent, historical, or its status is unknown.
+    permissible_values:
+      PRESENT:
+        description: Was present in the patient at observation time.
+      ABSENT:
+        description: Was absent in the patient at observation time.
+      UNKNOWN:
+        description: Was of unknown status in the patient at observation time.
+      HISTORICAL:
+        description: Was present in the patient historically.
+
+  ProvenanceEnum:
+    description: A set of values indicating the source or origin of a clinical record.
+    permissible_values:
+      EHR_BILLING_DIAGNOSIS:
+        description: Diagnosis from EHR billing.
+      EHR_CHIEF_COMPLAINT:
+        description: Chief complaint from EHR.
+      EHR_ENCOUNTER_DIAGNOSIS:
+        description: Encounter diagnosis from EHR.
+      EHR_EPISODE_ENTRY:
+        description: Episode entry from EHR.
+      EHR_PROBLEM_LIST_ENTRY:
+        description: Problem list entry from EHR.
+      FIRST_POSITION_CONDITION:
+        description: First position condition.
+      PRIMARY_CONDITION:
+        description: Primary condition.
+      SECONDARY_CONDITION:
+        description: Secondary condition.
+      NLP_DERIVED:
+        description: Derived from natural language processing.
+      OBSERVATION_RECORDED_FROM_EHR:
+        description: Observation recorded from EHR.
+      PATIENT_SELF_REPORTED_CONDITION:
+        description: Patient self-reported condition.
+      REFERRAL_RECORD:
+        description: From referral record.
+      TUMOR_REGISTRY:
+        description: From tumor registry.
+      WORKING_DIAGNOSIS:
+        description: Working diagnosis.
+      CLINICAL_DIAGNOSIS:
+        description: Clinical diagnosis.
+
+  ConditionSeverityEnum:
+    description: A subjective assessment of the severity of a condition.
+    permissible_values:
+      MILD:
+        description: Lower intensity condition.
+        meaning: OMOP:4116992
+      MODERATE:
+        description: Medium intensity condition.
+        meaning: OMOP:3272197
+      SEVERE:
+        description: Higher intensity condition.
+        meaning: OMOP:4087703
+
+  FamilyRelationshipEnum:
+    description: Values describing kinship connections between individuals.
+    permissible_values:
+      ONESELF:
+        description: Self-reference.
+      NATURAL_PARENT:
+        description: Mother or father unspecified.
+        meaning: OMOP:4029630
+      NATURAL_FATHER:
+        description: Biological father.
+        meaning: OMOP:4321888
+      NATURAL_MOTHER:
+        description: Biological mother.
+        meaning: OMOP:4277283
+      NATURAL_SIBLING:
+        description: Sister or brother unspecified.
+        meaning: OMOP:4218412
+      NATURAL_BROTHER:
+        description: Biological brother.
+        meaning: OMOP:4263682
+      NATURAL_SISTER:
+        description: Biological sister.
+        meaning: OMOP:4251326
+      NATURAL_CHILD:
+        description: Biological offspring.
+        meaning: OMOP:4326600
+      BLOOD_RELATIVE:
+        description: Generic consanguineous relation.
+        meaning: OMOP:4053608
+
   RouteAdminEnum:
     description: Routes of drug administration
     permissible_values:
