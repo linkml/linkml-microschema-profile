@@ -289,13 +289,35 @@ classes:
               any_of:
                 - equals_string: mechanical_beam_balance_scale
                 - equals_string: digital_scale
-                - equals_string: spring_scale
+                - equals_string: spring_scale          
             data_type: decimal
             measurement_value:
               range: decimal
               maximum_value: 700
               minimum_value: 0
 
+  BodyWeightRecord001:
+    is_a: BodyWeightRecord
+    description: >-
+      Measurement of the force exerted by a human body on a mechanical beam balance due
+      to gravity
+    rules:
+      - preconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: kg
+            instrument:
+              any_of:
+                - equals_string: mechanical_beam_balance_scale
+      - postconditions:
+          slot_conditions:
+            data_type: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 550
+              minimum_value: 0
+              
   #────────────────────────────────────────────────────────────────
   # Body Mass Index (BMI) Microschemas
   #────────────────────────────────────────────────────────────────
@@ -325,7 +347,6 @@ classes:
             unit:
               any_of:
                 - equals_string: kg/m2
-                - equals_string: "[lb_av]/[in_i]2"
             method:
               any_of:
                 - equals_string: calculated
@@ -335,8 +356,223 @@ classes:
               maximum_value: 200
               minimum_value: 5
             calculated_from:
-              equals_expression: "{BodyWeightRecord} / ({HumanBodyHeightRecord} / 100)^2"
+              equals_expression: "{BodyWeightRecord001} / ({HumanBodyHeightRecord001} / 100)^2"
 
+  HumanFvcRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total amount of air a person can forcibly exhale after taking the deepest breath
+      possible
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OMOP:4176265
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            instrument:
+              any_of:
+                - equals_string: spirometer
+                - equals_string: vitalograph
+                - equals_string: body_plesmograph
+            body_position:
+              any_of:
+                - range: BodyPositionEnum
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 12000
+              minimum_value: 0
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            method:
+              any_of:
+                - equals_string: spirometry
+                - equals_string: body_plesmography
+    slot_usage:
+      predicted_value:
+        required: true
+      percent_predicted_value:
+        required: true
+
+  HumanMeasuredFvcRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total amount of air a person can forcibly exhale after taking the deepest breath
+      possible
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OMOP:4176265
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            instrument:
+              any_of:
+                - equals_string: spirometer
+                - equals_string: vitalograph
+                - equals_string: body_plesmograph
+            body_position:
+              any_of:
+                - range: BodyPositionEnum
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 12000
+              minimum_value: 0
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            method:
+              any_of:
+                - equals_string: spirometry
+                - equals_string: body_plesmography
+
+  HumanMeasuredFvcRecord001:
+    is_a: HumanMeasuredFvcRecord
+    description: >-
+      Total amount of air a person can forcibly exhale after taking the deepest breath
+      possible
+    rules:
+      - preconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: spirometer
+            body_position:
+              any_of:
+                - equals_string: sitting
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 12
+              minimum_value: 0
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            method:
+              any_of:
+                - equals_string: spirometry
+
+  HumanPredictedFvcRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Predicted total amount of air a person can forcibly exhale after taking the deepest 
+      breath possible. Predictions are based on a reference equation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OMOP:4150403
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 12
+              minimum_value: 0
+            method:
+              any_of:
+                - equals_string: GLI
+                - equals_string: GLI-Global
+                - equals_string: NHANESIII
+
+  HumanPercentPredictedFvcRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Percent of the predicted FVC that is achieved by the patient
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OMOP:4253179
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "%"
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 150
+              minimum_value: 0
+            calculated_from:
+              equals_expression: "({HumanMeasuredFvcRecord001} / {HumanPredictedFvcRecord}) * 100"
+
+  HumanFev1Record:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Maximum amount of air a person can forcibly exhale in the first second of a
+      breathing test
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: OMOP:4241837
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            instrument:
+              any_of:
+                - equals_string: spirometer
+                - equals_string: peak_flow_meter
+            body_position:
+              any_of:
+                - range: BodyPositionEnum
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              maximum_value: 12000
+              minimum_value: 0
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            method:
+              any_of:
+                - equals_string: spirometry
+
+  Relativity:
+    mixin: true
+    slots:
+      - predicted_value
+      - lower_limit_normal
+      - upper_limit_normal
+      - percent_predicted_value
 #────────────────────────────────────────────────────────────────
 # SLOTS
 #────────────────────────────────────────────────────────────────
@@ -518,6 +754,24 @@ slots:
       - range: TimeInterval
       - range: CodedValue
     description: The "value" in the observation key/value pair
+  predicted_value:
+    range: decimal
+    description: >-
+      A predicted measurement value based on a reference population, range, equation,
+      or other relevant information. Often used to normalize a measurement based on body 
+      size, age, or sex
+  lower_limit_normal:
+    range: decimal
+    description: >-
+      placeholder
+  upper_limit_normal:
+    range: decimal
+    description: >-
+      placeholder
+  percent_predicted_value:
+    range: decimal
+    description: >-
+      Ratio of the actual measured value to the predicted value
 
 #────────────────────────────────────────────────────────────────
 # ENUMS
@@ -708,11 +962,43 @@ enums:
         description: Enumerated value
       boolean:
         description: Boolean value
+
   MethodEnum:
     description: The method used for a measurement or observation
     permissible_values:
       survey:
-        description: Placeholder value
+        description: >-
+          list of questions given to a participant for data collection purposes - the 
+          survey is filled out by the participant independently
+      interview:
+        description: >-
+          series of questions posed to a participant by an interviewer for data 
+          collection purposes
+      calculated:
+        description: >-
+          clinical record that results from a calculation rather than being directly
+          measured
+      spirometry:
+        description: >-
+          breathing test used to assess lung function
+      body_plesmography:
+        description: >-
+          precise pulmonary function test where the patient sits in a sealed chamber and
+          breathes into a specialized mouthpiece. This method uses Boyle's Law  and is
+          considered a "gold standard"
+      GLI:
+        description: >-
+          a standard reference range and calculator for spirometry and lung function 
+          tests published by the Global Lung Function Initiative in 2012
+      GLI-Global:
+        description: >-
+          a standard reference range and calculator for spirometry and lung function 
+          tests published by the Global Lung Function Initiative in 2022. This is an
+          update of the 2012 standard that is more ethnically diverse
+      NHANESIII:
+        description: >-
+          standard reference equations for spirometry published in 2005
+
   InstrumentEnum:
     description: The instrument used for a measurement
     permissible_values:
@@ -732,11 +1018,28 @@ enums:
       spring_scale:
         description: >-
           mechanical device that measures weight by the displacement of a spring
+      spirometer:
+        description: >-
+          medical device that measures lung function by recording the amount and speed
+          of air a person can inhale and exhale
+      vitalograph:
+        description: >-
+          a portable medical device that measures lung function by recording the amount 
+          and speed of air a person can inhale and exhale
+      body_plesmograph:
+        description: >-
+          sealed, clear chamber with a mouthpiece for a person to breath through
+      peak_flow_meter:
+        description: >-
+          portable, handheld device used to measure how fast and hard a person can
+          exhale
+
   ReagentKitEnum:
     description: The reagent kit used for a measurement
     permissible_values:
       placeholder:
         description: Placeholder value
+
   BodyPositionEnum:
     description: The body position during a measurement
     permissible_values:
@@ -746,6 +1049,7 @@ enums:
         description: Standing upright
       sitting:
         description: Seated position
+
   ContextEnum:
     description: The context in which a measurement was taken
     permissible_values:
