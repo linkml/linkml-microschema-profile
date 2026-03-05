@@ -23,6 +23,7 @@ prefixes:
   UBERON: http://purl.obolibrary.org/obo/UBERON_
   MONDO: http://purl.obolibrary.org/obo/MONDO_
   HP: http://purl.obolibrary.org/obo/HP_
+  MMO: http://purl.obolibrary.org/obo/MMO_
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   ISO11179: http://purl.org/iso11179/
   example: http://www.example.org/rdf#
@@ -292,8 +293,8 @@ classes:
             data_type: decimal
             measurement_value:
               range: decimal
-                maximum_value: 700
-                minimum_value: 0
+              maximum_value: 700
+              minimum_value: 0
 
   #────────────────────────────────────────────────────────────────
   # Body Mass Index (BMI) Microschemas
@@ -324,15 +325,15 @@ classes:
             unit:
               any_of:
                 - equals_string: kg/m2
-                - equals_string: [lb_av]/[in_i]2
+                - equals_string: "[lb_av]/[in_i]2"
             method:
               any_of:
                 - equals_string: calculated
             data_type: decimal
             measurement_value:
               range: decimal
-                maximum_value: 200
-                minimum_value: 5
+              maximum_value: 200
+              minimum_value: 5
             calculated_from:
               equals_expression: "{BodyWeightRecord} / ({HumanBodyHeightRecord} / 100)^2"
 
@@ -511,7 +512,11 @@ slots:
     range: RouteAdminEnum
     description: Routes of drug administration
   measurement_value:
-    range: ValueMicroschemaDefinition
+    any_of:
+      - range: Quantity
+      - range: Timepoint
+      - range: TimeInterval
+      - range: CodedValue
     description: The "value" in the observation key/value pair
 
 #────────────────────────────────────────────────────────────────
@@ -706,7 +711,7 @@ enums:
   MethodEnum:
     description: The method used for a measurement or observation
     permissible_values:
-      placeholder:
+      survey:
         description: Placeholder value
   InstrumentEnum:
     description: The instrument used for a measurement

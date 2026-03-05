@@ -501,34 +501,6 @@ wheels = [
 ]
 
 [[package]]
-name = "common-data-elements-schema"
-source = { editable = "." }
-dependencies = [
-    { name = "linkml-runtime" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "jupyter" },
-    { name = "linkml" },
-    { name = "mkdocs-material" },
-    { name = "mkdocs-mermaid2-plugin" },
-    { name = "mknotebooks" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.4" }]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "jupyter", specifier = ">=1.0.0" },
-    { name = "linkml", specifier = ">=1.9.3" },
-    { name = "mkdocs-material", specifier = ">=8.2.8" },
-    { name = "mkdocs-mermaid2-plugin", specifier = ">=1.1.1" },
-    { name = "mknotebooks", specifier = ">=0.8.0" },
-]
-
-[[package]]
 name = "curies"
 version = "0.10.23"
 source = { registry = "https://pypi.org/simple" }
@@ -1690,6 +1662,34 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/0d/52/1e4e6e0af2296074822bbb26d60761a5dbd0b977b843fe263da8cc0a4be1/linkml-1.9.6.tar.gz", hash = "sha256:d2ef74bbb52bf5e48b67b5d9319ca2e4acb8184dd40bf43d00635222b2dc1d4c", size = 42963392, upload-time = "2025-12-01T22:14:54.962Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/94/ff/b965a845fc0a9ca2331d8d6043e262cc834f5328ac0f1970db1622bac2cf/linkml-1.9.6-py3-none-any.whl", hash = "sha256:4ac3d2b7b6ea38c9da70e264a434977281a655f5e6040b33e65be76c63ab95cd", size = 402879, upload-time = "2025-12-01T22:14:52.579Z" },
+]
+
+[[package]]
+name = "linkml-microschema-profile"
+source = { editable = "." }
+dependencies = [
+    { name = "linkml-runtime" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "jupyter" },
+    { name = "linkml" },
+    { name = "mkdocs-material" },
+    { name = "mkdocs-mermaid2-plugin" },
+    { name = "mknotebooks" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "linkml-runtime", specifier = ">=1.9.4" }]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "jupyter", specifier = ">=1.0.0" },
+    { name = "linkml", specifier = ">=1.9.3" },
+    { name = "mkdocs-material", specifier = ">=8.2.8" },
+    { name = "mkdocs-mermaid2-plugin", specifier = ">=1.1.1" },
+    { name = "mknotebooks", specifier = ">=0.8.0" },
 ]
 
 [[package]]
