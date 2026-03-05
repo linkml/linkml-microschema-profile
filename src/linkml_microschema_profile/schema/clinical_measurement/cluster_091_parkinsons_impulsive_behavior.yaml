@@ -1,0 +1,100 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_091
+name: cluster_091_parkinsons_impulsive_behavior
+description: |-
+  Microschemas derived from CDE Cluster 091: Parkinson's Impulsive Behavior Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  QUIPShortImpulseControlRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      QUIP-Current-Short items screening for impulse control disorders in
+      Parkinson's disease including gambling, buying, eating, and sexual
+      behavior indicators and difficulty controlling these behaviors.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: QUIP_short_impulse_control
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+            instrument:
+              any_of:
+                - equals_string: QUIP_Current_Short
+
+  QUIPCompulsiveBehaviorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      QUIP full-form items assessing compulsive and repetitive behaviors in
+      Parkinson's disease including punding (repeating simple motor activities),
+      hobbyism (excessive time on specific tasks), and purposeless walking
+      or driving.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: QUIP_compulsive_behavior
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+            instrument:
+              any_of:
+                - equals_string: QUIP
+
+  QUIPMedicationMisuseRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      QUIP items assessing dopamine dysregulation and medication misuse in
+      Parkinson's disease including difficulty controlling medication use,
+      hoarding medication, increasing dosage for psychological reasons, and
+      excessive medication intake.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: QUIP_medication_misuse
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+            instrument:
+              any_of:
+                - equals_string: QUIP
+
+  QUIPPsychosocialImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      QUIP items assessing psychosocial consequences of impulse control
+      disorders including excessive distress, guilt, functional interference,
+      and engagement in activities to continue impulsive behaviors.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: QUIP_psychosocial_impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+            instrument:
+              any_of:
+                - equals_string: QUIP

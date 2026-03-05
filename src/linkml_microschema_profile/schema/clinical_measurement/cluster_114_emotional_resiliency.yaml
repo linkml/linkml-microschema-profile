@@ -1,0 +1,52 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_114
+name: cluster_114_emotional_resiliency
+description: |-
+  Microschemas derived from CDE Cluster 114: Emotional Resiliency Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Self-Efficacy Managing Emotions Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Self-Efficacy for Managing Emotions items
+  #   - Managing anger, anxiety, frustration, discouragement, stress
+  #   - Scored 0 (I am not at all confident) to 4 (I am very confident)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISSelfEfficacyEmotionsRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Self-Efficacy for Managing
+      Emotions instrument, measuring confidence in one's ability to manage
+      negative emotions such as anger, anxiety, frustration, and
+      discouragement related to health conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71960-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Self_Efficacy_Managing_Emotions
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4

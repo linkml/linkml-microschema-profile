@@ -1,0 +1,116 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_096
+name: cluster_096_childhood_wellbeing_assessment
+description: |-
+  Microschemas derived from CDE Cluster 096: Childhood Well-being Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  PedsQLPhysicalFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PedsQL Physical Functioning Scale items assessing problems with walking,
+      running, sports participation, lifting heavy things, bathing, chores,
+      hurts/aches, and low energy on a 0-4 frequency scale. Also includes
+      the physical health summary score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PedsQL_physical_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PedsQL
+
+  PedsQLEmotionalFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PedsQL Emotional Functioning Scale items assessing problems with
+      feeling angry, sad, afraid, trouble sleeping, and worry on a
+      0-4 frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PedsQL_emotional_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PedsQL
+
+  PedsQLSocialFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PedsQL Social Functioning Scale items assessing problems with getting
+      along with other kids, being teased, inability to do things peers can do,
+      keeping up with peers, and making friends on a 0-4 frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PedsQL_social_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PedsQL
+
+  PedsQLSchoolFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PedsQL School Functioning Scale items assessing problems with paying
+      attention in class, forgetting things, keeping up with schoolwork,
+      missing school due to illness, and missing school for doctor visits
+      on a 0-4 frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PedsQL_school_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PedsQL

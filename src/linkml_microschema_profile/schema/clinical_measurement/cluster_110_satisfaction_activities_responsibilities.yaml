@@ -1,0 +1,54 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_110
+name: cluster_110_satisfaction_activities_responsibilities
+description: |-
+  Microschemas derived from CDE Cluster 110: Overall Satisfaction with Activities and Responsibilities
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Satisfaction with SRA Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Satisfaction with Social Roles and Activities items
+  #   - PROMIS Satisfaction with Social Roles and Activities items
+  #   - Satisfaction with work, leisure, family, social, daily routines
+  #   - Scored 1 (Not at all) to 5 (Very much)
+  #────────────────────────────────────────────────────────────────
+
+  SatisfactionActivitiesRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL or PROMIS Satisfaction
+      with Social Roles and Activities instruments, measuring satisfaction
+      with one's ability to perform work, leisure, family, and social
+      activities.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71956-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Satisfaction_SRA
+                - equals_string: PROMIS_Satisfaction_SRA
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

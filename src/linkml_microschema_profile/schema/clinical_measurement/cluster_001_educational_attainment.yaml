@@ -1,0 +1,117 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_001
+name: cluster_001_educational_attainment
+description: |-
+  Microschemas derived from CDE Cluster 001: Educational Attainment Levels
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Educational Attainment (Subject)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Education Level (mk4oC4m11g, NCI)
+  #   - Education level USA type (FAYVNxzkcJ7, NINDS)
+  #   - Highest grade degree completed type (7yx72ItppU, NINDS)
+  #   - Highest level of education (ydhWMTCSb, LOINC)
+  #   - Educational Attainment (7y8x7nHXkyl, NCI)
+  #   - Education level USA code (wHcRQjWps, NHLBI)
+  #   - NHANES education question (m1ryv5jnjx, LOINC)
+  #────────────────────────────────────────────────────────────────
+
+  EducationalAttainmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Highest level of education completed by the subject or participant,
+      commonly captured as a sociodemographic variable in clinical and
+      epidemiological studies.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82589-3
+                - equals_string: OMOP:4171459
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: EducationLevelEnum
+
+  #────────────────────────────────────────────────────────────────
+  # Parental Educational Attainment
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Education level parent 1/2 type (7Jg2rZipp8, 7y_nBboTT8)
+  #   - Education level maternal USA type (P2VBZ2E7gjC)
+  #   - Education level paternal USA type (s5pFDzWujDn)
+  #   - Highest level of education Father/Mother (m1bcp9pLDI, 7kBl31lLhQM)
+  #   - Child reported maternal/paternal attainment (Ex5a_h6iFZ, GESd_nZZSh)
+  #   - Education level primary caregiver (b6N5Hue3RG6)
+  #   - Education level other caretaker (QygwLAOpp8)
+  #────────────────────────────────────────────────────────────────
+
+  ParentalEducationalAttainmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Highest level of education completed by a parent, caregiver, or
+      family member of the subject. The relationship_to_participant
+      context slot distinguishes maternal, paternal, and other caregiver roles.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82590-1
+                - equals_string: OMOP:4171459
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: EducationLevelEnum
+
+enums:
+  EducationLevelEnum:
+    description: Highest level of education completed
+    permissible_values:
+      no_formal_schooling:
+        description: Never attended school or kindergarten only
+      elementary_school:
+        description: Completed up to 5th grade
+      middle_school:
+        description: Completed 6th through 8th grade
+      some_high_school:
+        description: 9th through 12th grade without diploma
+      high_school_graduate:
+        description: High school diploma or GED equivalent
+      vocational_training:
+        description: Occupational, technical, or vocational program
+      some_college:
+        description: Some college but no degree
+      associate_degree:
+        description: Associate degree (AA, AS)
+      bachelor_degree:
+        description: Bachelor's degree (BA, BS, BBA)
+      master_degree:
+        description: Master's degree (MA, MS, MBA, MEd)
+      professional_degree:
+        description: Professional degree (MD, DDS, DVM, JD)
+      doctoral_degree:
+        description: Doctoral degree (PhD, EdD)
+      unknown:
+        description: Education level is unknown
+      refused:
+        description: Participant refused to answer

@@ -1,0 +1,126 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_052
+name: cluster_052_financial_risk_behavior
+description: |-
+  Microschemas derived from CDE Cluster 052: Financial Risk Behavior Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # South Oaks Gambling Screen (SOGS) Frequency Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Bet horse/dog/other animal frequency
+  #   - Bet sport frequency
+  #   - Bowl/pool/golf/skill for money frequency
+  #   - Play cards for money frequency
+  #   - Play dice for money frequency
+  #   - Play numbers/lottery frequency
+  #   - Play slot machines/poker/video machines frequency
+  #   - Casino gambling frequency
+  #   - Bingo frequency
+  #   - Speculate stock/commodities market frequency
+  #────────────────────────────────────────────────────────────────
+
+  GamblingFrequencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Gambling activity frequency from the South Oaks Gambling Screen (SOGS).
+      Measures how often the participant engages in specific gambling
+      activities on a scale of Not at all, Less than once a week, or
+      Once a week or more.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44251-7
+            instrument:
+              any_of:
+                - equals_string: sogs
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # SOGS Problem Gambling Indicator Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Argue about money handling indicator
+  #   - Borrow money no pay back indicator
+  #   - Criticize gambling problem indicator
+  #   - Family/friend gambling problem indicator
+  #   - Gamble more than intend indicator
+  #   - Guilty gamble indicator
+  #   - Hidden gambling evidence indicator
+  #   - Lost time work/school gambling indicator
+  #   - Sources of money to gamble or pay debts
+  #────────────────────────────────────────────────────────────────
+
+  ProblemGamblingIndicatorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Problem gambling indicator items from the South Oaks Gambling Screen
+      (SOGS). Captures behavioral and financial consequences of gambling
+      including arguments about money, borrowing, criticism from others,
+      guilt, hidden evidence, and sources of gambling funds.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44252-5
+            instrument:
+              any_of:
+                - equals_string: sogs
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+
+  #────────────────────────────────────────────────────────────────
+  # SOGS Total Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SOGS total score
+  #   - Largest amount gambled in one day
+  #────────────────────────────────────────────────────────────────
+
+  GamblingScreenTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      South Oaks Gambling Screen (SOGS) total score. Scores of 5 or more
+      indicate probable pathological gambling. Also captures the largest
+      amount gambled in a single day.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44253-3
+            instrument:
+              any_of:
+                - equals_string: sogs
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 20
+            unit:
+              any_of:
+                - equals_string: "{score}"

@@ -1,0 +1,82 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_104
+name: cluster_104_dyspnea_functional_capacity
+description: |-
+  Microschemas derived from CDE Cluster 104: Functional Activity Capacity - Dyspnea Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Dyspnea Functional Limitations Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Dyspnea Functional Limitations items (carrying, lifting,
+  #     walking, stair climbing, self-care, household tasks, leisure)
+  #   - Scored 0 (No difficulty) to 3 (Much difficulty) or X (not done)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISDyspneaFunctionalLimitationsRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Dyspnea Functional Limitations
+      instrument, measuring the degree of difficulty performing daily
+      activities due to shortness of breath.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:89404-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Dyspnea_Functional_Limitations
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 3
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Dyspnea Severity Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Dyspnea Severity items (same activities as above)
+  #   - Scored 0 (No shortness of breath) to 3 (Severely short of breath)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISDyspneaSeverityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Dyspnea Severity instrument,
+      measuring the severity of shortness of breath during daily activities.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:89406-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Dyspnea_Severity
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 3

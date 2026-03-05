@@ -1,0 +1,138 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_094
+name: cluster_094_anger_hostility_assessment
+description: |-
+  Microschemas derived from CDE Cluster 094: Anger and Hostility Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  NIHToolboxAngerAffectRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Anger-Affect items assessing subjective emotional experience
+      of anger including feeling mad, upset, fed up, and urges to throw things
+      or yell, scored on a 1-5 frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_anger_affect
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Anger
+
+  NIHToolboxAngerBehaviorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Anger items assessing behavioral expressions of anger
+      including temper tantrums, arguing with adults and peers, getting back
+      at people, and doing things to annoy others, scored on a 1-3 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_anger_behavior
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 3
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Anger
+
+  NIHToolboxHostilityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Hostility items assessing cynical attitudes and resentment
+      including jealousy, feeling others get breaks, feeling a raw deal from
+      life, and bitterness, scored on a 1-7 agreement scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_hostility
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 7
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Anger_Hostility
+
+  NIHToolboxPhysicalAggressionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Physical Aggression items assessing physical aggressive
+      tendencies including breaking things, fighting, hitting, threatening
+      people, and coming to blows, scored on a 1-7 agreement scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_physical_aggression
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 7
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Anger_Physical_Aggression
+
+  NIHToolboxPerceivedHostilityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Perceived Hostility items assessing experiences of hostile
+      behavior from others including others acting angry and others getting
+      mad, scored on a 1-5 frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_perceived_hostility
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Perceived_Hostility

@@ -1,0 +1,116 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_095
+name: cluster_095_positive_affect_wellness
+description: |-
+  Microschemas derived from CDE Cluster 095: Positive Affect Wellness Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  NIHToolboxPositiveAffectGeneralRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Positive Affect items assessing general positive emotional
+      states including feeling happy, cheerful, joyful, delighted, content,
+      satisfied, grateful, lighthearted, and good-natured on a 1-5 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_positive_affect_general
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Positive_Affect
+
+  NIHToolboxPositiveAffectEngagementRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Positive Affect items assessing active engagement and
+      vitality including feeling energetic, lively, active, strong, determined,
+      enthusiastic, interested, inspired, and having spare energy on a 1-5 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_positive_affect_engagement
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Positive_Affect
+
+  NIHToolboxPositiveAffectSelfEsteemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Positive Affect items assessing self-regard and cognitive
+      well-being including feeling confident, proud, useful, understood,
+      optimistic, liking oneself, thinking creatively, and being able to
+      concentrate on a 1-5 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_positive_affect_self_esteem
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Positive_Affect
+
+  NIHToolboxPositiveAffectSerenityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      NIH Toolbox Positive Affect items assessing inner peace and tranquility
+      including feeling calm, peaceful, relaxed, at ease, clear-headed,
+      fearless, a sense of harmony, and able to reach within for comfort
+      on a 1-5 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NIH_Toolbox_positive_affect_serenity
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: NIH_Toolbox_Positive_Affect

@@ -1,0 +1,128 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_079
+name: cluster_079_concussion_recovery_assessment
+description: |-
+  Microschemas derived from CDE Cluster 079: Concussion Recovery Assessment (CRA) Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # SCAT3 Symptom Evaluation Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCAT3 symptom severity score (QJgq1vsTT8)
+  #   - SCAT3 total symptom score (Qk9JDiT6I)
+  #   - SCAT3 individual symptom scores (headache, dizziness,
+  #     nausea, balance, blurred vision, confusion, drowsiness,
+  #     fatigue, etc.)
+  #────────────────────────────────────────────────────────────────
+
+  SCAT3SymptomEvaluationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Symptom evaluation scores from the Sport Concussion Assessment Tool -
+      3rd Edition (SCAT3). Individual symptom items are rated 0 (none) to
+      6 (severe). Total symptom score sums the number of symptoms endorsed
+      (0-22), and symptom severity score sums individual ratings (0-132).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:54555-9
+            instrument:
+              any_of:
+                - equals_string: scat3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 132
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # Standardized Assessment of Concussion (SAC) Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SAC orientation total score (XJzdcXi66I)
+  #   - SAC immediate memory total score (XyMT5QiT6U)
+  #   - SAC concentration total score (QJlj7sa6I)
+  #   - SAC delayed recall score (mkfwgwipa8)
+  #   - SAC individual item scores
+  #────────────────────────────────────────────────────────────────
+
+  SACTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total and domain scores from the Standardized Assessment of Concussion
+      (SAC), administered as part of the SCAT3. Domains include orientation
+      (0-5), immediate memory (0-15), concentration (0-5), and delayed
+      recall (0-5), for a total of 0-30.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:54556-7
+            instrument:
+              any_of:
+                - equals_string: sac
+                - equals_string: scat3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 30
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # SCAT3 Coordination Examination Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCAT3 coordination score (XkWwxvsa6U)
+  #────────────────────────────────────────────────────────────────
+
+  SCAT3CoordinationScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Coordination examination score from the Sport Concussion Assessment
+      Tool - 3rd Edition (SCAT3). Assesses upper limb coordination via a
+      finger-to-nose task, scored 0-1.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: scat3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 1
+            unit:
+              any_of:
+                - equals_string: "{score}"

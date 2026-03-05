@@ -1,0 +1,83 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_097
+name: cluster_097_child_sleep_breathing
+description: |-
+  Microschemas derived from CDE Cluster 097: Child Sleep and Breathing Patterns
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  ChildSleepDisorderScreenRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PhenX child sleep screening items assessing sleep problems including
+      difficulty falling asleep, restless sleep, multiple night wakings,
+      trouble going back to sleep, nightmares, sleep walking, sleep talking,
+      bed wetting, daytime sleepiness, and napping. Responses are typically
+      Yes/No/Don't know.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX_child_sleep_disorder_screen
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PhenX_PSQ
+
+  ChildSleepDisorderedBreathingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PhenX child sleep-disordered breathing items assessing snoring (ever,
+      always, loudly), heavy/loud breathing, mouth breathing during sleep,
+      observed apnea (stop breathing), snorting on waking, morning headaches,
+      and concern about child's breathing. Responses are typically
+      Yes/No/Don't know.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX_child_sleep_disordered_breathing
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PhenX_PSQ
+
+  ChildRespiratorySymptomRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PhenX respiratory symptom items in children assessing history of asthma,
+      wheezing/whistling in the chest, wheezing with colds, persistent cough,
+      cough with phlegm, difficulty breathing, and nocturnal cough. Responses
+      are typically Yes/No.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX_child_respiratory_symptom
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+            instrument:
+              any_of:
+                - equals_string: PhenX

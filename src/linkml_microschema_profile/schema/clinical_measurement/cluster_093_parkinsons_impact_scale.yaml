@@ -1,0 +1,89 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_093
+name: cluster_093_parkinsons_impact_scale
+description: |-
+  Microschemas derived from CDE Cluster 093: Impactful Symptom evaluation in Parkinson's - PIMS
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  PIMSBestSymptomImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Parkinson's Impact Scale (PIMS) items rating the impact of best
+      (fluctuating) symptoms across life domains: community relationships,
+      family relationships, financial security, leisure, safety, self-negative,
+      self-positive, sexuality, travel, and work on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PIMS_best_symptom_impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PIMS
+
+  PIMSStableSymptomImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Parkinson's Impact Scale (PIMS) items rating the impact of stable
+      symptoms across the same life domains on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PIMS_stable_symptom_impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PIMS
+
+  PIMSWorstSymptomImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Parkinson's Impact Scale (PIMS) items rating the impact of worst
+      (fluctuating) symptoms across the same life domains on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PIMS_worst_symptom_impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: PIMS

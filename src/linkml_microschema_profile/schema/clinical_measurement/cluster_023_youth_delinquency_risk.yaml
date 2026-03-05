@@ -1,0 +1,57 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_023
+name: cluster_023_youth_delinquency_risk
+description: |-
+  Microschemas derived from CDE Cluster 023: Youth Delinquency and Risk Behaviors
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Denver Youth Survey - Delinquency and Risk Behavior Items
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ~21 Denver Youth Survey items measuring
+  #   self-reported frequency of delinquent and risk behaviors
+  #   in the past year, including theft, property crimes,
+  #   substance use, arson, running away, and violent offenses.
+  # All items ask "How many times in the last year..." with
+  #   integer count responses.
+  #────────────────────────────────────────────────────────────────
+
+  DenverYouthSurveyItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the Denver Youth Survey assessing
+      self-reported frequency of delinquent and risk behaviors over
+      the past year. Each item asks the respondent to report the
+      number of times they engaged in a specific behavior, including
+      theft, burglary, substance use, property destruction, fraud,
+      and violent offenses.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP199092-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: denver_youth_survey
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 999

@@ -1,0 +1,83 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_035
+name: cluster_035_motor_control_assessment
+description: |-
+  Microschemas derived from CDE Cluster 035: Motor Control Assessment Cluster (MCAC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  BmcaMagnitudeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Magnitude measurement from the Brain Motor Control Assessment (BMCA),
+      including individual trial magnitudes, average magnitude across trials,
+      and maximum pressure values for voluntary and reflex motor responses.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: BMCA Magnitude
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+            instrument:
+              equals_string: BMCA
+
+  BmcaTimingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Timing measurement from the BMCA, including onset time, termination
+      time, and long-lasting duration for various motor control protocols.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: BMCA Timing
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: ms
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+            instrument:
+              equals_string: BMCA
+
+  BmcaResponseIndicatorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Categorical response indicators from the BMCA, including response
+      presence, antagonist burst presence, after-discharge indicators,
+      silence indicators, similarity index, and repeatability assessments.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: BMCA Response Indicator
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: BMCA

@@ -1,0 +1,156 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_025
+name: cluster_025_mpai4_adaptability
+description: |-
+  Microschemas derived from CDE Cluster 025: Adaptive Behavioral Assessment Scale (ABAS)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # MPAI-4 Ability Subscale
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MPAI-4 ability subscale score (items 1-12)
+  #   - Individual item scales: mobility, use hand, vision, audition,
+  #     dizziness, motor speech, verbal communication, nonverbal
+  #     communication, attention/concentration, memory, fund of
+  #     information, novel problem solving, visuospatial ability
+  #────────────────────────────────────────────────────────────────
+
+  Mpai4AbilitySubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Ability subscale score from the Mayo-Portland Adaptability
+      Inventory (MPAI-4), items 1-12, assessing sensory, motor,
+      and cognitive abilities. Each item scored 0-4 where higher
+      scores indicate greater impairment.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71948-3
+            instrument:
+              any_of:
+                - equals_string: mpai4
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 48
+
+  #────────────────────────────────────────────────────────────────
+  # MPAI-4 Adjustment Subscale
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MPAI-4 adjustment subscale score (items 13-24)
+  #   - Individual item scales: anxiety, depression, irritability,
+  #     pain/headache, fatigue, sensitivity, impaired self-awareness,
+  #     inappropriate social, initiation
+  #────────────────────────────────────────────────────────────────
+
+  Mpai4AdjustmentSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Adjustment subscale score from the Mayo-Portland Adaptability
+      Inventory (MPAI-4), items 13-24, assessing emotional and
+      psychosocial adjustment. Each item scored 0-4 where higher
+      scores indicate greater impairment.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71949-1
+            instrument:
+              any_of:
+                - equals_string: mpai4
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 46
+
+  #────────────────────────────────────────────────────────────────
+  # MPAI-4 Participation Subscale
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MPAI-4 participation subscale score (items 22-29)
+  #   - Individual item scales: self care, residence, transportation,
+  #     paid employment, other employment, social contact, leisure,
+  #     manage money, family relationship
+  #────────────────────────────────────────────────────────────────
+
+  Mpai4ParticipationSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Participation subscale score from the Mayo-Portland Adaptability
+      Inventory (MPAI-4), items 22-29, assessing social participation
+      and community integration. Each item scored 0-4 where higher
+      scores indicate greater limitation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71950-9
+            instrument:
+              any_of:
+                - equals_string: mpai4
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 32
+
+  #────────────────────────────────────────────────────────────────
+  # MPAI-4 Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MPAI-4 total raw score
+  #────────────────────────────────────────────────────────────────
+
+  Mpai4TotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total raw score from the Mayo-Portland Adaptability Inventory
+      (MPAI-4), summing ability, adjustment, and participation subscales.
+      Higher scores indicate greater overall impairment.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71951-7
+            instrument:
+              any_of:
+                - equals_string: mpai4
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 111

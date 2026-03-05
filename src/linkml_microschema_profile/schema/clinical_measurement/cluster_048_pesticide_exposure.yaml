@@ -1,0 +1,109 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_048
+name: cluster_048_pesticide_exposure
+description: |-
+  Microschemas derived from CDE Cluster 048: Pesticide Exposure Risk Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Residential Pesticide Proximity Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Residence near pesticide spraying indicators (age 18-25, 26-35, 36-45, 46-55, 66+)
+  #   - Residence near farm field indicators by age bracket
+  #────────────────────────────────────────────────────────────────
+
+  ResidentialPesticideProximityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Record of residential proximity to pesticide spraying activities and
+      farm fields across age brackets, from the Risk Factor Questionnaire.
+      Used as an environmental risk factor for neurological conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74176-9
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+
+  #────────────────────────────────────────────────────────────────
+  # Occupational Pesticide Exposure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Broadleaf herbicide (2,4-D) exposure by age bracket
+  #   - Insecticide, fungicide, fumigant exposure indicators
+  #   - Specific pesticide product use indicators
+  #   - Days per year and years of use for each pesticide class
+  #   - Personal protective equipment use indicators
+  #────────────────────────────────────────────────────────────────
+
+  OccupationalPesticideExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Record of occupational pesticide exposure from the Risk Factor
+      Questionnaire (RFQ-U) for Pesticides at Work. Captures specific
+      pesticide classes (herbicides, insecticides, fungicides, fumigants),
+      duration and frequency of use across age brackets, and protective
+      equipment usage.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74177-7
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire_pesticides_work
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # Home and Garden Pesticide Use Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Home/garden pesticide use indicators by age bracket
+  #   - Specific product types used at home
+  #   - Frequency and duration of home pesticide application
+  #────────────────────────────────────────────────────────────────
+
+  HomeGardenPesticideUseRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Record of home and garden pesticide use from the Risk Factor
+      Questionnaire for Pesticides at Home. Captures household and garden
+      pesticide application history across age brackets, including specific
+      product types and frequency of use.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74178-5
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire_pesticides_home
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

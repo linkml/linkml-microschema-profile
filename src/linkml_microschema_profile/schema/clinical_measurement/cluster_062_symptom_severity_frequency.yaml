@@ -1,0 +1,70 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_062
+name: cluster_062_symptom_severity_frequency
+description: |-
+  Microschemas derived from CDE Cluster 062: Symptom Severity and Frequency Cluster (SSFC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  DSQSymptomFrequencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Symptom frequency score from the DePaul Symptom Questionnaire (DSQ), rating
+      how often specific symptoms occur on a 0-4 scale (None of the time to All of
+      the time). Symptoms include post-exertional malaise (physical drain after mild
+      activity, minimum exercise fatigue, dead heavy feeling, next day soreness),
+      cognitive fatigue (mentally tired after slight effort), and sleep disturbances
+      (problems falling/staying asleep, unrefreshed after waking, need to nap daily,
+      waking early, sleeping during day).
+      Aligned CDEs: DSQ frequency scales for post-exertional, cognitive, and sleep symptoms
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: dsq_symptom_frequency
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  DSQSymptomSeverityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Symptom severity score from the DePaul Symptom Questionnaire (DSQ), rating
+      the severity of specific symptoms on a 1-4 scale (Mild to Very Severe).
+      Covers post-exertional malaise symptoms, cognitive fatigue, and sleep
+      disturbances.
+      Aligned CDEs: DSQ severity scales (dead heavy feeling, next day soreness,
+      unrefreshed after waking, nap daily, wake-up early, mentally tired, minimum
+      exercise fatigue, physical drain, problems falling/staying asleep, sleep
+      during day)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: dsq_symptom_severity
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4

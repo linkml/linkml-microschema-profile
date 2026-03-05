@@ -1,0 +1,116 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_117
+name: cluster_117_anxiety_emotional_distress
+description: |-
+  Microschemas derived from CDE Cluster 117: Anxiety and Emotional Distress Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Anxiety Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Anxiety items (anxious, fearful, worried, nervous,
+  #     tense, panicky, uneasy)
+  #   - Scored 1 (Never) to 5 (Almost always)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISAnxietyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Anxiety instrument,
+      measuring self-reported frequency and severity of anxiety symptoms
+      including fear, anxious misery, and hyperarousal.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71948-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Anxiety
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Emotional Distress - Depression Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Depression items (sad, hopeless, worthless, lonely)
+  #   - Scored 1 (Never) to 5 (Almost always)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISDepressionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Depression instrument,
+      measuring self-reported frequency of depressive symptoms including
+      negative mood, decreased positive affect, and negative social
+      cognition.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71950-1
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Depression
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Emotional Distress - Anger Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Anger items (irritable, frustrated, angry, hostile)
+  #   - Scored 1 (Never) to 5 (Almost always)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISAngerRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Anger instrument,
+      measuring self-reported frequency of anger symptoms including
+      irritability, frustration, and hostile feelings.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71952-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Anger
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

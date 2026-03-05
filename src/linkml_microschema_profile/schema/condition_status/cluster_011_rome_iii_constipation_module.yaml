@@ -1,0 +1,173 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_011
+name: cluster_011_rome_iii_constipation_module
+description: |-
+  Microschemas derived from CDE Cluster 011: Rome III Constipation Module (RCM3) Symptom Indicators
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+  HP: http://purl.obolibrary.org/obo/HP_
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Irritable Bowel Syndrome (IBS) Diagnostic Criteria
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ROME III criteria indicator, abdominal discomfort/
+  # pain frequency, pain-bowel changes, stool consistency changes
+  #────────────────────────────────────────────────────────────────
+
+  RomeIIIIBSCriteriaRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Rome III Diagnostic Criteria assessment for Irritable Bowel Syndrome.
+      Captures whether IBS diagnostic criteria have been met based on
+      abdominal discomfort/pain frequency, relationship to bowel movement
+      changes, and stool consistency alterations.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: MONDO:0005052
+                - equals_string: HP:0002960
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: rome_iii
+            associated_evidence:
+              any_of:
+                - equals_string: questionnaire
+
+  #────────────────────────────────────────────────────────────────
+  # Functional Constipation Symptoms
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: bowel movement <3/week, straining, hard/lumpy
+  # stool, incomplete evacuation frequencies
+  #────────────────────────────────────────────────────────────────
+
+  RomeIIIConstipationSymptomsRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Rome III Constipation Module symptom indicators for functional
+      constipation. Captures frequency of straining, hard/lumpy stools,
+      fewer than 3 bowel movements per week, and related symptoms
+      over the past 3 months.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: MONDO:0002606
+                - equals_string: HP:0002019
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: rome_iii
+            associated_evidence:
+              any_of:
+                - equals_string: questionnaire
+
+  #────────────────────────────────────────────────────────────────
+  # Functional Diarrhea Symptoms
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: loose/mushy/watery stool frequency, rush to
+  # toilet, 4+ bowel movements daily, 6-month indicator
+  #────────────────────────────────────────────────────────────────
+
+  RomeIIIDiarrheaSymptomsRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Rome III Constipation Module symptom indicators for functional
+      diarrhea. Captures frequency of loose/mushy/watery stools,
+      urgency, excessive daily bowel movements, and chronicity
+      indicators.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: MONDO:0001673
+                - equals_string: HP:0002014
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: rome_iii
+            associated_evidence:
+              any_of:
+                - equals_string: questionnaire
+
+  #────────────────────────────────────────────────────────────────
+  # Upper GI Symptoms (Nausea, Vomiting, Dysphagia, GERD)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: bothersome nausea, vomiting episodes, food stick,
+  # heartburn, food come back, hoarseness, neck/throat pain
+  #────────────────────────────────────────────────────────────────
+
+  RomeIIIUpperGISymptomsRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Rome III Constipation Module symptom indicators for upper
+      gastrointestinal symptoms. Captures frequency and chronicity
+      of nausea, vomiting episodes, food sticking (dysphagia),
+      heartburn, regurgitation, hoarseness, and throat pain.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: HP:0002017
+                - equals_string: HP:0002013
+                - equals_string: HP:0002015
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: rome_iii
+            associated_evidence:
+              any_of:
+                - equals_string: questionnaire
+
+  #────────────────────────────────────────────────────────────────
+  # Abdominal Pain Characterization
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: pain severity, pain frequency, pain-activity
+  # restriction, pain-position relief, gallbladder-related pain,
+  # anorectal pain
+  #────────────────────────────────────────────────────────────────
+
+  RomeIIIAbdominalPainRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Rome III Constipation Module characterization of abdominal and
+      anorectal pain. Captures frequency, severity buildup, activity
+      restriction, positional relief, relationship to gallbladder
+      removal, and anorectal pain indicators.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: HP:0002027
+                - equals_string: HP:0012531
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: rome_iii
+            associated_evidence:
+              any_of:
+                - equals_string: questionnaire

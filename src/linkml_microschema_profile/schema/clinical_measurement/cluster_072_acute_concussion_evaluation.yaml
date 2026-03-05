@@ -1,0 +1,119 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_072
+name: cluster_072_acute_concussion_evaluation
+description: |-
+  Microschemas derived from CDE Cluster 072: Acute Concussion Evaluation (ACE) - Recovery Risk Factors
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Acute Concussion Evaluation (ACE)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ACE symptom checklists, risk factors, injury
+  # description, and clinical indicators (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  ACESymptomTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Acute Concussion Evaluation (ACE) total symptom score, the sum
+      of physical, cognitive, emotional, and sleep symptom counts
+      experienced since injury.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ACE_symptom_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 132
+
+  ACESymptomDomainCountRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Acute Concussion Evaluation (ACE) symptom domain count for
+      physical, cognitive, emotional, or sleep symptoms experienced
+      since injury.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ACE_symptom_domain_count
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 66
+
+  ACEOverallRatingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Acute Concussion Evaluation (ACE) overall rating of how different
+      the subject is acting from their usual self after injury, rated
+      0 (Normal) to 6 (Very Different).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ACE_overall_rating
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 6
+
+  ACEClinicalIndicatorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Acute Concussion Evaluation (ACE) clinical indicator capturing
+      loss of consciousness, amnesia (retrograde and anterograde),
+      seizures, and injury mechanism details. Recorded as yes/no
+      indicators.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ACE_clinical_indicator
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ACE
+            data_type:
+              equals_string: boolean

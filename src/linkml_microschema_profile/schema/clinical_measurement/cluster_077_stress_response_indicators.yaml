@@ -1,0 +1,189 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_077
+name: cluster_077_stress_response_indicators
+description: |-
+  Microschemas derived from CDE Cluster 077: Stress Response Indicators Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # PTSD Checklist - Civilian Version (PCL-C)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PCL-C 17 symptom items and total score (NINDS)
+  # Items rated 0-4 (Not at all to Extremely)
+  #────────────────────────────────────────────────────────────────
+
+  PCLCItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Civilian Version (PCL-C) individual symptom item
+      score rated from 0 (Not at all) to 4 (Extremely). Items assess
+      re-experiencing (intrusive memories, dreams, flashbacks, emotional
+      and physical reactions), avoidance/numbing (avoidance of thoughts,
+      activities, amnesia, loss of interest, feeling distant, emotional
+      numbing, foreshortened future), and hyperarousal (sleep difficulty,
+      irritability, concentration problems, hypervigilance, exaggerated
+      startle) symptom clusters.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLC_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-C
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  PCLCTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Civilian Version (PCL-C) total score (range 17-85),
+      sum of all 17 item scores. A score of 30-35 or above suggests
+      clinically significant PTSD symptoms.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLC_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-C
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 17
+              maximum_value: 85
+
+  #────────────────────────────────────────────────────────────────
+  # PTSD Checklist - Military Version (PCL-M)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PCL-M 17 symptom items and total score (NINDS)
+  # Items rated 1-5 (Not at all to Extremely)
+  #────────────────────────────────────────────────────────────────
+
+  PCLMItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Military Version (PCL-M) individual symptom item
+      score rated from 1 (Not at all) to 5 (Extremely), assessing
+      PTSD symptoms related to stressful military experiences across
+      re-experiencing, avoidance/numbing, and hyperarousal clusters.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLM_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-M
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  PCLMTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Military Version (PCL-M) total score (range 17-85),
+      sum of all 17 item scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLM_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-M
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 17
+              maximum_value: 85
+
+  #────────────────────────────────────────────────────────────────
+  # PTSD Checklist - Stressor Version (PCL-S)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PCL-S 17 symptom items and total score (NINDS)
+  # Items rated 0-4 (Not at all to Extremely)
+  #────────────────────────────────────────────────────────────────
+
+  PCLSItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Stressor Version (PCL-S) individual symptom item
+      score rated from 0 (Not at all) to 4 (Extremely), assessing
+      PTSD symptoms related to a specific stressful experience across
+      re-experiencing, avoidance/numbing, and hyperarousal clusters.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLS_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-S
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  PCLSTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PTSD Checklist - Stressor Version (PCL-S) total score (range 17-85),
+      sum of all 17 item scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PCLS_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PCL-S
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 17
+              maximum_value: 85

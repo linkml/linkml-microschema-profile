@@ -1,0 +1,51 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_049
+name: cluster_049_residential_history
+description: |-
+  Microschemas derived from CDE Cluster 049: Residential History Cluster - Age 18-55
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Residential History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Residence city, state, country, street address, zip code by age bracket
+  #     (18-25, 26-35, 36-45, 46-55)
+  #   - Residence duration by age bracket
+  #   - Residence near farm field indicator by age bracket
+  #   - Well water source indicator by age bracket
+  #────────────────────────────────────────────────────────────────
+
+  ResidentialHistoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Residential address and duration history across age brackets (18-25,
+      26-35, 36-45, 46-55) from the Risk Factor Questionnaire (RFQ).
+      Captures city, state, country, zip code, residence duration, proximity
+      to farm fields, and water source for each life stage. Used as an
+      environmental risk factor for neurological conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74179-3
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

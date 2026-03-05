@@ -1,0 +1,117 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_018
+name: cluster_018_anxiety_depression_severity
+description: |-
+  Microschemas derived from CDE Cluster 018: Anxiety & Depression Symptom Severity Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Hamilton Anxiety Rating Scale (HAM-A)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: HAM-A item scores (anxious mood, autonomic symptoms,
+  #   behavior at interview, cardiovascular, depressed mood, fears,
+  #   gastrointestinal, genitourinary, insomnia, intellectual,
+  #   respiratory, somatic muscular, somatic sensory)
+  # All items scored 0-4 (Not present to Very severe)
+  #────────────────────────────────────────────────────────────────
+
+  HamiltonAnxietyItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item score from the Hamilton Anxiety Rating Scale (HAM-A).
+      Each item is rated on a 5-point severity scale from 0 (Not present)
+      to 4 (Very severe). The HAM-A covers 14 symptom domains including
+      anxious mood, tension, fears, insomnia, and somatic symptoms.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70635-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: hamilton_anxiety_rating_scale
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  #────────────────────────────────────────────────────────────────
+  # Hamilton Depression Rating Scale (HDRS)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: HDRS item scores (depressed mood, guilt, suicide,
+  #   insomnia early/middle/late, work activities, retardation,
+  #   agitation, anxiety psychic/somatic, somatic GI, somatic general,
+  #   genital, hypochondriasis, insight, weight loss) plus total score
+  # Most items scored 0-4 or 0-2; total score is a sum
+  #────────────────────────────────────────────────────────────────
+
+  HamiltonDepressionItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item score from the Hamilton Depression Rating Scale (HDRS).
+      Items are rated on varying scales (0-2 or 0-4) depending on the
+      symptom domain. Covers depressed mood, guilt, suicide ideation,
+      insomnia, work impairment, retardation, agitation, anxiety,
+      somatic symptoms, insight, and hypochondriasis.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70654-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: hamilton_depression_rating_scale
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  HamiltonDepressionTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Hamilton Depression Rating Scale (HDRS),
+      computed as the sum of all individual item scores. Higher scores
+      indicate greater severity of depression.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44261-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: hamilton_depression_rating_scale
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 52

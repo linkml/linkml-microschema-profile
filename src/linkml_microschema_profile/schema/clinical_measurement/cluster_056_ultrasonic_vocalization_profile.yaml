@@ -1,0 +1,113 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_056
+name: cluster_056_ultrasonic_vocalization_profile
+description: |-
+  Microschemas derived from CDE Cluster 056: Ultrasonic Vocalization Profile Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  UltrasonicVocalizationCountRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical count of ultrasonic vocalizations by type emitted during behavioral
+      testing (Social Interaction, Resident Intruder, or Partition test). Types include
+      chevron, complex, composite, downward, flat, frequency steps, short, two-component,
+      unstructured, and upward vocalizations.
+      Aligned CDEs: number of (chevron, complex, composite, downward, flat, frequency steps,
+      short, two-component, unstructured, upward) ultrasonic vocalizations
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: usv_count
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+
+  UltrasonicVocalizationAmplitudeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of peak ultrasonic vocalization amplitude during
+      behavioral testing, measured in decibels.
+      Aligned CDEs: peak ultrasonic vocalization amplitude during testing
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: usv_peak_amplitude
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: dB
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+
+  UltrasonicVocalizationFrequencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of peak ultrasonic vocalization frequency during
+      behavioral testing, measured in kilohertz.
+      Aligned CDEs: peak ultrasonic vocalization frequency during testing
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: usv_peak_frequency
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: kHz
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+
+  UltrasonicVocalizationDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of average duration per ultrasonic vocalization during
+      behavioral testing, measured in milliseconds.
+      Aligned CDEs: average duration value per ultrasonic vocalization
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: usv_avg_duration
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: ms
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 5000

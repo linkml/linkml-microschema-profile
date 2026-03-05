@@ -1,0 +1,56 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_020
+name: cluster_020_impulsivity_upps_r_child
+description: |-
+  Microschemas derived from CDE Cluster 020: Risk-Taking Decision-Makers
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # UPPS-R-C Impulsive Behavior Scale (Child version)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ~33 UPPS-R-Child items covering the same five
+  #   facets of impulsivity as the adult UPPS-P but with
+  #   age-appropriate language for children and adolescents
+  # All items scored on 4-point Likert scale:
+  #   Not at all like me / Not like me / Somewhat like me / Very much like me
+  #────────────────────────────────────────────────────────────────
+
+  UPPSRChildItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the UPPS-R-Child Impulsive Behavior
+      Scale. Each item is rated on a 4-point Likert scale from
+      1 (Not at all like me) to 4 (Very much like me). The UPPS-R-C
+      assesses five facets of impulsivity in children and adolescents:
+      negative urgency, positive urgency, lack of premeditation,
+      lack of perseverance, and sensation seeking.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82667-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: upps_r_child_impulsive_behavior_scale
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4

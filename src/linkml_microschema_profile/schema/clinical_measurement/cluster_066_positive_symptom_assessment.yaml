@@ -1,0 +1,146 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_066
+name: cluster_066_positive_symptom_assessment
+description: |-
+  Microschemas derived from CDE Cluster 066: Positive Symptom Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Scale for the Assessment of Positive Symptoms (SAPS)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: SAPS hallucination, delusion, bizarre behavior,
+  # and formal thought disorder subscales (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  SAPSHallucinationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SAPS hallucination subscale item score assessing auditory, visual,
+      somatic/tactile, and olfactory hallucinations, as well as voices
+      commenting and conversing.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SAPS_hallucination
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SAPS
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  SAPSDelusionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SAPS delusion subscale item score assessing persecutory delusions,
+      delusions of jealousy, guilt, grandiosity, religious delusions,
+      somatic delusions, ideas of reference, thought broadcasting,
+      thought insertion, thought withdrawal, and being controlled.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SAPS_delusion
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SAPS
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  SAPSBizarreBehaviorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SAPS bizarre behavior subscale item score assessing clothing/appearance,
+      social/sexual behavior, aggressive/agitated behavior, and
+      repetitive/stereotypical behavior.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SAPS_bizarre_behavior
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SAPS
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  SAPSFormalThoughtDisorderRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SAPS positive formal thought disorder subscale item score assessing
+      derailment, tangentiality, incoherence, illogicality, circumstantiality,
+      pressured speech, distractible speech, and clanging.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SAPS_thought_disorder
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SAPS
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  SAPSGlobalRatingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SAPS global severity rating for hallucinations, delusions,
+      bizarre behavior, or positive formal thought disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SAPS_global_rating
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SAPS
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5

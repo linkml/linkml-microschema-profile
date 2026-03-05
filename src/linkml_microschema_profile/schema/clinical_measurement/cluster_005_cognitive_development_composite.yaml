@@ -1,0 +1,404 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_005
+name: cluster_005_cognitive_development_composite
+description: |-
+  Microschemas derived from CDE Cluster 005: Cognitive Development Composite Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Cognition Total Composite
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cognition total composite computed score (QJlc0DdT68)
+  #   - Cognition total composite age adjusted scale score (QJoAvu66L)
+  #   - Cognition total composite fully adjusted scale score (X1_jAwOTa8)
+  #   - Cognition total composite unadjusted scale score (myZcCvd6TI)
+  #   - Cognition total composite national age adjusted percentile (XyxiAv_TpI)
+  #   - Cognition total composite raw score (Qy9AD_6p8)
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBCognitionTotalCompositeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total Composite score from the NIH Toolbox Cognitive Battery,
+      combining both fluid and crystallized cognitive ability measures
+      into a single overall cognitive function score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71722-3
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Cognition Fluid Composite
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cognition fluid composite computed score (QJwAw_pp8)
+  #   - Cognition fluid composite age adjusted scale score (myWD0D_pTI)
+  #   - Cognition fluid composite fully adjusted scale score (XJd0DOapU)
+  #   - Cognition fluid composite unadjusted scale score (mklwCP_pTL)
+  #   - Cognition fluid composite national age adjusted percentile (XJMw0Pu66L)
+  #   - Cognition fluid composite raw score (QJG80Pu6T8)
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBCognitionFluidCompositeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Fluid Composite score from the NIH Toolbox Cognitive Battery,
+      reflecting reasoning, processing speed, and working memory
+      abilities that decline with age.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71723-1
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Cognition Crystallized Composite
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cognition crystallized composite computed score (7JerCDOTpI)
+  #   - Cognition crystallized composite age adjusted scale score (m1LCPOa6L)
+  #   - Cognition crystallized composite fully adjusted scale score (XkbICD_a6U)
+  #   - Cognition crystallized composite unadjusted scale score (m1_HRPuapU)
+  #   - Cognition crystallized composite national age adjusted percentile (mkxI0Dup6U)
+  #   - Cognition crystallized composite raw score (Qyr0v_6pI)
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBCognitionCrystallizedCompositeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Crystallized Composite score from the NIH Toolbox Cognitive Battery,
+      reflecting accumulated knowledge and vocabulary abilities that
+      are relatively stable with age.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71724-9
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Cognition Early Childhood Composite
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cognition early childhood composite computed score (mkbdRPdTpU)
+  #   - Cognition early childhood composite age adjusted scale score (XyYRPdaTL)
+  #   - Cognition early childhood composite fully adjusted scale score (mJWYRwO6a8)
+  #   - Cognition early childhood composite unadjusted scale score (QkGuCwupaU)
+  #   - Cognition early childhood composite national age adjusted percentile (Q1lYCDdapI)
+  #   - Cognition early childhood composite raw score (7yl_RPuppU)
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBCognitionEarlyChildhoodCompositeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Early Childhood Composite score from the NIH Toolbox Cognitive Battery,
+      designed for assessment of cognitive function in children ages 3-6.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71725-6
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Dimensional Change Card Sort
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - DCCS age 3+ computed score, raw score, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBCardSortRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Dimensional Change Card Sort (DCCS) score from the NIH Toolbox,
+      measuring cognitive flexibility and executive function for ages 3+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71726-4
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Flanker Inhibitory Control and Attention
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Flanker age 3+ computed score, raw score, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBFlankerRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Flanker Inhibitory Control and Attention score from the NIH Toolbox,
+      measuring attention and inhibitory control for ages 3+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71727-2
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox List Sorting Working Memory
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - List sorting working memory age 7+ computed, raw, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBListSortingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      List Sorting Working Memory score from the NIH Toolbox,
+      measuring working memory for ages 7+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71728-0
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Picture Sequence Memory
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Picture sequence memory age 3+ computed, raw, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBPictureSequenceMemoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Picture Sequence Memory score from the NIH Toolbox,
+      measuring episodic memory for ages 3+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71729-8
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Picture Vocabulary
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Picture vocabulary age 3+ computed, raw, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBPictureVocabularyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Picture Vocabulary score from the NIH Toolbox,
+      measuring receptive vocabulary for ages 3+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71730-6
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Oral Reading Recognition
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Oral reading recognition English age 7+ computed, raw, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBOralReadingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Oral Reading Recognition score from the NIH Toolbox,
+      measuring reading decoding skill for ages 7+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71731-4
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NIH Toolbox Pattern Comparison Processing Speed
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Pattern comparison processing speed age 7+ computed, raw, adjusted scores, percentile
+  #────────────────────────────────────────────────────────────────
+
+  NIHTBPatternComparisonRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pattern Comparison Processing Speed score from the NIH Toolbox,
+      measuring processing speed for ages 7+.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71732-2
+            instrument:
+              any_of:
+                - equals_string: nih_toolbox_cognitive_battery
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            unit:
+              any_of:
+                - equals_string: "{score}"

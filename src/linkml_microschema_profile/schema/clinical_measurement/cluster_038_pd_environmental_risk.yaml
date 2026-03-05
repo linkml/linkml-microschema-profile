@@ -1,0 +1,95 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_038
+name: cluster_038_pd_environmental_risk
+description: |-
+  Microschemas derived from CDE Cluster 038: PD-DOC-MERQ Location Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  PdMerqResidentialLocationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Residential location history from the Parkinson's Disease Mini
+      Environmental Risk Questionnaire (PD-DOC-MERQ), capturing city,
+      state/province, country, and zip code for age bands 0-10, 11-20,
+      21-40, 41-60, and 61-present years.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PD-MERQ Residential Location
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: PD-DOC-MERQ
+
+  PdMerqSmokingExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Smoking and secondhand smoke exposure data from the PD-DOC-MERQ,
+      including pre-PD smoking status, cigarettes/packs per day, years
+      of smoking, current smoking status, and living with a smoker.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PD-MERQ Smoking Exposure
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: PD-DOC-MERQ
+
+  PdMerqOccupationalExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Occupational and environmental exposure data from the PD-DOC-MERQ,
+      including pesticide exposure, chemical solvent work, heavy metal
+      work, other chemical/fume exposure, and occupation history.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PD-MERQ Occupational Exposure
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: PD-DOC-MERQ
+
+  PdMerqMedicationUseRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Medication use data from the PD-DOC-MERQ, including regular use
+      indicators for NSAIDs, Cox-2 inhibitors, statins, estrogen HRT,
+      and progesterone HRT, along with dose and duration information.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PD-MERQ Medication Use
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: PD-DOC-MERQ

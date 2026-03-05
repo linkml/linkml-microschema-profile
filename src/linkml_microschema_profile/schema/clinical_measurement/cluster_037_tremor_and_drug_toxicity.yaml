@@ -1,0 +1,90 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_037
+name: cluster_037_tremor_and_drug_toxicity
+description: |-
+  Microschemas derived from CDE Cluster 037: Hand Movement and Tremor Assessment
+  and Mood/Cognitive Function Measurement Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  TremorAssessmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Tremor severity assessment using the PhenX protocol, rating visible
+      tremor on a 1-4 scale across multiple tasks including hand pronation/
+      supination, arm sustention, wing position, spoon-to-mouth, finger-
+      nose-finger, resting hands, head, jaw, mouth, hand open/close, and
+      foot tapping for both left and right sides.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX Tremor Rating
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4
+            instrument:
+              equals_string: PhenX Tremor Protocol
+
+  VaToxicityNeurotoxicityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Neurotoxicity subscores from the Veterans Affairs (VA) Toxicity Scale,
+      including affect/mood, cognitive function, diplopia, dizziness,
+      headache, dysarthria, gait, sedation, tremor, rapid alternating
+      movements, and total neurotoxicity rating scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: VA Toxicity Neurotoxicity Score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+            instrument:
+              equals_string: VA Toxicity Scale
+
+  VaToxicitySystemicRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Systemic toxicity subscores from the VA Toxicity Scale, including
+      gastrointestinal problems, hair changes, hematopoietic problems,
+      hypersensitivity, hyponatremia, impotence, liver abnormalities,
+      weight change, and the systematic sum score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: VA Toxicity Systemic Score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+            instrument:
+              equals_string: VA Toxicity Scale

@@ -1,0 +1,89 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_036
+name: cluster_036_neuronal_loss_severity
+description: |-
+  Microschemas derived from CDE Cluster 036: Neuronal Loss Severity Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  NeuronalLossRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Neuropathological finding of neuronal loss severity across brain regions
+      including amygdala, cerebellum, pons, substantia nigra (pars compacta
+      and pars reticulata), subthalamic nucleus, and thalamus. Severity is
+      graded on a semi-quantitative scale (Mild 1+ to Very severe 4+).
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: Neuronal Loss
+      - postconditions:
+          slot_conditions:
+            condition_severity:
+              any_of:
+                - equals_string: "Mild 1+"
+                - equals_string: "Moderate 2+"
+                - equals_string: "Severe 3+"
+                - equals_string: "Very severe 4+"
+            condition_provenance:
+              equals_string: neuropathology
+
+  BrainAtrophySeverityRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Neuropathological finding of regional brain atrophy severity, including
+      striatum (caudate nucleus head and body, putamen), cerebellum, brainstem,
+      amygdala (coronal sections), claustrum, hypothalamus, thalamus, and
+      cerebral surface atrophy. Graded on a semi-quantitative scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: Brain Regional Atrophy
+      - postconditions:
+          slot_conditions:
+            condition_severity:
+              any_of:
+                - equals_string: "Mild 1+"
+                - equals_string: "Moderate 2+"
+                - equals_string: "Severe 3+"
+                - equals_string: "Very severe 4+"
+            condition_provenance:
+              equals_string: neuropathology
+
+  LewyBodyPathologyRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Neuropathological finding of Lewy body-containing neurons and Lewy
+      neurites in the substantia nigra, graded on a semi-quantitative
+      severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: Lewy Body Pathology
+      - postconditions:
+          slot_conditions:
+            condition_severity:
+              any_of:
+                - equals_string: "Mild 1+"
+                - equals_string: "Moderate 2+"
+                - equals_string: "Severe 3+"
+                - equals_string: "Very severe 4+"
+            condition_provenance:
+              equals_string: neuropathology

@@ -1,0 +1,63 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_086
+name: cluster_086_voice_handicap_index
+description: |-
+  Microschemas derived from CDE Cluster 086: Voice Struggle and Social Impact Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Voice Handicap Index (VHI) Item Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - VHI/PhenX items: ashamed of voice, avoid groups,
+  #     voice sound different, difficult for people to hear,
+  #     family difficulty hearing, less outgoing, strain to
+  #     produce voice, left out of conversations, tense when
+  #     talking, voice restricts social life, voice feels
+  #     handicapped/incompetent, voice causes income loss,
+  #     voice upsets, people ask about voice, people irritated,
+  #     sound varies, clarity unpredictable
+  #   - All items scored 0 (Never) to 4 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  VoiceHandicapIndexRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Item scores from the Voice Handicap Index (VHI), a self-administered
+      questionnaire assessing the psychosocial impact of voice disorders.
+      Items cover functional, physical, and emotional domains of voice-
+      related handicap. Each item is scored from 0 (Never) to 4 (Always),
+      with higher scores indicating greater perceived handicap.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:66339-6
+            instrument:
+              any_of:
+                - equals_string: voice_handicap_index
+                - equals_string: vhi
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            unit:
+              any_of:
+                - equals_string: "{score}"

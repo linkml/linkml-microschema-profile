@@ -1,0 +1,58 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_109
+name: cluster_109_alcohol_use_behavioral_patterns
+description: |-
+  Microschemas derived from CDE Cluster 109: Alcohol Use Behavioral Patterns Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Alcohol Use Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Alcohol Use items (drinking patterns, cravings, control)
+  #   - PROMIS Negative Consequences items (hangover, judgment, social)
+  #   - PROMIS Positive Consequences items (mood, social confidence)
+  #   - PROMIS Positive/Negative Expectancies items
+  #   - Scored 1 (Never / Not at all) to 5 (Almost always / Very much)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISAlcoholUseRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Alcohol Use measures,
+      including drinking patterns, negative consequences, positive
+      consequences, and expectancy subscales, assessing alcohol use
+      behaviors and their impacts.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72109-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Alcohol_Use
+                - equals_string: PROMIS_Alcohol_Negative_Consequences
+                - equals_string: PROMIS_Alcohol_Positive_Consequences
+                - equals_string: PROMIS_Alcohol_Negative_Expectancies
+                - equals_string: PROMIS_Alcohol_Positive_Expectancies
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

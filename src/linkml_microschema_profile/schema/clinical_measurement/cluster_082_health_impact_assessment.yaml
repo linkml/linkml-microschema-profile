@@ -1,0 +1,105 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_082
+name: cluster_082_health_impact_assessment
+description: |-
+  Microschemas derived from CDE Cluster 082: Health Impact Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # SF-12v2 Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SF-12v2 interfering social activities scale (7JGeQd9C97)
+  #   - SF-12v2 less accomplished physical health scale (mJUeyQdqC57)
+  #   - SF-12v2 times calm peaceful scale (XJlXO50q7)
+  #   - SF-12v2 times downhearted depressed scale (m1Ze7_cR9Q)
+  #   - SF-12v2 work not carefully emotional scale (XyYx1Q_5Aq7)
+  #   - SF-12v2 less accomplished emotional scale (XJdeym_5R5m)
+  #   - SF-12v2 limited work activities physical scale (myvgym_5R9X)
+  #────────────────────────────────────────────────────────────────
+
+  SF12v2ScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Item scores from the 12-Item Short Form Health Survey Version 2
+      (SF-12v2), a validated measure of health-related quality of life.
+      Items assess physical functioning, role limitations due to physical
+      and emotional problems, bodily pain, general health, vitality,
+      social functioning, and mental health over the past 4 weeks.
+      Each item is scored on a 1-5 Likert scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71955-9
+            instrument:
+              any_of:
+                - equals_string: sf12v2
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # SF-36 Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SF-36 general health score (UJwo_VkcGRR)
+  #   - SF-36 bodily pain score (0a4z8t2uH1t)
+  #   - SF-36 physical functioning items (bathing, bending,
+  #     carrying, climbing, walking, vigorous/moderate activities)
+  #   - SF-36 role limitation items (physical and emotional)
+  #   - SF-36 mental health items (calm, down, blue, energy,
+  #     happy, nervous, pep, tired, worn out)
+  #   - SF-36 social functioning, general health perception items
+  #────────────────────────────────────────────────────────────────
+
+  SF36ScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Item and domain scores from the 36-Item Short Form Health Survey
+      (SF-36 v1.0), a widely used measure of health-related quality of
+      life across eight domains: physical functioning, role-physical,
+      bodily pain, general health, vitality, social functioning,
+      role-emotional, and mental health. Individual items use various
+      Likert scales (2-point, 3-point, 5-point, and 6-point).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71933-6
+            instrument:
+              any_of:
+                - equals_string: sf36
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 6
+            unit:
+              any_of:
+                - equals_string: "{score}"

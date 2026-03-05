@@ -1,0 +1,135 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_050
+name: cluster_050_visual_functioning
+description: |-
+  Microschemas derived from CDE Cluster 050: Visual Functioning Scale Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # NEI VFQ-25 Activity Difficulty Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Difficulty attending events, driving (day/night/bad weather)
+  #   - Difficulty reading (ordinary print, small print, newspaper)
+  #   - Difficulty recognizing people, going down stairs/curbs
+  #   - Difficulty with cooking, shopping, finding objects
+  #   - Difficulty determining bill accuracy
+  #   - Each rated on a 6-point scale (no difficulty to stopped)
+  #────────────────────────────────────────────────────────────────
+
+  VisualFunctioningDifficultyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Activity difficulty item response from the National Eye Institute
+      Visual Functioning Questionnaire (NEI-VFQ-25). Measures self-reported
+      difficulty performing vision-dependent daily activities on a 6-point
+      scale from no difficulty to stopped doing the activity.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:62927-4
+            instrument:
+              any_of:
+                - equals_string: nei_vfq_25
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 6
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NEI VFQ-25 Emotional Well-Being Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Assist others scale (1-5)
+  #   - Decrease control life scale (1-5)
+  #   - Decrease function scale (1-5)
+  #   - Embarrassment scale (1-5)
+  #   - Frustration scale (1-5)
+  #   - Stay home scale (1-5)
+  #   - Worry scale (1-5)
+  #────────────────────────────────────────────────────────────────
+
+  VisualFunctioningEmotionalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Emotional and social well-being item response from the NEI-VFQ-25.
+      Measures the emotional impact of vision problems including
+      frustration, embarrassment, worry, social isolation, and loss of
+      control, on a 5-point frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:62928-2
+            instrument:
+              any_of:
+                - equals_string: nei_vfq_25
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # NEI VFQ-25 General Vision Rating Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Current eyesight scale (0-10)
+  #   - General health scale
+  #   - Eyesight comparison with/without glasses
+  #────────────────────────────────────────────────────────────────
+
+  VisualFunctioningGeneralRatingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      General vision and health rating from the NEI-VFQ-25. Includes
+      self-assessment of current eyesight on a 0-10 scale and general
+      health rating.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:62929-0
+            instrument:
+              any_of:
+                - equals_string: nei_vfq_25
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 10
+            unit:
+              any_of:
+                - equals_string: "{score}"

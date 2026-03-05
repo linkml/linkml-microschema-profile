@@ -1,0 +1,66 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_030
+name: cluster_030_depression_symptom_severity
+description: |-
+  Microschemas derived from CDE Cluster 030: Depression Symptom Severity Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  CesDTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Center for Epidemiologic Studies Depression Scale (CES-D),
+      a 20-item self-report measure of depressive symptom severity.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:53514-3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 60
+            instrument:
+              equals_string: CES-D
+
+  CesDItemScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item score from the CES-D scale, measuring frequency of
+      depressive symptoms over the past week on a 0-3 Likert scale.
+      Covers items such as restless sleep, blues, bother, crying spells,
+      depressed mood, enjoyment of life, effort, fearfulness, motivation,
+      self-worth, happiness, hopefulness, failure, loneliness, dislike,
+      appetite, sadness, talkativeness, concentration, and unfriendliness.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:53515-0
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 3
+            instrument:
+              equals_string: CES-D

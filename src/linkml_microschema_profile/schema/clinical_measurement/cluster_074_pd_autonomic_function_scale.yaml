@@ -1,0 +1,145 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_074
+name: cluster_074_pd_autonomic_function_scale
+description: |-
+  Microschemas derived from CDE Cluster 074: PD Autonomic Function and Symptoms Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Scales for Outcomes in PD - Autonomic (SCOPA-AUT)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: SCOPA-AUT gastrointestinal, urinary, cardiovascular,
+  # thermoregulatory, pupillomotor, and sexual function items (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  SCOPAAUTItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Scales for Outcomes in PD - Autonomic (SCOPA-AUT) individual item
+      score assessing autonomic dysfunction across gastrointestinal,
+      urinary, cardiovascular, thermoregulatory, pupillomotor, and
+      sexual function domains. Rated as Never/Sometimes/Regularly/Often.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SCOPA_AUT_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SCOPA-AUT
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # SCOPA-Sleep
+  #────────────────────────────────────────────────────────────────
+
+  SCOPASleepNighttimeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SCOPA-Sleep nighttime sleep problem item score assessing trouble
+      falling asleep, waking at night, lying awake, early waking,
+      and insufficient sleep. Rated as Not at all/A little/Quite a bit/A lot.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SCOPA_sleep_nighttime
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SCOPA-Sleep
+            data_type:
+              equals_string: enum
+
+  SCOPASleepDaytimeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      SCOPA-Sleep daytime sleepiness item score assessing unexpected
+      sleep episodes, falling asleep while sitting, watching TV, talking,
+      or during other activities. Rated as Never/Sometimes/Regularly/Often.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SCOPA_sleep_daytime
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SCOPA-Sleep
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # SCOPA-Psychosocial (SCOPA-PS)
+  #────────────────────────────────────────────────────────────────
+
+  SCOPAPSItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Scales for Outcomes in PD - Psychosocial (SCOPA-PS) item score
+      assessing psychosocial functioning including difficulty with
+      conversation, hobbies, work, feeling housebound, lonely,
+      ashamed, uncertain, needing help, and sexual problems.
+      Rated as Not at all/A little/Quite a bit/Very much.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: SCOPA_PS_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SCOPA-PS
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # Parkinson's Disease Sleep Scale (PDSS)
+  #────────────────────────────────────────────────────────────────
+
+  PDSSItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Parkinson's Disease Sleep Scale (PDSS) item score assessing
+      sleep quality frequency over the past week. Rated from
+      0 (Never) to 4 (Very often, 6-7 days a week).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDSS_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PDSS
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4

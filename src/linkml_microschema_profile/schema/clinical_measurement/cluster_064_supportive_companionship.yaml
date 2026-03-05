@@ -1,0 +1,44 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_064
+name: cluster_064_supportive_companionship
+description: |-
+  Microschemas derived from CDE Cluster 064: Supportive Companionship Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  MOSSocialSupportItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item score from the Medical Outcomes Study (MOS) Social Support
+      Survey, rating frequency of availability of specific types of social support
+      on a 1-5 scale (None of the time to All of the time). Support types span
+      emotional/informational support (confide, advice, crisis advice, information,
+      understanding), tangible support (help with daily chores, meals, bedridden care,
+      transportation to doctor), affectionate support (love, affection, hugs), and
+      positive social interaction (enjoyable activities, relaxation, distraction).
+      Aligned CDEs: MOS Social Support Survey items across all subscales
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: mos_social_support_item
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

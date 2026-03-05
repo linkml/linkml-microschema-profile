@@ -1,0 +1,78 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_098
+name: cluster_098_child_health_medication
+description: |-
+  Microschemas derived from CDE Cluster 098: Child Health Monitoring and Medication Usage
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  PrescriptionMedicationRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Records of prescription medication usage including medication name,
+      brand name, manufacturer, and dose. Aligned to CDEs from RADx-UP,
+      NLM, NICHD, and LOINC stewards covering up to 15 prescription
+      medication slots.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: prescription_medication
+      - postconditions:
+          slot_conditions:
+            method:
+              any_of:
+                - equals_string: placeholder
+
+  ChildEyeVisionStatusRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PhenX child vision screening items assessing eye problems including
+      diagnosed eye conditions, need for glasses/contacts, myopia history,
+      other vision problems, family eye problem history, and treatments
+      received. Responses are typically Yes/No/Don't know/Refused.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX_child_eye_vision
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PhenX
+
+  ChildMedicalProblemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PhenX child health status items assessing current medical problems,
+      long-term medical conditions, and other physical or medical problems
+      as free-text or indicator responses.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PhenX_child_medical_problem
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PhenX

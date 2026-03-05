@@ -1,0 +1,52 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_106
+name: cluster_106_social_stigma_isolation
+description: |-
+  Microschemas derived from CDE Cluster 106: Social Stigma and Isolation Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Stigma Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Stigma items (embarrassment, unfair treatment,
+  #     social avoidance, bullying, feeling different, burden worry)
+  #   - PROMIS Stigma items
+  #   - Scored 1 (Never) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  NeuroQOLStigmaRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Stigma instrument or
+      related PROMIS measures, assessing perceptions of social stigma,
+      isolation, and discrimination related to illness.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70498-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Stigma
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

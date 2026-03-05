@@ -1,0 +1,83 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_115
+name: cluster_115_fatigue_pain_impact
+description: |-
+  Microschemas derived from CDE Cluster 115: The Fatigue and Pain Impact Scale Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Fatigue Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Fatigue items (feeling tired, fatigued, exhausted,
+  #     limited by fatigue, difficulty starting/finishing tasks)
+  #   - Scored 1 (Not at all / Never) to 5 (Very much / Always)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISFatigueRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Fatigue instrument,
+      measuring self-reported impact and severity of fatigue on daily
+      functioning over the past 7 days.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71956-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Fatigue
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Pain Intensity Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Pain Intensity items (worst pain, average pain,
+  #     current pain level)
+  #   - Scored 1 (Had no pain) to 5 (Very severe) or numeric 0-10
+  #────────────────────────────────────────────────────────────────
+
+  PROMISPainIntensityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Pain Intensity instrument,
+      measuring the severity of pain experienced over the past 7 days.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:75262-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Pain_Intensity
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 10

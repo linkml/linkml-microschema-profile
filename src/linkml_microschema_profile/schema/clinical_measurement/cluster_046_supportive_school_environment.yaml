@@ -1,0 +1,95 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_046
+name: cluster_046_supportive_school_environment
+description: |-
+  Microschemas derived from CDE Cluster 046: Supportive School Environment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # School Climate Perception Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Teacher care, expectations, fairness items (Likert 1-5)
+  #   - School cleanliness and grounds items
+  #   - Student-teacher relationship items
+  #   - School rule fairness and enforcement items
+  #   - Classroom engagement and enthusiasm items
+  #   - PhenX school environment measures
+  #────────────────────────────────────────────────────────────────
+
+  SchoolClimatePerceptionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the PhenX Supportive School Environment
+      survey measuring students' perceptions of teacher support, school
+      climate, rule fairness, and academic engagement. Each item is rated
+      on a 5-point Likert scale from Strongly Disagree to Strongly Agree.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:62926-6
+            instrument:
+              any_of:
+                - equals_string: phenx_school_environment
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # Neighborhood Social Cohesion Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Neighborhood violence PhenX
+  #   - People can be trusted PhenX
+  #   - People do not share same values PhenX
+  #   - People don't get along PhenX
+  #────────────────────────────────────────────────────────────────
+
+  NeighborhoodCohesionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the PhenX Neighborhood Social Cohesion
+      scale measuring perceptions of neighborhood trust, shared values,
+      and safety. Items use a 4-point Likert scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:62938-1
+            instrument:
+              any_of:
+                - equals_string: phenx_neighborhood_cohesion
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4
+            unit:
+              any_of:
+                - equals_string: "{score}"

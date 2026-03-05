@@ -1,0 +1,118 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_090
+name: cluster_090_pdqualif_quality_of_life
+description: |-
+  Microschemas derived from CDE Cluster 090: PDQUALIF Quality of Life Scale Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  PDQUALIFPhysicalSymptomRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PDQUALIF items assessing physical symptoms of Parkinson's disease including
+      aching limbs, swallowing difficulty, constipation, balance trouble,
+      lightheadedness, and bladder control on a frequency scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDQUALIF_physical_symptom
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PDQUALIF
+
+  PDQUALIFSocialFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PDQUALIF items assessing social functioning impact of Parkinson's disease
+      including affected social life, communication ability, driving interference,
+      and ability to show affection.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDQUALIF_social_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PDQUALIF
+
+  PDQUALIFSleepRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PDQUALIF items assessing sleep-related impacts of Parkinson's disease
+      including trouble falling asleep, staying asleep, nighttime waking,
+      and sleeping separately from spouse.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDQUALIF_sleep
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PDQUALIF
+
+  PDQUALIFPsychologicalWellbeingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PDQUALIF items assessing psychological well-being including worry about
+      the future, positive outlook, feeling like a burden, difficulty adjusting
+      to body changes, and independence importance.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDQUALIF_psychological
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PDQUALIF
+
+  PDQUALIFDailyFunctionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PDQUALIF items assessing daily functional capacity including food
+      preparation, personal hygiene independence, household share, and
+      fatigue-related participation problems over the past 7 days.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PDQUALIF_daily_function
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: PDQUALIF

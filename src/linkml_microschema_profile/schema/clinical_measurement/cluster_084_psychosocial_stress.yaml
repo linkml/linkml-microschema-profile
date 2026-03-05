@@ -1,0 +1,58 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_084
+name: cluster_084_psychosocial_stress
+description: |-
+  Microschemas derived from CDE Cluster 084: Lost Connections Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PhenX Life Stressor Scale Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Lost friends, alone too much, can't find job,
+  #     don't have enough friends, family too far away,
+  #     not enough money for needs, too many things at once,
+  #     partner not understand, work boring, etc.
+  #   - All use 3-point (Not true/Somewhat true/Very true) or
+  #     4-point (True/Somewhat true/Somewhat false/False) scales
+  #────────────────────────────────────────────────────────────────
+
+  PhenXLifeStressorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Life stressor and social disconnection items from PhenX toolkit
+      questionnaires. Items assess psychosocial stress domains including
+      interpersonal relationships, financial hardship, employment
+      dissatisfaction, social isolation, family concerns, health worries,
+      and impulsivity. Items use either a 3-point scale (Not true /
+      Somewhat true / Very true) or a 4-point scale (True / Somewhat
+      true / Somewhat false / False).
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: phenx_life_stressors
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4
+            unit:
+              any_of:
+                - equals_string: "{score}"

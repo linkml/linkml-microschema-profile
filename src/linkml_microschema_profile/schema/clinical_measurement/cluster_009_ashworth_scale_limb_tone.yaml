@@ -1,0 +1,95 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_009
+name: cluster_009_ashworth_scale_limb_tone
+description: |-
+  Microschemas derived from CDE Cluster 009: Ashworth Scale Limb Tone Testing - Left Side
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Modified Ashworth Scale - Upper Extremity
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Limb tone testing left/right shoulder, elbow,
+  # wrist, fingers (both scale and muscle movement type)
+  #────────────────────────────────────────────────────────────────
+
+  ModifiedAshworthUpperExtremityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Ashworth Scale (MAS) score for upper extremity joint
+      spasticity assessment. Evaluates muscle tone at the shoulder,
+      elbow, wrist, and fingers on both left and right sides. Scores
+      range from 0 (no increase in tone) to 4 (rigid), with 1+ as
+      an intermediate grade.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:38169-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: modified_ashworth_scale
+            data_type:
+              equals_string: enum
+            measurement_value:
+              any_of:
+                - equals_string: "0"
+                - equals_string: "1"
+                - equals_string: "1+"
+                - equals_string: "2"
+                - equals_string: "3"
+                - equals_string: "4"
+                - equals_string: "9"
+
+  #────────────────────────────────────────────────────────────────
+  # Modified Ashworth Scale - Lower Extremity
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Limb tone testing left/right hip, knee, ankle,
+  # toes (both scale and muscle movement type)
+  #────────────────────────────────────────────────────────────────
+
+  ModifiedAshworthLowerExtremityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Ashworth Scale (MAS) score for lower extremity joint
+      spasticity assessment. Evaluates muscle tone at the hip, knee,
+      ankle, and toes on both left and right sides. Scores range from
+      0 (no increase in tone) to 4 (rigid), with 1+ as an intermediate
+      grade.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:38170-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: modified_ashworth_scale
+            data_type:
+              equals_string: enum
+            measurement_value:
+              any_of:
+                - equals_string: "0"
+                - equals_string: "1"
+                - equals_string: "1+"
+                - equals_string: "2"
+                - equals_string: "3"
+                - equals_string: "4"
+                - equals_string: "9"

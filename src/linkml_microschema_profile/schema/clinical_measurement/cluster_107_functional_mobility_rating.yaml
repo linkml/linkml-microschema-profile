@@ -1,0 +1,54 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_107
+name: cluster_107_functional_mobility_rating
+description: |-
+  Microschemas derived from CDE Cluster 107: Functional Mobility Rating Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL / PROMIS Pediatric Mobility Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Mobility items (adult and pediatric)
+  #   - Walking, standing, dressing, stair climbing, transfers
+  #   - Scored 0 (Not able to do) to 4 (With no trouble) for some;
+  #     1 (Not able to do) to 5 (With no trouble) for others
+  #────────────────────────────────────────────────────────────────
+
+  FunctionalMobilityRatingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL or PROMIS functional
+      mobility instruments (adult or pediatric), measuring self-reported
+      ability to perform gross and fine motor activities such as walking,
+      standing, dressing, and manipulating objects.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61582-4
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Mobility
+                - equals_string: PROMIS_Mobility_Pediatric
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5

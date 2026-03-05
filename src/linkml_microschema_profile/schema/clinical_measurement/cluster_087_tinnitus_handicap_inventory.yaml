@@ -1,0 +1,88 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_087
+name: cluster_087_tinnitus_handicap_inventory
+description: |-
+  Microschemas derived from CDE Cluster 087: Tinnitus Impact and Emotional Well-being Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Tinnitus Handicap Inventory (THI) Item Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - THI/PhenX items: tinnitus causes depression, desperation,
+  #     frustration, irritability, anxiety, anger, insecurity,
+  #     confusion, feeling of terrible disease, difficulty
+  #     concentrating/reading, trouble sleeping, fatigue,
+  #     interference with job/social life, stress worsening,
+  #     inability to cope/escape, lack of control, complaints
+  #   - Items scored Yes / Sometimes / No
+  #────────────────────────────────────────────────────────────────
+
+  TinnitusHandicapInventoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Item scores from the Tinnitus Handicap Inventory (THI), a
+      25-item self-report measure assessing the impact of tinnitus
+      on daily life across functional, emotional, and catastrophic
+      domains. Items are scored Yes (4) / Sometimes (2) / No (0),
+      yielding a total score of 0-100. Higher scores indicate
+      greater perceived handicap from tinnitus.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:66353-7
+            instrument:
+              any_of:
+                - equals_string: tinnitus_handicap_inventory
+                - equals_string: thi
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 100
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # Tinnitus Presence Screening Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Noises in head/ears lasting > 5 minutes (Q1HSj5i3il)
+  #   - Sleep difficulty in past year (7kjShqo2jl)
+  #────────────────────────────────────────────────────────────────
+
+  TinnitusScreeningRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Screening questions for tinnitus presence and related sleep
+      difficulty. Includes whether the subject experiences noises
+      in the head or ears lasting longer than 5 minutes, and whether
+      sleep difficulty has occurred in the past year.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tinnitus_screening
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean

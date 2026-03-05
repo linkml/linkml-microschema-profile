@@ -1,0 +1,103 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_028
+name: cluster_028_gvhd_therapies
+description: |-
+  Microschemas derived from CDE Cluster 028: GVHD Therapies and Prophylaxis Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+  RxNorm: http://purl.bioontology.org/ontology/RXNORM/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # GVHD Prophylaxis Drug Exposure
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ATG, Bortezomib, Campath, Cyclophosphamide, Cyclosporine,
+  #     MMF, Maraviroc, Methotrexate, Prednisone, Sirolimus,
+  #     Tacrolimus, and other immunosuppressant use for GVHD
+  #     prophylaxis
+  #────────────────────────────────────────────────────────────────
+
+  GvhdProphylaxisDrugRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Record of drug exposure used as prophylaxis against graft-versus-host
+      disease (GVHD). Covers immunosuppressant agents such as ATG,
+      cyclosporine, tacrolimus, methotrexate, mycophenolate mofetil,
+      sirolimus, cyclophosphamide, prednisone, bortezomib, campath,
+      and maraviroc.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: RxNorm:1011
+                - equals_string: RxNorm:3002
+                - equals_string: RxNorm:3008
+                - equals_string: RxNorm:8331
+                - equals_string: RxNorm:42316
+                - equals_string: RxNorm:68149
+                - equals_string: RxNorm:35302
+                - equals_string: RxNorm:6851
+                - equals_string: RxNorm:8640
+                - equals_string: RxNorm:35894
+                - equals_string: RxNorm:82375
+                - equals_string: RxNorm:596723
+            indication:
+              any_of:
+                - equals_string: MONDO:0013730
+
+  #────────────────────────────────────────────────────────────────
+  # GVHD Treatment Drug Exposure
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Chronic GVHD therapies: ALS/ALG/ATS/ATG, azathioprine,
+  #     chloroquine phosphate, cyclosporine, ECP, etanercept,
+  #     etretinate, immunotoxin, anti T-lymphocyte monoclonal
+  #     antibody, lamprene, mycophenolate mofetil, PUVA, sirolimus,
+  #     systemic corticosteroids, tacrolimus, thalidomide, topical
+  #     corticosteroids, zenapax, other agents
+  #────────────────────────────────────────────────────────────────
+
+  GvhdTreatmentDrugRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Record of drug exposure used for treatment of chronic
+      graft-versus-host disease (GVHD). Includes immunosuppressants,
+      corticosteroids, phototherapy agents, and biological therapies
+      such as cyclosporine, tacrolimus, mycophenolate mofetil,
+      sirolimus, systemic and topical corticosteroids, thalidomide,
+      etanercept, PUVA, ECP, and daclizumab.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: RxNorm:1011
+                - equals_string: RxNorm:1256
+                - equals_string: RxNorm:2393
+                - equals_string: RxNorm:3008
+                - equals_string: RxNorm:214555
+                - equals_string: RxNorm:327361
+                - equals_string: RxNorm:4053
+                - equals_string: RxNorm:42316
+                - equals_string: RxNorm:68149
+                - equals_string: RxNorm:35894
+                - equals_string: RxNorm:10169
+                - equals_string: RxNorm:82375
+                - equals_string: RxNorm:10502
+                - equals_string: RxNorm:121243
+            indication:
+              any_of:
+                - equals_string: MONDO:0013730

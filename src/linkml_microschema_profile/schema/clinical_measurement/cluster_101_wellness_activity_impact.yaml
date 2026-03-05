@@ -1,0 +1,110 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_101
+name: cluster_101_wellness_activity_impact
+description: |-
+  Microschemas derived from CDE Cluster 101: Wellness Activity Impact Scale (WAIS)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  HealthInterferenceAverageRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Activity impact items assessing how much health problems interfere
+      with daily activities on an average day. Domains include bathing,
+      eating, exercising, household tasks, shopping, sleep, socializing,
+      and working, scored on a 1-5 interference scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: health_interference_average
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: WAIS
+
+  HealthInterferenceBadDayRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Activity impact items assessing how much health problems interfere
+      with daily activities on a bad day. Same domains as average day items,
+      scored on a 1-5 interference scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: health_interference_bad_day
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: WAIS
+
+  HealthInterferenceGoodDayRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Activity impact items assessing how much health problems interfere
+      with daily activities on a good day. Same domains as average day items,
+      scored on a 1-5 interference scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: health_interference_good_day
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: WAIS
+
+  ExerciseHealthLimitRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Single item assessing the degree to which health limits regular
+      exercise capacity, from "Not at all" to "Cannot do".
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: exercise_health_limit
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            instrument:
+              any_of:
+                - equals_string: NHLBI

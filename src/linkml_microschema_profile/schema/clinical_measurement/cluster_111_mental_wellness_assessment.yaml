@@ -1,0 +1,148 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_111
+name: cluster_111_mental_wellness_assessment
+description: |-
+  Microschemas derived from CDE Cluster 111: Mental Wellness Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL / PROMIS Anxiety Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Anxiety items (anxious, nervous, tense, worried, uneasy)
+  #   - Neuro-QOL Anxiety items
+  #   - Scored 1 (Never) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  AnxietyAssessmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS or Neuro-QOL Anxiety
+      instruments, measuring self-reported frequency of anxiety symptoms
+      including fear, worry, nervousness, and tension.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71948-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Anxiety
+                - equals_string: NeuroQOL_Anxiety
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL / PROMIS Depression Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Depression items (depressed, hopeless, worthless, sad)
+  #   - Neuro-QOL Depression items
+  #   - Scored 1 (Never) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  DepressionAssessmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS or Neuro-QOL Depression
+      instruments, measuring self-reported frequency of depressive symptoms
+      including sadness, hopelessness, helplessness, and worthlessness.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71950-1
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Depression
+                - equals_string: NeuroQOL_Depression
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Positive Affect and Well-Being Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Positive Affect and Well-Being items
+  #   - Life purpose, hope, confidence, enjoyment, emotional stability
+  #   - Scored 1 (Never) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  PositiveAffectWellBeingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Positive Affect and
+      Well-Being instrument, measuring self-reported frequency of
+      positive emotional states including hope, purpose, confidence,
+      and life satisfaction.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70527-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Positive_Affect
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Stigma Item (Mental Wellness context)
+  #────────────────────────────────────────────────────────────────
+
+  StigmaAssessmentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Stigma instrument
+      measuring illness-related stigma experiences including embarrassment,
+      unfair treatment, and social avoidance.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70498-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Stigma
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

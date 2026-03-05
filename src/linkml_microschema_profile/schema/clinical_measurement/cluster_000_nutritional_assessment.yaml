@@ -1,0 +1,96 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_000
+name: cluster_000_nutritional_assessment
+description: |-
+  Microschemas derived from CDE Cluster 000: Comprehensive Nutritional Assessment (CNA) Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Mini Nutritional Assessment (MNA) Screening Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MNA screening score (BwySJTBxy4T)
+  #   - MNA food intake decline score (wCCuAjVpuGw)
+  #   - MNA weight loss 3 month score (P5czq9uOuA6)
+  #   - MNA mobility score (gVXhcwg6cXh)
+  #   - MNA psychological stress indicator (q1NR6tOYQ2N)
+  #   - MNA neuropsychological problem score (wz2TNMzA_RW)
+  #   - MNA BMI score (xg0AqWVStEA)
+  #────────────────────────────────────────────────────────────────
+
+  MiniNutritionalAssessmentScreeningRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Screening portion of the Mini Nutritional Assessment (MNA), a validated
+      tool for identifying elderly patients who are malnourished or at risk
+      of malnutrition. The screening score ranges from 0 to 14.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:75285-7
+            instrument:
+              any_of:
+                - equals_string: mini_nutritional_assessment
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 14
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # Mini Nutritional Assessment (MNA) Total Assessment Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - MNA total assessment score (Fyx7h_qPOe9)
+  #   - MNA assessment score (CQAyYa1O3my)
+  #   - MNA malnourished score (aNR3d96cAOE)
+  #   - All individual MNA item scores contribute to this total
+  #────────────────────────────────────────────────────────────────
+
+  MiniNutritionalAssessmentTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total assessment score of the Mini Nutritional Assessment (MNA),
+      combining the screening score and the full assessment score.
+      Total score ranges from 0 to 30, with interpretation cutoffs at
+      17 (malnourished) and 23.5 (at risk).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:75286-5
+            instrument:
+              any_of:
+                - equals_string: mini_nutritional_assessment
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 30
+            unit:
+              any_of:
+                - equals_string: "{score}"

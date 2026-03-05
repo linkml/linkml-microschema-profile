@@ -1,0 +1,155 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_063
+name: cluster_063_life_mental_health_indicators
+description: |-
+  Microschemas derived from CDE Cluster 063: LIFE Mental Health Indicators
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  LIFEMoodDisorderIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Mood disorder indicator from the Longitudinal Interval Follow-Up Evaluation
+      (LIFE), capturing presence or absence of mood-related psychiatric conditions
+      including major depressive episode, manic episode, hypomanic episode, dysthymic
+      disorder, cyclothymic disorder, schizoaffective disorder (depressed and manic),
+      and other depressive disorders.
+      Aligned CDEs: LIFE major depressive episode, manic episode, hypomanic episode,
+      dysthymic, cyclothymic, schizoaffective depressed/manic, other depressive disorder indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_mood_disorder_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  LIFEAnxietyDisorderIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Anxiety disorder indicator from the Longitudinal Interval Follow-Up Evaluation
+      (LIFE), capturing presence or absence of anxiety-related conditions including
+      panic disorder (with/without agoraphobia), agoraphobia without panic, generalized
+      anxiety disorder, social phobia, specific phobia, obsessive-compulsive disorder,
+      post-traumatic stress disorder, and other anxiety disorders.
+      Aligned CDEs: LIFE panic disorder (with/without agoraphobia), agoraphobia without
+      panic, GAD, social phobia, specific phobia, OCD, PTSD, other anxiety disorder indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_anxiety_disorder_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  LIFEPsychoticDisorderIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Psychotic disorder indicator from the Longitudinal Interval Follow-Up Evaluation
+      (LIFE), capturing presence or absence of psychotic symptoms and disorders including
+      schizophrenia, psychotic disorder, delusions, and hallucinations.
+      Aligned CDEs: LIFE schizophrenia, psychotic disorder, delusions, hallucinations indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_psychotic_disorder_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  LIFESubstanceUseDisorderIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Substance use disorder indicator from the Longitudinal Interval Follow-Up
+      Evaluation (LIFE), capturing presence or absence of substance-related conditions
+      including alcohol abuse, alcohol dependence, substance abuse, and substance dependence.
+      Aligned CDEs: LIFE alcohol abuse, alcohol dependence, substance abuse, substance
+      dependence indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_substance_use_disorder_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  LIFESomatoformDisorderIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Somatoform and eating disorder indicator from the Longitudinal Interval Follow-Up
+      Evaluation (LIFE), capturing presence or absence of somatoform and related conditions
+      including somatization disorder, undifferentiated somatoform disorder, body dysmorphic
+      disorder, hypochondriasis, pain disorder, anorexia nervosa, and bulimia nervosa.
+      Aligned CDEs: LIFE somatization disorder, undifferentiated somatoform disorder,
+      body dysmorphic disorder, hypochondriasis, pain disorder, anorexia nervosa,
+      bulimia nervosa indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_somatoform_disorder_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  LIFEDiagnosisStatusRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Longitudinal diagnosis status code from the Longitudinal Interval Follow-Up
+      Evaluation (LIFE), tracking whether a previously identified disorder is currently
+      in remission, at subthreshold levels, or meeting full DSM-IV criteria.
+      Aligned CDEs: LIFE diagnosis code, treatment status, time of evaluation status
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: life_diagnosis_status
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: HISTORICAL
+                - equals_string: UNKNOWN

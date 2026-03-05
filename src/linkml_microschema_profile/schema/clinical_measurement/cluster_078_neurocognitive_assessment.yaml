@@ -1,0 +1,85 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_078
+name: cluster_078_neurocognitive_assessment
+description: |-
+  Microschemas derived from CDE Cluster 078: Neurocognitive Assessment and Diagnosis Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # ImPACT Cognitive Efficiency Index Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ImPACT cognitive efficiency index score (mkdI9eoecb)
+  #   - ImPACT composite memory composite score (QyhfIcxoxq_)
+  #   - ImPACT impulse control composite score
+  #   - ImPACT reaction time composite score
+  #   - ImPACT visual motor speed composite score
+  #   - ImPACT visual memory composite score
+  #────────────────────────────────────────────────────────────────
+
+  ImPACTCompositeScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Composite and index scores from the Immediate Post-Concussion Assessment
+      and Cognitive Testing (ImPACT), a computerized neurocognitive test battery
+      used to assess concussion-related cognitive impairment. Includes cognitive
+      efficiency index, memory, reaction time, visual motor speed, and impulse
+      control composites.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # ImPACT Medical History Indicators
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ImPACT ADD/hyperactivity indicator (QJeMB9xol9W)
+  #   - ImPACT autism diagnosis indicator (7ymXH5gigqW)
+  #   - ImPACT brain surgery history indicator (X1J7H5gjl5Z)
+  #   - ImPACT concussion history indicators
+  #   - ImPACT headache/migraine indicators
+  #   - ImPACT learning disability indicators
+  #   - ImPACT psychiatric diagnosis indicators
+  #────────────────────────────────────────────────────────────────
+
+  ImPACTMedicalHistoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Medical history indicators collected as part of the Immediate
+      Post-Concussion Assessment and Cognitive Testing (ImPACT), including
+      prior diagnoses of ADD/ADHD, autism, learning disabilities, psychiatric
+      conditions, and history of brain surgery or prior concussions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean

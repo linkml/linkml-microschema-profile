@@ -1,0 +1,72 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_013
+name: cluster_013_traumatic_brain_injury_assessment
+description: |-
+  Microschemas derived from CDE Cluster 013: Traumatic Brain Injury Assessment and Classification (TBIA&C) Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+  MONDO: http://purl.obolibrary.org/obo/MONDO_
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Ohio State University TBI Identification Method (OSU TBI-ID)
+  # CDEs: TBI severity classification, loss of consciousness, injury counts
+  #────────────────────────────────────────────────────────────────
+  TraumaticBrainInjuryRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Assessment and classification of traumatic brain injury using the
+      Ohio State University TBI Identification Method Short Form (OSU TBI-ID).
+      Captures TBI severity (improbable, possible, mild, moderate, severe),
+      loss of consciousness episodes, and injury mechanism.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: MONDO:0005052
+                - equals_string: OMOP:4148407
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: osu_tbi_identification_method_short_form
+            condition_severity:
+              any_of:
+                - equals_string: MILD
+                - equals_string: MODERATE
+                - equals_string: SEVERE
+
+  #────────────────────────────────────────────────────────────────
+  # TBI-related Loss of Consciousness
+  # CDEs: LOC duration, LOC count, age at first LOC
+  #────────────────────────────────────────────────────────────────
+  TBILossOfConsciousnessRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Record of loss of consciousness episodes associated with traumatic
+      brain injury, including duration categories (less than 30 min,
+      30 min to 24 hours, greater than 24 hours), count of episodes,
+      and age at first occurrence.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: OMOP:439383
+                - equals_string: LOINC:67515-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: osu_tbi_identification_method_short_form

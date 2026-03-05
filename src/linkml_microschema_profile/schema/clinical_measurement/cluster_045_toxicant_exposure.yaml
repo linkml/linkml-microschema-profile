@@ -1,0 +1,83 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_045
+name: cluster_045_toxicant_exposure
+description: |-
+  Microschemas derived from CDE Cluster 045: Toxicant Exposure Age Data Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Metal and Welding Exposure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Age started/stopped regularly working around metal dust/fumes (periods 1-3)
+  #   - Ever welded/brazed/flame cut metals indicators
+  #   - Ever weld/cut/braze specific metals (mild steel, aluminum, brass, copper, etc.)
+  #   - First worked around metal dust or fumes value
+  #   - Weld/braze/flame cut 100 days indicator
+  #────────────────────────────────────────────────────────────────
+
+  MetalExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Record of occupational metal dust, fume, and welding exposure history
+      from the Risk Factor Questionnaire for Toxicants. Captures start/stop
+      ages for regular exposure to metal dust/fumes and welding activities,
+      as well as specific metals worked with. Used as a risk factor for
+      neurological conditions such as Parkinson disease.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74174-4
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire_toxicants
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # Solvent and Chemical Exposure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Age started/stopped regularly using solvents or degreasers (periods 1-3)
+  #   - Age started/stopped regularly using adhesives (periods 1-3)
+  #   - Age started/stopped regularly soldering (periods 1-3)
+  #   - Use methylene chloride, trichloroethane, Stoddard solvent indicators
+  #   - Use water-based adhesives indicator
+  #────────────────────────────────────────────────────────────────
+
+  SolventChemicalExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Record of occupational solvent, adhesive, and chemical exposure history
+      from the Risk Factor Questionnaire for Toxicants. Captures start/stop
+      ages for regular use of solvents, degreasers, adhesives, and soldering
+      materials, including specific chemical agents used.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74175-1
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire_toxicants
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

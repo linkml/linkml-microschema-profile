@@ -1,0 +1,144 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_070
+name: cluster_070_fatigue_impact_scale
+description: |-
+  Microschemas derived from CDE Cluster 070: Cognitive and Functional Impairment Scale (CFIS)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Modified Fatigue Impact Scale (MFIS)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: MFIS 21-item and MFIS-5 item scores across
+  # cognitive, physical, and psychosocial domains (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  MFISItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Fatigue Impact Scale (MFIS) individual item score rated
+      from 0 (Never) to 4 (Almost Always), assessing the impact of
+      fatigue on cognitive, physical, and psychosocial functioning.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MFIS_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MFIS
+                - equals_string: MFIS-5
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  MFISCognitiveSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Fatigue Impact Scale (MFIS) cognitive subscale total score
+      (range 0-40), sum of 10 cognitive items.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MFIS_cognitive
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MFIS
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 40
+
+  MFISPhysicalSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Fatigue Impact Scale (MFIS) physical subscale total score
+      (range 0-36), sum of 9 physical items.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MFIS_physical
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MFIS
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 36
+
+  MFISPsychosocialSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Fatigue Impact Scale (MFIS) psychosocial subscale total score
+      (range 0-8), sum of 2 psychosocial items.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MFIS_psychosocial
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MFIS
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 8
+
+  MFISTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Modified Fatigue Impact Scale (MFIS) total score (range 0-84),
+      sum of all 21 items across cognitive, physical, and psychosocial
+      subscales.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MFIS_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MFIS
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 84

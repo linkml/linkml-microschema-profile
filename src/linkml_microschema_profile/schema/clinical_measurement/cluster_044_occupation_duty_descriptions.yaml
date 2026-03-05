@@ -1,0 +1,79 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_044
+name: cluster_044_occupation_duty_descriptions
+description: |-
+  Microschemas derived from CDE Cluster 044: Occupation Duty Descriptions (ODD) Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Occupation History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Current job text and duty descriptions (1st-4th)
+  #   - Longest occupation by age bracket (0-25, 26-35, 36-45, 46-55, 56-65, 66+)
+  #   - Occupation duty descriptions for each age bracket
+  #   - Occupation status and retirement age
+  #────────────────────────────────────────────────────────────────
+
+  OccupationHistoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Occupational history record from the Risk Factor Questionnaire (RFQ),
+      capturing current and longest-held occupations across life stages
+      with descriptions of major job duties. Used as an environmental risk
+      factor for neurological conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74165-2
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # Military Service History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Military service city/state/country station longest
+  #   - Military service combat city/state station longest
+  #   - Military service longest job text
+  #────────────────────────────────────────────────────────────────
+
+  MilitaryServiceHistoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military service history record from the Risk Factor Questionnaire (RFQ),
+      capturing longest duty stations, combat locations, and longest-held
+      military job descriptions. Used as an environmental and occupational
+      risk factor assessment.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:74166-0
+            instrument:
+              any_of:
+                - equals_string: risk_factor_questionnaire
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

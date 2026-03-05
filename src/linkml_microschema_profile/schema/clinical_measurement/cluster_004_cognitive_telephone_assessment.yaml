@@ -1,0 +1,197 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_004
+name: cluster_004_cognitive_telephone_assessment
+description: |-
+  Microschemas derived from CDE Cluster 004: Cognitive Telephone Assessment Cluster (CTAC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # BTACT Category Fluency
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BTACT Category fluency test correct response count (mJgxnFVlSCz)
+  #   - BTACT Category fluency test category (7J1xhtNlB0M)
+  #   - BTACT Total intrusion count (mknptEgSCf)
+  #   - BTACT Total repetition count (X1T6F4erRG)
+  #────────────────────────────────────────────────────────────────
+
+  BTACTCategoryFluencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Category Fluency Test score from the Brief Test of Adult Cognition
+      by Telephone (BTACT), measuring the number of correct responses
+      in a timed verbal fluency task.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72233-0
+            instrument:
+              any_of:
+                - equals_string: btact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 100
+            unit:
+              any_of:
+                - equals_string: "{count}"
+
+  #────────────────────────────────────────────────────────────────
+  # BTACT Number Series
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BTACT Series complete total number score (mk4ghY4xHRz)
+  #   - BTACT Number series response type text (Q1Qx2Y4xBCM)
+  #────────────────────────────────────────────────────────────────
+
+  BTACTNumberSeriesRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Number Series Task score from the BTACT, assessing inductive
+      reasoning ability by counting correctly completed number series.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72234-8
+            instrument:
+              any_of:
+                - equals_string: btact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # BTACT Stop and Go (Task Switching)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BTACT Stop and go task experimental score (7yTKNxr0M)
+  #   - BTACT Stop and go task normal baseline score (mkxaK4erRM)
+  #   - BTACT Stop and go task reverse baseline score (QJNaKEeHAz)
+  #   - BTACT Stop and go task switch trial score (XJB6KNlSCf)
+  #   - BTACT Stop and go task other trial score (71ZpY4xB0f)
+  #────────────────────────────────────────────────────────────────
+
+  BTACTStopAndGoRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Stop and Go (task switching) score from the BTACT, assessing
+      executive function and cognitive flexibility through a
+      response inhibition paradigm.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72235-5
+            instrument:
+              any_of:
+                - equals_string: btact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 40
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # BTACT Backward Counting (30-SACT)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BTACT 30-SACT total score (XJcpYEeHRM)
+  #   - BTACT 30-SACT error count (QydpFVlHCz)
+  #   - BTACT 30-SACT last number reached (m1FaKVxHAG)
+  #────────────────────────────────────────────────────────────────
+
+  BTACTBackwardCountingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Thirty Seconds and Counting Task (30-SACT) score from the BTACT,
+      measuring processing speed by counting backward from 100 by ones
+      in 30 seconds.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72236-3
+            instrument:
+              any_of:
+                - equals_string: btact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 100
+            unit:
+              any_of:
+                - equals_string: "{count}"
+
+  #────────────────────────────────────────────────────────────────
+  # BTACT Reaction Time (Latency)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BTACT Mean latency time lapse millisecond measurement (Q1bxnYNxBRz)
+  #   - BTACT Median latency time lapse millisecond measurement (X1zgntVeSRM)
+  #────────────────────────────────────────────────────────────────
+
+  BTACTReactionTimeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Reaction time (latency) measurement from the BTACT, capturing mean
+      or median response latency in milliseconds during cognitive tasks.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72237-1
+            instrument:
+              any_of:
+                - equals_string: btact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10000
+            unit:
+              any_of:
+                - equals_string: ms

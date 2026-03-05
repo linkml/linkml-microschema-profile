@@ -1,0 +1,132 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_016
+name: cluster_016_intelligence_assessment
+description: |-
+  Microschemas derived from CDE Cluster 016: WASI-II Intelligence Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # WASI-II Full Scale IQ
+  # CDEs: FSIQ-2, FSIQ-4 composite scores, confidence intervals, percentile ranks
+  # LOINC: 70222-8 "WASI-II"
+  #────────────────────────────────────────────────────────────────
+  WASIFullScaleIQRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Full Scale IQ composite scores from the Wechsler Abbreviated Scale
+      of Intelligence - Second Edition (WASI-II), including 2-subtest
+      (Vocabulary + Matrix Reasoning) and 4-subtest versions, with
+      confidence intervals and percentile ranks.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70222-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wasi_ii
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 40
+              maximum_value: 160
+
+  #────────────────────────────────────────────────────────────────
+  # WASI-II Verbal Comprehension Index
+  # CDEs: Vocabulary + Similarities T scores, VCI composite, CI, percentile
+  #────────────────────────────────────────────────────────────────
+  WASIVerbalComprehensionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Verbal Comprehension Index from the WASI-II, derived from Vocabulary
+      and Similarities subtest T scores. Includes composite score,
+      confidence intervals, and percentile rank.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70223-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wasi_ii
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 40
+              maximum_value: 160
+
+  #────────────────────────────────────────────────────────────────
+  # WASI-II Perceptual Reasoning Index
+  # CDEs: Block Design + Matrix Reasoning T scores, PRI composite, CI, percentile
+  #────────────────────────────────────────────────────────────────
+  WASIPerceptualReasoningRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Perceptual Reasoning Index from the WASI-II, derived from Block Design
+      and Matrix Reasoning subtest T scores. Includes composite score,
+      confidence intervals, and percentile rank.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70224-4
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wasi_ii
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 40
+              maximum_value: 160
+
+  #────────────────────────────────────────────────────────────────
+  # WASI-II Subtest Raw/T Scores
+  # CDEs: Block Design, Matrix Reasoning, Vocabulary, Similarities raw + T scores
+  #────────────────────────────────────────────────────────────────
+  WASISubtestScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual subtest raw scores and T scores from the WASI-II, covering
+      Block Design, Matrix Reasoning, Vocabulary, and Similarities subtests.
+      T scores have a mean of 50 and standard deviation of 10.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70225-1
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wasi_ii
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 80

@@ -1,0 +1,102 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_031
+name: cluster_031_elderly_depression_assessment
+description: |-
+  Microschemas derived from CDE Cluster 031: Elderly Depression Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  GdsShortFormTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Geriatric Depression Scale Short Form (GDS-SF),
+      a 15-item yes/no questionnaire for screening depression in elderly populations.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:48545-8
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 15
+            instrument:
+              equals_string: GDS Short Form
+
+  GdsShortFormItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the GDS Short Form, capturing yes/no
+      indicators for depressive symptoms in elderly subjects including
+      activity levels, fear, boredom, emptiness, happiness, helplessness,
+      energy, spirits, life satisfaction, memory, comparisons to others,
+      home preference, hopelessness, aliveness, and worthlessness.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:48544-1
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: GDS Short Form
+
+  GdsLongFormTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Geriatric Depression Scale Long Form (GDS-LF),
+      a 30-item yes/no questionnaire for assessing depression severity
+      in elderly populations.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:48543-3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 30
+            instrument:
+              equals_string: GDS Long Form
+
+  GdsLongFormDepressionScaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Depression severity category derived from the GDS Long Form total score,
+      classifying subjects as Normal, Mild depressive, or Severe depressive.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:48543-3
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: GDS Long Form

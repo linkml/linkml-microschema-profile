@@ -1,0 +1,76 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_015
+name: cluster_015_cognitive_assessment
+description: |-
+  Microschemas derived from CDE Cluster 015: Cognitive Assessment Profile (CAP) Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Wechsler Memory Scale IV (WMS-IV) - Logical Memory
+  # CDEs: immediate recall, delayed recall, story scores, raw/scaled scores
+  # LOINC: 70294-7 "WMS-IV Logical Memory"
+  #────────────────────────────────────────────────────────────────
+  WMSLogicalMemoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Scores from the Wechsler Memory Scale IV (WMS-IV) Logical Memory
+      subtest, including immediate recall and delayed recall story scores,
+      total raw scores, and scaled scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70294-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wms_iv_logical_memory
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 75
+
+  #────────────────────────────────────────────────────────────────
+  # Woodcock Johnson III (WJ-III) Tests of Achievement
+  # CDEs: standard scores, age equivalents, grade equivalents, percentile ranks
+  # LOINC: 58135-1 "Woodcock-Johnson"
+  #────────────────────────────────────────────────────────────────
+  WoodcockJohnsonAchievementRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Scores from the Woodcock Johnson III (WJ-III) Tests of Achievement,
+      including standard scores, age equivalents, grade equivalents,
+      percentile ranks, and W scores across reading, math, and writing domains.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:58135-1
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: woodcock_johnson_iii
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200

@@ -1,0 +1,125 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_076
+name: cluster_076_symptom_severity_rating
+description: |-
+  Microschemas derived from CDE Cluster 076: Symptom Severity Rating Cluster (SSRC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Rivermead Post-Concussion Symptoms Questionnaire (RPQ)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: RPQ individual symptom severity ratings and
+  # summary scores (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  RPQItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Rivermead Post-Concussion Symptoms Questionnaire (RPQ) individual
+      symptom severity rating compared with before the accident, rated
+      from 0 (Not experienced at all) to 4 (A severe problem). Symptoms
+      include headaches, dizziness, nausea, noise sensitivity, sleep
+      disturbance, fatigue, irritability, depression, frustration,
+      poor concentration, forgetfulness, slowed thinking, blurred vision,
+      double vision, light sensitivity, and restlessness.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: RPQ_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: RPQ
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  RPQTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Rivermead Post-Concussion Symptoms Questionnaire (RPQ) total score,
+      sum of ratings for items 1-16 excluding ratings of 1 (no more of
+      a problem). Range 0-64.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: RPQ_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: RPQ
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 64
+
+  RPQ3Record:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Rivermead Post-Concussion Symptoms Questionnaire (RPQ) RPQ-3 score,
+      sum of ratings for the first 3 items (headaches, dizziness, nausea)
+      excluding ratings of 1. Range 0-12.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: RPQ_3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: RPQ
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 12
+
+  RPQ13Record:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Rivermead Post-Concussion Symptoms Questionnaire (RPQ) RPQ-13 score,
+      sum of ratings for items 4-16 excluding ratings of 1. Range 0-52.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: RPQ_13
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: RPQ
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 52

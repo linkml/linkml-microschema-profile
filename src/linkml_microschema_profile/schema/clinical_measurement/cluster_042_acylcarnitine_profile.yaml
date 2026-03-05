@@ -1,0 +1,131 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_042
+name: cluster_042_acylcarnitine_profile
+description: |-
+  Microschemas derived from CDE Cluster 042: 3-Hydroxy Acylcarnitine Profile
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Acylcarnitine Concentration in Dried Blood Spot
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - 3-Hydroxybutyrylcarnitine (C4-OH) [Moles/volume] in DBS
+  #   - Acetylcarnitine (C2) [Moles/volume] in DBS
+  #   - Propionylcarnitine (C3) [Moles/volume] in DBS
+  #   - Octanoylcarnitine (C8) [Moles/volume] in DBS
+  #   - Palmitoylcarnitine (C16) [Moles/volume] in DBS
+  #   - Carnitine free (C0) [Moles/volume] in DBS
+  #   - And ~40 additional acylcarnitine species concentrations
+  #────────────────────────────────────────────────────────────────
+
+  AcylcarnitineConcentrationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Concentration of an acylcarnitine species measured in dried blood spot
+      by tandem mass spectrometry, used for newborn screening of fatty acid
+      oxidation disorders, organic acidemias, and amino acidopathies.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:53160-8
+                - equals_string: LOINC:53161-6
+                - equals_string: LOINC:53162-4
+                - equals_string: LOINC:53163-2
+                - equals_string: LOINC:53164-0
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 1000
+            unit:
+              any_of:
+                - equals_string: umol/L
+                - equals_string: nmol/L
+
+  #────────────────────────────────────────────────────────────────
+  # Acylcarnitine Molar Ratio in Dried Blood Spot
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - C5-OH/C0 [Molar ratio] in DBS
+  #   - C5-OH/C8 [Molar ratio] in DBS
+  #   - C4/C2, C4/C8, C4/C3 [Molar ratio] in DBS
+  #   - C8/C2, C8/C10, C14:1/C16, C14:1/C12:1 ratios
+  #   - And ~20 additional acylcarnitine ratio markers
+  #────────────────────────────────────────────────────────────────
+
+  AcylcarnitineRatioRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Molar ratio of acylcarnitine species measured in dried blood spot,
+      used as primary or secondary markers for inborn errors of metabolism
+      such as MCAD deficiency, VLCAD deficiency, and organic acidemias.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:53183-0
+                - equals_string: LOINC:53178-0
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100
+            unit:
+              any_of:
+                - equals_string: "{ratio}"
+
+  #────────────────────────────────────────────────────────────────
+  # Amino Acid Concentration in Dried Blood Spot
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Phenylalanine [Moles/volume] in DBS
+  #   - Tyrosine [Moles/volume] in DBS
+  #   - Methionine, Citrulline, Arginine, Glycine, etc. in DBS
+  #────────────────────────────────────────────────────────────────
+
+  AminoAcidConcentrationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Concentration of an amino acid measured in dried blood spot by tandem
+      mass spectrometry, used for newborn screening of aminoacidopathies
+      such as PKU, maple syrup urine disease, and tyrosinemia.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:35572-7
+                - equals_string: LOINC:47700-0
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 2000
+            unit:
+              any_of:
+                - equals_string: umol/L
+                - equals_string: nmol/L

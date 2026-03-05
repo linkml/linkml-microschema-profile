@@ -1,0 +1,84 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_008
+name: cluster_008_muscle_strength_assessment
+description: |-
+  Microschemas derived from CDE Cluster 008: Muscle Strength Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Manual Muscle Testing (MMT) - Upper Extremity
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Motor strength testing left/right deltoid, bicep,
+  # triceps, wrist extension, wrist flexion, intrinsic hand
+  #────────────────────────────────────────────────────────────────
+
+  MotorStrengthUpperExtremityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Manual muscle testing (MMT) score for upper extremity muscle groups
+      using the Medical Research Council (MRC) 0-5 grading scale. Covers
+      deltoid, bicep, triceps, wrist extensors, wrist flexors, and
+      intrinsic hand muscles on both left and right sides.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:83011-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: manual_muscle_test
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Manual Muscle Testing (MMT) - Lower Extremity
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Motor strength testing left/right iliopsoas,
+  # gluteus, quadricep, hamstring, ankle df, ankle pf, ehl
+  #────────────────────────────────────────────────────────────────
+
+  MotorStrengthLowerExtremityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Manual muscle testing (MMT) score for lower extremity muscle groups
+      using the Medical Research Council (MRC) 0-5 grading scale. Covers
+      iliopsoas, gluteus, quadricep, hamstring, ankle dorsiflexors,
+      ankle plantar flexors, and extensor hallucis longus on both left
+      and right sides.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:83012-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: manual_muscle_test
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5

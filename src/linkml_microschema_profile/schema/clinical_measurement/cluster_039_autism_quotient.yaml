@@ -1,0 +1,68 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_039
+name: cluster_039_autism_quotient
+description: |-
+  Microschemas derived from CDE Cluster 039: Anxiety and Social Interaction in Adolescents
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  AutismQuotientAdultItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the Autism-Spectrum Quotient (AQ) adult
+      version, a 50-item self-report questionnaire measuring autistic traits
+      across five domains: social skill, attention switching, attention to
+      detail, communication, and imagination. Each item uses a 4-point
+      Likert scale (Definitely agree to Definitely disagree).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82243-8
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4
+            instrument:
+              equals_string: AQ Adult
+
+  AutismQuotientAdolescentItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the Autism-Spectrum Quotient (AQ)
+      adolescent version, a parent-report questionnaire measuring autistic
+      traits in adolescents. Uses the same 4-point Likert scale as the
+      adult version across social, communication, imagination, attention
+      to detail, and attention switching domains.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82244-6
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4
+            instrument:
+              equals_string: AQ Adolescent

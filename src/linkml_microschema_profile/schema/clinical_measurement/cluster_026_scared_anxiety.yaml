@@ -1,0 +1,206 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_026
+name: cluster_026_scared_anxiety
+description: |-
+  Microschemas derived from CDE Cluster 026: Anxiety Scale Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED Total score
+  #   - LOINC:71955-8 "SCARED Total score"
+  #────────────────────────────────────────────────────────────────
+
+  ScaredTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Screen for Child Anxiety Related Disorders
+      (SCARED) questionnaire. Sum of 41 items each scored 0-2, with
+      total scores of 25 or above suggesting an anxiety disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71955-8
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 82
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Panic Disorder / Somatic Symptom Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED Panic disorder significant somatic symptom score
+  #────────────────────────────────────────────────────────────────
+
+  ScaredPanicDisorderScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Panic disorder or significant somatic symptom subscale score from
+      the Screen for Child Anxiety Related Disorders (SCARED) questionnaire.
+      A score of 7 or above may suggest panic disorder or somatic symptoms.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71956-6
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 26
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Generalized Anxiety Disorder Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED General anxiety disorder score
+  #────────────────────────────────────────────────────────────────
+
+  ScaredGeneralizedAnxietyScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Generalized anxiety disorder subscale score from the Screen for
+      Child Anxiety Related Disorders (SCARED) questionnaire. A score
+      of 9 or above may suggest generalized anxiety disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71957-4
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 18
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Separation Anxiety Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED Separation anxiety score
+  #────────────────────────────────────────────────────────────────
+
+  ScaredSeparationAnxietyScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Separation anxiety subscale score from the Screen for Child
+      Anxiety Related Disorders (SCARED) questionnaire. A score of
+      5 or above may suggest separation anxiety disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71958-2
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 16
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Social Anxiety Disorder Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED Social anxiety disorder score
+  #────────────────────────────────────────────────────────────────
+
+  ScaredSocialAnxietyScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Social anxiety disorder subscale score from the Screen for Child
+      Anxiety Related Disorders (SCARED) questionnaire. A score of 8
+      or above may suggest social anxiety disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71959-0
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 14
+
+  #────────────────────────────────────────────────────────────────
+  # SCARED Significant School Avoidance Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SCARED Significant school avoidance score
+  #────────────────────────────────────────────────────────────────
+
+  ScaredSchoolAvoidanceScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Significant school avoidance subscale score from the Screen for
+      Child Anxiety Related Disorders (SCARED) questionnaire. A score
+      of 3 or above may suggest significant school avoidance.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71960-8
+            instrument:
+              any_of:
+                - equals_string: scared
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 8

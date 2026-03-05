@@ -1,0 +1,54 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_021
+name: cluster_021_family_interaction_dynamics
+description: |-
+  Microschemas derived from CDE Cluster 021: Family Interaction Dynamics Assessment
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Interaction Behavior Questionnaire (IBQ)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ~44 IBQ items assessing parent-child interaction
+  #   quality across domains such as conflict, communication,
+  #   warmth, and problem-solving. Items are indicators (true/false
+  #   or yes/no) describing specific behaviors and interaction
+  #   patterns between parent and child.
+  #────────────────────────────────────────────────────────────────
+
+  InteractionBehaviorQuestionnaireItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the Interaction Behavior Questionnaire
+      (IBQ). Each item is a true/false indicator describing a specific
+      aspect of parent-child interaction, including conflict frequency,
+      communication quality, mutual enjoyment, and argument dynamics.
+      The IBQ assesses family interaction patterns from both the parent
+      and child perspectives.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP96769-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: interaction_behavior_questionnaire
+            data_type:
+              equals_string: boolean
+            measurement_value:
+              range: boolean

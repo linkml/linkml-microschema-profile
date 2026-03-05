@@ -1,0 +1,130 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_089
+name: cluster_089_swallowing_quality_of_life
+description: |-
+  Microschemas derived from CDE Cluster 089: SWAL-QOL Quality of Life Assessment
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # SWAL-QOL Symptom Frequency Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SWAL-QOL chewing, choking (food/liquid), clear throat,
+  #     coughing stuck food, drooling, excess saliva/phlegm,
+  #     food/liquid from nose, gagging, thick saliva/phlegm,
+  #     fear of choking, worry about pneumonia
+  #   - Items scored 1 (Almost always) to 5 (Never)
+  #────────────────────────────────────────────────────────────────
+
+  SWALQOLSymptomFrequencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Symptom frequency items from the Quality of Life in Swallowing
+      Disorders (SWAL-QOL) questionnaire. Assesses frequency of
+      swallowing-related symptoms including choking, coughing, gagging,
+      drooling, excess saliva, and nasal regurgitation over the past
+      month. Items scored from 1 (Almost always) to 5 (Never).
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: swal_qol
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # SWAL-QOL Psychosocial Impact Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SWAL-QOL swallowing problem indicators: discouraged,
+  #     frustrated, impatient, distraction, difficulty,
+  #     social gatherings not enjoyable, hard social life,
+  #     not going out, changed activities, diet annoyance
+  #   - Various Likert scales (agree/disagree, true/false,
+  #     always/never frequency)
+  #────────────────────────────────────────────────────────────────
+
+  SWALQOLPsychosocialImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Psychosocial and functional impact items from the SWAL-QOL
+      questionnaire. Assesses emotional burden (discouragement,
+      frustration, impatience), social impact (social gatherings,
+      going out, changed activities), and eating-related concerns
+      (food selection difficulty, eating duration, appetite changes).
+      Uses various 5-point Likert scales.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: swal_qol
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # SWAL-QOL General Health and Fatigue Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - SWAL-QOL general health indicator (VYrDJjaeFAp)
+  #   - SWAL-QOL feeling exhausted indicator (3ZDOGZEearO)
+  #   - SWAL-QOL feeling tired indicator (hFfjhxQ0FpN)
+  #   - SWAL-QOL trouble falling/staying asleep indicators
+  #   - SWAL-QOL speech clarity indicator
+  #────────────────────────────────────────────────────────────────
+
+  SWALQOLGeneralHealthRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      General health, fatigue, and sleep items from the SWAL-QOL
+      questionnaire. Includes overall health rating (Poor to Excellent),
+      fatigue and exhaustion frequency, sleep difficulty, and speech
+      clarity. Items scored on 5-point scales.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: swal_qol
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"

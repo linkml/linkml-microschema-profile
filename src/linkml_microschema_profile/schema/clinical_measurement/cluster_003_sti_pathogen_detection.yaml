@@ -1,0 +1,206 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_003
+name: cluster_003_sti_pathogen_detection
+description: |-
+  Microschemas derived from CDE Cluster 003: Chlamydia Detection Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Chlamydia trachomatis Detection
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - C. trachomatis DNA [Presence] in various specimens by NAA
+  #   - C. trachomatis rRNA [Presence] in various specimens by NAA/Probe
+  #   - C. trachomatis DNA [Units/volume] (QyHqS9Zr8)
+  #   - C. trachomatis L2 DNA [Presence] (Q1ZHqScbBL)
+  #   - C. trachomatis DNA [Identifier] serovar (QJgH9BcWrU)
+  #   - Chlamydia sp DNA [Presence] (7JGd9r9WHI)
+  #────────────────────────────────────────────────────────────────
+
+  ChlamydiaDetectionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Laboratory detection of Chlamydia trachomatis in clinical specimens
+      via nucleic acid amplification testing (NAAT), probe detection, or
+      signal amplification. Results are qualitative (detected/not detected).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:21613-5
+                - equals_string: LOINC:43304-5
+                - equals_string: LOINC:6349-5
+                - equals_string: LOINC:16600-9
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: QualitativeDetectionEnum
+            method:
+              any_of:
+                - equals_string: naat
+                - equals_string: probe_signal_amplification
+                - equals_string: probe
+
+  #────────────────────────────────────────────────────────────────
+  # Neisseria gonorrhoeae Detection
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - N. gonorrhoeae DNA [Presence] in various specimens by NAA
+  #   - N. gonorrhoeae rRNA [Presence] in various specimens
+  #   - N. gonorrhoeae [Presence] by culture
+  #   - N. gonorrhoeae Ag [Presence] by immunoassay
+  #────────────────────────────────────────────────────────────────
+
+  GonorrheaDetectionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Laboratory detection of Neisseria gonorrhoeae in clinical specimens
+      via NAAT, probe, culture, or immunoassay. Results are qualitative.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:21415-5
+                - equals_string: LOINC:43305-2
+                - equals_string: LOINC:698-1
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: QualitativeDetectionEnum
+            method:
+              any_of:
+                - equals_string: naat
+                - equals_string: probe
+                - equals_string: culture
+                - equals_string: immunoassay
+
+  #────────────────────────────────────────────────────────────────
+  # HPV Detection
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - HPV high-risk DNA [Presence] in cervix/specimen by probe/NAA
+  #   - HPV rRNA [Presence] (XJQbcr9ZSL, mJge9BcWSI)
+  #   - HPV DNA [Presence] in cervix by Probe (QybMcB5bSI)
+  #   - HPV 16+18 Ag [Presence] in vaginal fluid (QyW5S5WBI)
+  #────────────────────────────────────────────────────────────────
+
+  HPVDetectionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Laboratory detection of Human Papillomavirus (HPV) DNA or RNA in
+      clinical specimens, including high-risk genotype panels. Results
+      are qualitative.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:21440-3
+                - equals_string: LOINC:30167-1
+                - equals_string: LOINC:77379-6
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: QualitativeDetectionEnum
+            method:
+              any_of:
+                - equals_string: naat
+                - equals_string: probe_signal_amplification
+                - equals_string: probe
+
+  #────────────────────────────────────────────────────────────────
+  # HIV Detection
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - HIV 1 RNA [Presence] (m1JqS9WH8)
+  #   - HIV 1+2 IgG Ab [Presence] in dried blood spot (mkn_TyxU3XG)
+  #────────────────────────────────────────────────────────────────
+
+  HIVDetectionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Laboratory detection of HIV via RNA NAA testing or antibody
+      detection. Results are qualitative.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:25836-8
+                - equals_string: LOINC:89365-1
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: QualitativeDetectionEnum
+            method:
+              any_of:
+                - equals_string: naat
+                - equals_string: immunoassay
+
+  #────────────────────────────────────────────────────────────────
+  # Chlamydia + Gonorrhea Combined Panel
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - C. trachomatis + N. gonorrhoeae DNA/rRNA [Presence] combined tests
+  #   - C. trachomatis and N. gonorrhoeae DNA [Identifier] (Qy_yoHqWrU)
+  #────────────────────────────────────────────────────────────────
+
+  ChlamydiaGonorrheaCombinedDetectionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Combined laboratory detection panel for Chlamydia trachomatis and
+      Neisseria gonorrhoeae in clinical specimens, commonly performed
+      as a dual NAAT assay.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:36903-3
+                - equals_string: LOINC:44806-8
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+            measurement_value:
+              range: QualitativeDetectionEnum
+            method:
+              any_of:
+                - equals_string: naat
+                - equals_string: probe_signal_amplification
+                - equals_string: probe
+
+enums:
+  QualitativeDetectionEnum:
+    description: Qualitative detection result for laboratory tests
+    permissible_values:
+      detected:
+        description: Target analyte was detected (positive)
+      not_detected:
+        description: Target analyte was not detected (negative)
+      equivocal:
+        description: Result is equivocal or borderline
+      inconclusive:
+        description: Result is inconclusive

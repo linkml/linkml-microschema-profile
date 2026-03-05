@@ -1,0 +1,67 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_085
+name: cluster_085_quality_of_life
+description: |-
+  Microschemas derived from CDE Cluster 085: Quality of Life Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # WHOQOL-BREF Domain Score Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - WHOQOL-BREF quality of life rating (SBNbb0d7YNq)
+  #   - WHOQOL-BREF health satisfaction (Opub6vVzQWa)
+  #   - WHOQOL-BREF physical domain items (pain, energy, sleep,
+  #     mobility, daily activities, medical treatment, work)
+  #   - WHOQOL-BREF psychological domain items (enjoy life,
+  #     meaningful, concentration, body appearance, negative
+  #     feelings, self-esteem)
+  #   - WHOQOL-BREF social domain items (personal relationships,
+  #     sex life, friend support)
+  #   - WHOQOL-BREF environment domain items (safety, physical
+  #     environment, money, information, leisure, living place,
+  #     health access, transport)
+  #────────────────────────────────────────────────────────────────
+
+  WHOQOLBREFScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Item scores from the World Health Organization Quality of Life
+      Brief Version (WHOQOL-BREF), a 26-item instrument measuring
+      quality of life across four domains: physical health,
+      psychological, social relationships, and environment. Items
+      are rated on 5-point Likert scales with domain-specific
+      anchors (e.g., very dissatisfied to very satisfied, not at all
+      to extremely).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61578-6
+            instrument:
+              any_of:
+                - equals_string: whoqol_bref
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"

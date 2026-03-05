@@ -1,0 +1,110 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_081
+name: cluster_081_cardiovascular_medical_history
+description: |-
+  Microschemas derived from CDE Cluster 081: Cardiovascular and Medical History Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Cardiovascular History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cardiovascular history arrhythmia indicators (atrial fib,
+  #     bradycardia, general arrhythmia)
+  #   - Cardiovascular history cardiac surgery indicator
+  #   - Cardiovascular history condition indicator
+  #   - Cardiovascular history congenital heart disease indicator
+  #   - Cardiovascular history heart failure indicator
+  #   - Cardiovascular history ischemia heart disease indicator
+  #   - Cardiovascular history abnormal echocardiogram indicator
+  #   - Coronary artery disease indicator
+  #────────────────────────────────────────────────────────────────
+
+  CardiovascularHistoryRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Cardiovascular medical history indicators including arrhythmias
+      (atrial fibrillation, bradycardia), congenital heart disease,
+      heart failure, ischemic heart disease, coronary artery disease,
+      abnormal echocardiogram findings, and cardiac surgery history.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: cardiovascular_condition
+                - equals_string: arrhythmia
+                - equals_string: heart_failure
+                - equals_string: ischemic_heart_disease
+                - equals_string: congenital_heart_disease
+
+  #────────────────────────────────────────────────────────────────
+  # General Medical History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Medical history global assessment indicator
+  #   - Medical history condition diagnosis indicator
+  #   - Medical history for body system indicator
+  #   - Medical history diabetes, asthma, autism, stroke, TBI,
+  #     seizures, headache/migraine, respiratory, scoliosis,
+  #     depression, anxiety, and many other condition indicators
+  #   - Various "since last visit" interval indicators
+  #────────────────────────────────────────────────────────────────
+
+  GeneralMedicalHistoryRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      General medical history indicators spanning multiple body systems
+      including neurological (stroke, TBI, seizures), respiratory
+      (asthma, pneumonia, restrictive airway disease), endocrine
+      (diabetes), musculoskeletal (scoliosis, broken bones),
+      psychiatric (depression, anxiety), and other conditions.
+      Includes interval assessments for changes since last visit.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: medical_history_condition
+
+  #────────────────────────────────────────────────────────────────
+  # Family Medical History Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Family history medical condition indicator
+  #   - Family history condition text
+  #   - Family history medical condition relative type
+  #   - Migraine headache family history indicator
+  #   - Various family condition type texts (cardiovascular,
+  #     neurological, cancer, kidney, etc.)
+  #────────────────────────────────────────────────────────────────
+
+  FamilyMedicalHistoryRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Family medical history indicators capturing whether first or
+      second degree relatives have been diagnosed with specific
+      conditions including cardiovascular diseases, neuromuscular
+      disorders, cancers, kidney problems, gynecological conditions,
+      and other hereditary or familial conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: family_history_condition
+            relationship_to_participant:
+              any_of:
+                - equals_string: family_member

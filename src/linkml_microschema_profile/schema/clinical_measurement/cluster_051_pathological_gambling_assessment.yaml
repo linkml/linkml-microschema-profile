@@ -1,0 +1,90 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_051
+name: cluster_051_pathological_gambling_assessment
+description: |-
+  Microschemas derived from CDE Cluster 051: Pathological Gambling Assessment Cluster (PGAC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # SCI-PG Diagnostic Criteria Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Criteria A number (count of criteria met)
+  #   - Criteria B indicator (Yes/No)
+  #   - Determination final status (Absent/Present)
+  #   - Individual criterion scales (preoccupation, tolerance,
+  #     withdrawal, escape, chasing, lying, jeopardized, illegal acts)
+  #   - Each criterion scored 1-3 or ?
+  #────────────────────────────────────────────────────────────────
+
+  PathologicalGamblingDiagnosticRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Diagnostic assessment from the Structured Clinical Interview for
+      Pathological Gambling (SCI-PG). Captures individual DSM criterion
+      scores (preoccupation, tolerance, withdrawal, escape, chasing losses,
+      lying, jeopardized relationships, illegal acts), total criteria A
+      count, criterion B status, and final diagnostic determination.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44249-1
+            instrument:
+              any_of:
+                - equals_string: sci_pg
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 10
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # SCI-PG Gambling Behavior Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Gamble amount value
+  #   - Gamble frequency
+  #   - Gamble type text
+  #   - Gamble onset age value
+  #   - Gamble peak age value
+  #────────────────────────────────────────────────────────────────
+
+  GamblingBehaviorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Gambling behavior characteristics from the SCI-PG, including type of
+      gambling, frequency, amounts wagered, and ages of onset and peak
+      gambling activity.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:44250-9
+            instrument:
+              any_of:
+                - equals_string: sci_pg
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal

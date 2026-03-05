@@ -1,0 +1,117 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_006
+name: cluster_006_balance_gait_assessment
+description: |-
+  Microschemas derived from CDE Cluster 006: Balance and Gait Assessment Cluster (BGAC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Tinetti POMA Balance Subscale
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: POMA balance arise, attempt arise, eyes closed,
+  # immediate stand, nudge, seated, sit down, stand, turning steady,
+  # turning steps, balance subtotal
+  #────────────────────────────────────────────────────────────────
+
+  TinettiPOMABalanceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Tinetti Performance-Oriented Mobility Assessment (POMA) balance subscale
+      item scores and subtotal. Assesses the ability of a participant to
+      maintain balance during sitting, arising, standing, turning, and
+      responding to perturbation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:64388-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tinetti_poma
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 16
+
+  #────────────────────────────────────────────────────────────────
+  # Tinetti POMA Gait Subscale
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: POMA gait initiation, left/right step length,
+  # left/right step clearance, step symmetry, step continuity,
+  # path, trunk support, heel stance, gait subtotal
+  #────────────────────────────────────────────────────────────────
+
+  TinettiPOMAGaitRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Tinetti Performance-Oriented Mobility Assessment (POMA) gait subscale
+      item scores and subtotal. Assesses gait initiation, step length,
+      step clearance, symmetry, continuity, path deviation, trunk stability,
+      and heel stance during walking.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:64389-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tinetti_poma
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 12
+
+  #────────────────────────────────────────────────────────────────
+  # Tinetti POMA Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDE: POMA mobility total score
+  #────────────────────────────────────────────────────────────────
+
+  TinettiPOMATotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Tinetti Performance-Oriented Mobility Assessment (POMA) total score,
+      combining the balance and gait subscale scores. Used to assess fall
+      risk in older adults.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:64390-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tinetti_poma
+            data_type:
+              equals_string: integer
+            calculated_from:
+              equals_expression: "{TinettiPOMABalanceRecord} + {TinettiPOMAGaitRecord}"
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 28

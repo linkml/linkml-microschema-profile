@@ -1,0 +1,63 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_057
+name: cluster_057_cbir_cognitive_decline
+description: |-
+  Microschemas derived from CDE Cluster 057: CBI-R Cognitive Decline Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  CBIRItemFrequencyScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item frequency score from the Cambridge Behavioural Inventory Revised
+      (CBI-R), rating frequency of specific behavioral or cognitive symptoms over the
+      past month. Covers domains including memory, daily skills, self-care, abnormal
+      behavior, mood, beliefs, eating habits, sleep, stereotypic behavior, and motivation.
+      Aligned CDEs: CBI-R individual item frequency scores (e.g. poor daily memory,
+      difficulty dressing, irritable, sad/depressed, impulsive action, etc.)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: cbir_item_frequency_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  CBIRTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Cambridge Behavioural Inventory Revised (CBI-R),
+      computed as the sum of all individual item frequency scores.
+      Aligned CDEs: CBI-R total score value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: cbir_total_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 180

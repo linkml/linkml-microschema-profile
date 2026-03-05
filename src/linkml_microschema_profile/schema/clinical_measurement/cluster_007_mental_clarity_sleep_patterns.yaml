@@ -1,0 +1,139 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_007
+name: cluster_007_mental_clarity_sleep_patterns
+description: |-
+  Microschemas derived from CDE Cluster 007: Mental Clarity and Sleep Patterns Prior to Test
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Time in Bed Duration
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Spent bed hour day 2-7 before test duration
+  #────────────────────────────────────────────────────────────────
+
+  TimeInBedDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Duration of time spent in bed (in hours) on a given day before a
+      test recording date. Captures pre-test sleep-wake scheduling data
+      for days 2 through 7 prior to the test.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:65968-5
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: h
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 24
+
+  #────────────────────────────────────────────────────────────────
+  # Sleep Duration in Bed
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Spent bed sleep hours day 2-7 before test duration
+  #────────────────────────────────────────────────────────────────
+
+  SleepDurationInBedRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Duration of time spent sleeping (in hours) in bed on a given day
+      before a test recording date. Captures the actual sleep portion
+      of time in bed for days 2 through 7 prior to the test.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:93832-4
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: h
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 24
+
+  #────────────────────────────────────────────────────────────────
+  # Upright Activity Duration
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Spent upright activity hours day 2-7 before test
+  #────────────────────────────────────────────────────────────────
+
+  UprightActivityDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Duration of time spent in upright activities (in chair or standing)
+      on a given day before a test recording date. Captures waking
+      activity data for days 2 through 7 prior to the test.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:65855-4
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: h
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 24
+
+  #────────────────────────────────────────────────────────────────
+  # Mental Clarity Activity Duration
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Spent awake engage activity mental clarity day 2-7
+  #────────────────────────────────────────────────────────────────
+
+  MentalClarityActivityDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Duration of time spent while awake engaging in activities requiring
+      mental clarity on a given day before a test recording date. Captures
+      cognitive engagement data for days 2 through 7 prior to the test.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:65856-2
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: h
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 24

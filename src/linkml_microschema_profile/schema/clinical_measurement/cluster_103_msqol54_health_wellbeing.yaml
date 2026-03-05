@@ -1,0 +1,82 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_103
+name: cluster_103_msqol54_health_wellbeing
+description: |-
+  Microschemas derived from CDE Cluster 103: MSQOL-54 Health and Well-being Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # MSQOL-54 Item Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - MSQOL-54 subscales: physical function, role limitations (physical
+  #     and emotional), pain, emotional well-being, energy, health
+  #     perceptions, social function, cognitive function, health distress,
+  #     sexual function, overall QOL, satisfaction with life
+  #────────────────────────────────────────────────────────────────
+
+  MSQOL54ItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Multiple Sclerosis Quality of Life
+      Scale (MSQOL-54), a multidimensional health-related quality of life
+      measure combining the SF-36 with 18 additional MS-specific items.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71130-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MSQOL-54
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 10
+
+  #────────────────────────────────────────────────────────────────
+  # MSQOL-54 Composite Score
+  #────────────────────────────────────────────────────────────────
+
+  MSQOL54CompositeScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A composite score from the MSQOL-54, such as the physical health
+      composite or mental health composite, derived from multiple subscales.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71130-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MSQOL-54
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100

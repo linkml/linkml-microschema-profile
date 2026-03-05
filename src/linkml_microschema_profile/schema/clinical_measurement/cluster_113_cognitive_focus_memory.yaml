@@ -1,0 +1,87 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_113
+name: cluster_113_cognitive_focus_memory
+description: |-
+  Microschemas derived from CDE Cluster 113: Cognitive Focus and Memory Abilities Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Applied Cognition Abilities Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Applied Cognition Abilities items (concentration, memory,
+  #     word-finding, planning, reading, math)
+  #   - Scored 1 (Not at all) to 5 (Very much)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISCognitionAbilitiesRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Applied Cognition Abilities
+      instrument, measuring self-reported cognitive capabilities including
+      concentration, memory, word-finding, planning, and comprehension.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71946-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Applied_Cognition_Abilities
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Applied Cognition General Concerns Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Applied Cognition General Concerns items (difficulty
+  #     thinking, slow thinking, forgetfulness, mistakes)
+  #   - Neuro-QOL Cognitive Function items
+  #   - Scored 1 (Never / Very often) to 5 (Very often / Never)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISCognitionConcernsRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Applied Cognition General
+      Concerns or Neuro-QOL Cognitive Function instruments, measuring
+      self-reported frequency of cognitive difficulties including
+      forgetfulness, slow thinking, and difficulty concentrating.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71944-4
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Applied_Cognition_General_Concerns
+                - equals_string: NeuroQOL_Cognitive_Function
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

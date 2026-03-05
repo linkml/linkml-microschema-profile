@@ -1,0 +1,80 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_041
+name: cluster_041_newborn_metabolic_screening
+description: |-
+  Microschemas derived from CDE Cluster 041: Newborn Metabolic Screening Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  NewbornScreenOverallInterpretationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Overall interpretation of the newborn screening report, summarizing
+      results across all conditions tested into a single categorical outcome.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:57700-4
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: Newborn Screening Panel
+
+  NewbornScreenConditionInterpretationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Condition-specific interpretation from newborn metabolic screening,
+      covering amino acidemias, acylcarnitine/fatty acid oxidation defects,
+      organic acidemias, biotinidase deficiency, congenital adrenal
+      hyperplasia, congenital hypothyroidism, cystic fibrosis,
+      galactosemias, hemoglobin disorders, phenylketonuria/biopterin
+      defects, maple syrup urine disease, severe combined immunodeficiency,
+      and lysosomal storage disorders (Fabry, Gaucher, Krabbe, Niemann-Pick,
+      Pompe, MPS I). Each result is categorized as in range, borderline,
+      indeterminate, or out of range with further action specified.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:57086-8
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: Newborn Screening Panel
+
+  NewbornScreenCommentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Free-text comment or discussion associated with a specific condition
+      result on the newborn screening panel, providing additional clinical
+      context for screening findings.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:57087-6
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: Newborn Screening Panel

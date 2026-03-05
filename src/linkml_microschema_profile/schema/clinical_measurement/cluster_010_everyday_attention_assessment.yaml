@@ -1,0 +1,241 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_010
+name: cluster_010_everyday_attention_assessment
+description: |-
+  Microschemas derived from CDE Cluster 010: Everyday Attention Assessment (EAA)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Sky Search Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Sky search correct identified targets, attention
+  # score, time per target, dual task decrement (counts, B scores,
+  # age-scaled, percentiles, deviations)
+  #────────────────────────────────────────────────────────────────
+
+  TEAChSkySearchRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Sky Search subtest
+      scores. Measures selective attention through visual search tasks
+      including target identification, time per target, attention score,
+      and dual task decrement metrics.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172818-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Score! and Score Dual Task Subtests
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Score count, B score, age scaled, percentile,
+  # deviation; Score dual task count, B score, age scaled, percentile
+  #────────────────────────────────────────────────────────────────
+
+  TEAChScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Score! and
+      Score Dual Task subtest scores. Measures sustained attention
+      and divided attention through counting and dual-task paradigms.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172819-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Creature Counting Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Creature counting total correct, timing score
+  # (counts, B scores, age-scaled, percentiles, deviations)
+  #────────────────────────────────────────────────────────────────
+
+  TEAChCreatureCountingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Creature
+      Counting subtest scores. Measures attentional control and
+      cognitive flexibility through counting accuracy and timing.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172820-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Map Mission Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Map mission count, B score, age scaled, percentile,
+  # deviation
+  #────────────────────────────────────────────────────────────────
+
+  TEAChMapMissionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Map Mission
+      subtest scores. Measures selective attention through visual search
+      of a map for target symbols.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172821-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Opposite Worlds Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Opposite worlds same/opposite world total time,
+  # B scores, age-scaled, percentiles, deviations
+  #────────────────────────────────────────────────────────────────
+
+  TEAChOppositeWorldsRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Opposite Worlds
+      subtest scores. Measures attentional control through timed naming
+      tasks requiring inhibition (same world vs. opposite world conditions).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172822-1
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            unit:
+              any_of:
+                - equals_string: s
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Code Transmission Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Code transmission total correct (count, B score,
+  # age scaled, percentile, deviation)
+  #────────────────────────────────────────────────────────────────
+
+  TEAChCodeTransmissionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Code Transmission
+      subtest scores. Measures sustained attention through auditory
+      monitoring for correctly identified code targets.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172823-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999
+
+  #────────────────────────────────────────────────────────────────
+  # TEA-Ch Walk Don't Walk Subtest
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Walk don't walk count, B score, age scaled,
+  # percentile, deviation
+  #────────────────────────────────────────────────────────────────
+
+  TEAChWalkDontWalkRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Test of Everyday Attention for Children (TEA-Ch) Walk Don't Walk
+      subtest scores. Measures sustained attention and response inhibition
+      through go/no-go auditory tasks.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:LP172824-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: tea_ch
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 999

@@ -1,0 +1,156 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_071
+name: cluster_071_sleep_quality_assessment
+description: |-
+  Microschemas derived from CDE Cluster 071: Sleep Quality Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Pittsburgh Sleep Quality Index (PSQI)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PSQI component scores, item scores, and
+  # total score (NINDS)
+  # LOINC:54615-9 PSQI total score
+  #────────────────────────────────────────────────────────────────
+
+  PSQIItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pittsburgh Sleep Quality Index (PSQI) individual item score assessing
+      sleep disturbances such as difficulty falling asleep, waking at night,
+      bathroom use, breathing problems, coughing/snoring, feeling cold/hot,
+      bad dreams, pain, and other sleep-disturbing factors. Items rated
+      0 (Not during past month) to 3 (Three or more times a week).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PSQI_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PSQI
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 3
+
+  PSQIComponentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pittsburgh Sleep Quality Index (PSQI) component score for one of
+      seven components: subjective sleep quality, sleep latency, sleep
+      duration, habitual sleep efficiency, sleep disturbances, use of
+      sleeping medication, and daytime dysfunction. Each component
+      scored 0-3.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PSQI_component
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PSQI
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 3
+
+  PSQITotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pittsburgh Sleep Quality Index (PSQI) global/total score (range 0-21),
+      sum of all seven component scores. A score greater than 5 indicates
+      poor sleep quality.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:54615-9
+                - equals_string: PSQI_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PSQI
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 21
+
+  PSQISleepDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pittsburgh Sleep Quality Index (PSQI) actual sleep duration in hours
+      per night over the past month.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PSQI_sleep_duration
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: h
+            instrument:
+              any_of:
+                - equals_string: PSQI
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 24
+
+  PSQISleepLatencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pittsburgh Sleep Quality Index (PSQI) sleep latency, the time in
+      minutes it takes to fall asleep, over the past month.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PSQI_sleep_latency
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: min
+            instrument:
+              any_of:
+                - equals_string: PSQI
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 600

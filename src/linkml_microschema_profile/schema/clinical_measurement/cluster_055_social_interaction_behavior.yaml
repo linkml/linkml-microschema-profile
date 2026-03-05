@@ -1,0 +1,93 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_055
+name: cluster_055_social_interaction_behavior
+description: |-
+  Microschemas derived from CDE Cluster 055: Social Interaction Behavior Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  SocialInteractionBoutCountRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical count of behavioral bouts during social interaction or resident
+      intruder testing, including following, mounting, fighting, crawling over/under,
+      close proximity, sniffing, and pushing past events.
+      Aligned CDEs: number of bouts (following, mounting, fighting, crawling, proximity,
+      sniffing, pushing past)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: social_interaction_bout_count
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+
+  SocialInteractionPercentTimeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical percentage of time spent in specific social behaviors during
+      social interaction or resident intruder testing, including following, mounting,
+      crawling over/under, proximity, wrestling, and pushing past.
+      Aligned CDEs: percent time (following, mounting, crawling, proximity, wrestling,
+      pushing past)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: social_interaction_percent_time
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "%"
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100
+
+  SocialInteractionDurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical duration measurements during social interaction or resident intruder
+      testing, including fighting duration, pretest duration, rearing duration, and
+      average proximity between test and stimulus animals.
+      Aligned CDEs: fighting duration, test animal pretest duration, rearing duration,
+      average proximity, total distance traveled
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: social_interaction_duration
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: s
+                - equals_string: min
+                - equals_string: cm
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0

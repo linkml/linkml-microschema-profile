@@ -1,0 +1,56 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_099
+name: cluster_099_undefined_data
+description: |-
+  Microschemas derived from CDE Cluster 099: Undefined Data Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  FreeTextSupplementRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Generic free-text supplement fields commonly used across clinical
+      research forms. Includes "If other, please specify", "If yes, please
+      explain", general comments, descriptions, and open-ended text fields.
+      These CDEs lack structured definitions and serve as catch-all text
+      capture elements across multiple steward organizations (NICHD, LOINC,
+      RADx-UP).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: free_text_supplement
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  DemographicIdentifierRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Generic demographic and administrative identifier fields including
+      first name, provider name, county, province, language specification,
+      and other location or identity elements that do not fit structured
+      clinical measurement categories.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: demographic_identifier
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

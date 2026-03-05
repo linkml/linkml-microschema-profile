@@ -1,0 +1,117 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_112
+name: cluster_112_participation_leisure_family
+description: |-
+  Microschemas derived from CDE Cluster 112: Participant Satisfaction and Ability in Leisure and Family Activities
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Ability to Participate in SRA Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Ability to Participate in Social Roles and Activities
+  #   - Work, leisure, family, friend, community, daily routine
+  #   - Scored 1 (Never) to 5 (Always) or reversed
+  #────────────────────────────────────────────────────────────────
+
+  AbilityToParticipateSRARecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Ability to Participate
+      in Social Roles and Activities instrument, measuring self-reported
+      ability to carry out work, leisure, family, and community activities.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71954-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Ability_Participate_SRA
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Satisfaction with SRA Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Satisfaction with Social Roles and Activities
+  #   - Disappointment, bother, satisfaction with limitations
+  #   - Scored 1 (Not at all / Very much) to 5 (Very much / Not at all)
+  #────────────────────────────────────────────────────────────────
+
+  SatisfactionWithSRARecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Satisfaction with Social
+      Roles and Activities instrument, measuring satisfaction or
+      disappointment with one's ability to perform social roles.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71956-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Satisfaction_SRA
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # Neuro-QOL Fatigue Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - Neuro-QOL Fatigue items (exhaustion, tiredness, difficulty
+  #     starting/finishing tasks)
+  #   - Scored 1 (Never) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  NeuroQOLFatigueRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Neuro-QOL Fatigue instrument,
+      measuring self-reported frequency and impact of fatigue on daily
+      functioning.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70508-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NeuroQOL_Fatigue
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

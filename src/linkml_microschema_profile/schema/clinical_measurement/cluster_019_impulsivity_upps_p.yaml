@@ -1,0 +1,55 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_019
+name: cluster_019_impulsivity_upps_p
+description: |-
+  Microschemas derived from CDE Cluster 019: Risk-taking and Decision-making Tendency Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # UPPS-P Impulsive Behavior Scale (Adult)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: ~45 UPPS-P items covering five facets of impulsivity:
+  #   Negative Urgency, Positive Urgency, Lack of Premeditation,
+  #   Lack of Perseverance, Sensation Seeking
+  # All items scored on 4-point Likert scale:
+  #   Agree strongly / Agree some / Disagree some / Disagree strongly
+  #────────────────────────────────────────────────────────────────
+
+  UPPSPItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the UPPS-P Impulsive Behavior Scale
+      (adult version). Each item is rated on a 4-point Likert scale from
+      1 (Disagree strongly) to 4 (Agree strongly). The UPPS-P assesses
+      five facets of impulsivity: negative urgency, positive urgency,
+      lack of premeditation, lack of perseverance, and sensation seeking.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82667-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: upps_p_impulsive_behavior_scale
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4

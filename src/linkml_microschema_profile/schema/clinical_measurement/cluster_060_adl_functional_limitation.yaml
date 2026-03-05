@@ -1,0 +1,44 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_060
+name: cluster_060_adl_functional_limitation
+description: |-
+  Microschemas derived from CDE Cluster 060: ADL Functional Limitation Scale for Friedreich's Ataxia
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  FAISADLItemScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item score from the Activities of Daily Living (ADL) section of the
+      Friedreich's Ataxia Impact Scale (FAIS), rating how much the patient was limited
+      in specific daily activities over the past two weeks. Activities include bed movement,
+      sitting up, car movement, chair movement, dressing, bathing, eating, writing,
+      driving, walking, and other functional tasks. Scored on a 1-5 Likert scale from
+      "Not bothered at all" to "Extremely bothered".
+      Aligned CDEs: FAIS ADL (bed movement, bed sitting up, car movement, chair movement,
+      dressing, bathing, eating, writing, driving, walking, etc.) scales
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fais_adl_item_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

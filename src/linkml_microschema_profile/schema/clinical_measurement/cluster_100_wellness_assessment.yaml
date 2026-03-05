@@ -1,0 +1,141 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_100
+name: cluster_100_wellness_assessment
+description: |-
+  Microschemas derived from CDE Cluster 100: Wellness Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  MQOLPhysicalSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      McGill Quality of Life Questionnaire (MQOL) physical domain items
+      including overall physical feeling and troublesome symptom problem
+      scores rated on a 0-10 visual analog scale, plus the physical
+      subscale summary score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MQOL_physical
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+            instrument:
+              any_of:
+                - equals_string: MQOL
+
+  MQOLPsychologicalSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      McGill Quality of Life Questionnaire (MQOL) psychological domain items
+      including sadness frequency, depression, nervousness/worry, and fear
+      about the future rated on a 0-10 scale, plus the psychological
+      subscale summary score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MQOL_psychological
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+            instrument:
+              any_of:
+                - equals_string: MQOL
+
+  MQOLExistentialSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      McGill Quality of Life Questionnaire (MQOL) existential domain items
+      including life meaning, life worth, self-esteem, life control, success
+      in achieving goals, and world attitude rated on a 0-10 scale, plus
+      the existential well-being subscale summary score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MQOL_existential
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+            instrument:
+              any_of:
+                - equals_string: MQOL
+
+  MQOLSupportSubscaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      McGill Quality of Life Questionnaire (MQOL) support domain items
+      including perceived support over the past two days rated on a 0-10
+      scale, plus the support subscale summary score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MQOL_support
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+            instrument:
+              any_of:
+                - equals_string: MQOL
+
+  MQOLOverallQualityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      McGill Quality of Life Questionnaire (MQOL) overall quality of life
+      items including two-day total life quality score, two-day general
+      perception, and the MQOL total score.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MQOL_overall
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+            instrument:
+              any_of:
+                - equals_string: MQOL

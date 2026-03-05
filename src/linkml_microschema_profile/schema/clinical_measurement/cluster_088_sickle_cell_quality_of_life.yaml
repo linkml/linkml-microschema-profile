@@ -1,0 +1,93 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_088
+name: cluster_088_sickle_cell_quality_of_life
+description: |-
+  Microschemas derived from CDE Cluster 088: Sickle Cell Quality of Life Measurement System - Pain Episode and Health Impact Scale (SCL-QoL-Pain)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # ASCQ-Me Pain Episode Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ASCQ-Me pain episode crisis most recent duration code
+  #   - ASCQ-Me pain episode frequency past 12 months code
+  #   - ASCQ-Me pain episode crisis severity code
+  #   - ASCQ-Me pain medication daily indicator
+  #   - ASCQ-Me pain episode impact items (walking, bending,
+  #     climbing stairs, sleep interference, missed work/school,
+  #     daily activities, social activities)
+  #────────────────────────────────────────────────────────────────
+
+  ASCQMePainEpisodeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Pain episode and crisis assessment items from the Adult Sickle Cell
+      Quality of Life Measurement Information System (ASCQ-Me). Captures
+      pain episode frequency, duration, severity, daily pain medication
+      use, and functional impact on activities including walking, bending,
+      climbing stairs, sleep, work/school, and social participation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ascq_me
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # ASCQ-Me Sickle Cell Medical History Checklist
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ASCQ-Me blood transfusion regular indicator
+  #   - ASCQ-Me hip/shoulder damage indicator
+  #   - ASCQ-Me retinopathy indicator
+  #   - ASCQ-Me stroke indicator
+  #   - ASCQ-Me kidney damage indicator
+  #   - ASCQ-Me lung damage indicator
+  #   - ASCQ-Me leg ulcer indicator
+  #   - ASCQ-Me gallbladder removed indicator
+  #   - ASCQ-Me spleen removed indicator
+  #   - ASCQ-Me iron overload indicator
+  #────────────────────────────────────────────────────────────────
+
+  ASCQMeMedicalHistoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Sickle cell disease medical history checklist from the Adult Sickle
+      Cell Quality of Life Measurement Information System (ASCQ-Me).
+      Captures whether the subject has been told by a medical professional
+      about organ damage or complications including stroke, retinopathy,
+      kidney/lung damage, hip/shoulder damage, leg ulcers, iron overload,
+      and whether spleen or gallbladder has been removed.
+    rules:
+      - preconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: ascq_me
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean

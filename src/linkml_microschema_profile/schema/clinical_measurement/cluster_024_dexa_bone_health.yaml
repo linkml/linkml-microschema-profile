@@ -1,0 +1,208 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_024
+name: cluster_024_dexa_bone_health
+description: |-
+  Microschemas derived from CDE Cluster 024: DEXA Bone Health Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # DEXA Bone Mineral Density
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Femoral neck BMD, proximal tibia BMD, radius BMD,
+  #     total hip BMD, whole body BMD
+  #   - LOINC:38263-0 "DXA Bone density"
+  #────────────────────────────────────────────────────────────────
+
+  DexaBoneMineralDensityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Bone mineral density (BMD) value obtained via dual-energy X-ray
+      absorptiometry (DEXA) at various anatomical sites including femoral
+      neck, proximal tibia, radius, total hip, and whole body.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:38263-0
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: g/cm2
+            instrument:
+              any_of:
+                - equals_string: dexa_scanner
+            body_location:
+              any_of:
+                - equals_string: UBERON:0004187
+                - equals_string: UBERON:0007119
+                - equals_string: UBERON:0001423
+                - equals_string: UBERON:0001464
+                - equals_string: UBERON:0013702
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 3
+
+  #────────────────────────────────────────────────────────────────
+  # DEXA T-Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Distal femur T score, distal forearm T score,
+  #     hip T score, lumbar spine T score, proximal femur T score
+  #   - LOINC:80933-2 "DXA T-score"
+  #────────────────────────────────────────────────────────────────
+
+  DexaTScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      T-score from dual-energy X-ray absorptiometry (DEXA) comparing
+      patient bone density to a young healthy adult reference population
+      at various anatomical sites.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:80933-2
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "{Tscore}"
+            instrument:
+              any_of:
+                - equals_string: dexa_scanner
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: -6
+              maximum_value: 6
+
+  #────────────────────────────────────────────────────────────────
+  # DEXA Z-Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Distal femur Z score, distal forearm Z score,
+  #     hip Z score, lumbar spine Z score, proximal femur Z score
+  #   - LOINC:80934-0 "DXA Z-score"
+  #────────────────────────────────────────────────────────────────
+
+  DexaZScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Z-score from dual-energy X-ray absorptiometry (DEXA) comparing
+      patient bone density to an age-matched reference population at
+      various anatomical sites.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:80934-0
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "{Zscore}"
+            instrument:
+              any_of:
+                - equals_string: dexa_scanner
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: -6
+              maximum_value: 6
+
+  #────────────────────────────────────────────────────────────────
+  # DEXA Bone Mineral Content
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Whole body bone mineral content value
+  #   - LOINC:46278-8 "DXA Bone mineral content"
+  #────────────────────────────────────────────────────────────────
+
+  DexaBoneMineralContentRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Whole body bone mineral content (BMC) value obtained via
+      dual-energy X-ray absorptiometry (DEXA).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:46278-8
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: g
+            instrument:
+              any_of:
+                - equals_string: dexa_scanner
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 5000
+
+  #────────────────────────────────────────────────────────────────
+  # DEXA Body Composition
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Appendicular lean soft tissue, left/right arm lean,
+  #     left/right leg lean, whole body total fat, whole body total lean
+  #   - LOINC:73964-9 "DXA Body fat %"
+  #   - LOINC:73965-6 "DXA Lean mass"
+  #────────────────────────────────────────────────────────────────
+
+  DexaBodyCompositionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Body composition measurements from dual-energy X-ray
+      absorptiometry (DEXA) including total body fat percentage,
+      lean mass, and appendicular lean soft tissue values.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:73964-9
+                - equals_string: LOINC:73965-6
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "%"
+                - equals_string: g
+                - equals_string: kg
+            instrument:
+              any_of:
+                - equals_string: dexa_scanner
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100000

@@ -1,0 +1,88 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_047
+name: cluster_047_substance_use_concern_control
+description: |-
+  Microschemas derived from CDE Cluster 047: Substance Use Concern and Control Cluster (SUCC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # ASSIST Substance Use Frequency Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ASSIST Alcoholic beverage frequency (0-6 scale)
+  #   - ASSIST Amphetamine type stimulant frequency
+  #   - ASSIST Cannabis frequency
+  #   - ASSIST Cocaine frequency
+  #   - ASSIST Inhalant frequency
+  #   - ASSIST Opioid frequency
+  #   - ASSIST Sedative frequency
+  #   - ASSIST Tobacco frequency
+  #   - ASSIST Hallucinogen frequency
+  #────────────────────────────────────────────────────────────────
+
+  SubstanceUseFrequencyRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Frequency of substance use in the past 3 months as measured by the
+      Alcohol Smoking and Substance Use Involvement Screening Test (ASSIST).
+      Covers alcohol, tobacco, cannabis, cocaine, amphetamines, inhalants,
+      sedatives, hallucinogens, and opioids. Scored on a 0-6 scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: LOINC:68998-4
+                - equals_string: LOINC:68999-2
+                - equals_string: LOINC:69000-8
+                - equals_string: LOINC:69001-6
+                - equals_string: LOINC:69002-4
+      - postconditions:
+          slot_conditions:
+            frequency:
+              range: integer
+              minimum_value: 0
+              maximum_value: 8
+
+  #────────────────────────────────────────────────────────────────
+  # ASSIST Substance Use Concern Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - ASSIST Alcoholic beverage concern indicator (0, 3, 6)
+  #   - ASSIST Alcoholic beverage fail control indicator
+  #   - ASSIST Amphetamine/Cannabis/Cocaine/etc. concern indicators
+  #   - ASSIST fail control indicators for each substance
+  #   - ASSIST problem frequency for each substance
+  #────────────────────────────────────────────────────────────────
+
+  SubstanceUseConcernRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Record of concern about and failed control of substance use from the
+      ASSIST screening tool. Captures whether others have expressed concern
+      about use, whether the participant has failed to control use, and
+      whether use has led to health, social, legal, or financial problems.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: LOINC:69003-2
+                - equals_string: LOINC:69004-0
+      - postconditions:
+          slot_conditions:
+            indication:
+              any_of:
+                - equals_string: LOINC:68998-4

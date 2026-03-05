@@ -1,0 +1,43 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_040
+name: cluster_040_big_five_personality
+description: |-
+  Microschemas derived from CDE Cluster 040: Artistic and Assertive Clarity
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  BigFiveInventoryItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual item response from the Big Five Inventory (BFI), a
+      self-report personality questionnaire assessing five broad dimensions:
+      Extraversion, Agreeableness, Conscientiousness, Neuroticism, and
+      Openness to Experience. Each item uses a 5-point Likert scale
+      (Strongly disagree to Strongly agree).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:82673-6
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+            instrument:
+              equals_string: BFI

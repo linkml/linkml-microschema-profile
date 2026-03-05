@@ -1,0 +1,176 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_059
+name: cluster_059_ataxia_functional_assessment
+description: |-
+  Microschemas derived from CDE Cluster 059: Ataxia Functional Assessment Cluster (AFAC)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  FARSDailyActivityScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Daily activities functional score from the Friedreich's Ataxia Rating Scale
+      (FARS), rating ability in speech, swallowing, cutting food, dressing, personal
+      hygiene, falling, and walking on a 0-4 scale.
+      Aligned CDEs: FARS daily activities (speech, swallowing, cutting/utensils, dressing,
+      personal hygiene, falling, walking) scores
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_daily_activity_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  FARSBulbarExamScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Bulbar examination subscore from the Friedreich's Ataxia Rating Scale (FARS)
+      neurological exam, including spontaneous speech, cough, facial and tongue
+      atrophy/fasciculation/weakness scores.
+      Aligned CDEs: FARS bulbar (spontaneous speech, cough, facial atrophy, tongue atrophy)
+      scores and bulbar total value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_bulbar_exam_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 11
+
+  FARSUpperLimbCoordinationScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Upper limb coordination subscore from the Friedreich's Ataxia Rating Scale (FARS)
+      neurological exam, including finger taps, finger-to-finger test, nose-to-finger
+      test, and rapid alternating hand movement scores.
+      Aligned CDEs: FARS upper limb coordination (finger taps, finger-finger, nose-finger,
+      rapid alternating hand movement) left/right scores and total value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_upper_limb_coordination_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 18
+
+  FARSLowerLimbCoordinationScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Lower limb coordination subscore from the Friedreich's Ataxia Rating Scale (FARS)
+      neurological exam, including heel-along-shin slide test scores.
+      Aligned CDEs: FARS lower limb coordination (heel shin slide left/right) scores
+      and total value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_lower_limb_coordination_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 8
+
+  FARSUprightStabilityScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Upright stability subscore from the Friedreich's Ataxia Rating Scale (FARS)
+      neurological exam, including sitting posture, gait, tandem stance, feet-together
+      stance, feet-apart stance, and dominant-foot stance scores.
+      Aligned CDEs: FARS upright stability (sitting posture, gait, tandem/feet-together/
+      feet-apart/dominant-foot stance) scores and total value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_upright_stability_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 28
+
+  FARSPeripheralNervousSystemScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Peripheral nervous system subscore from the Friedreich's Ataxia Rating Scale
+      (FARS) neurological exam, including deep tendon reflexes, vibratory sense,
+      muscle atrophy, and muscle weakness scores.
+      Aligned CDEs: FARS peripheral nervous system (DTR, vibratory sense, muscle atrophy,
+      muscle weakness) left/right scores and total value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_peripheral_nervous_system_score
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 26
+
+  FARSInstrumentalTestRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Instrumental testing results from the Friedreich's Ataxia Rating Scale (FARS),
+      including PATA rate test counts and 9-hole peg test duration.
+      Aligned CDEs: FARS instrumental testing (PATA trial 1/2 count, 9-hole peg test
+      left/right trial 1/2 duration, left mean duration, right mean duration)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: fars_instrumental_test
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0

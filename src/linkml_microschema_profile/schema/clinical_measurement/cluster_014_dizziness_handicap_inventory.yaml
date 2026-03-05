@@ -1,0 +1,133 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_014
+name: cluster_014_dizziness_handicap_inventory
+description: |-
+  Microschemas derived from CDE Cluster 014: DHI Emotional and Functional Impact Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Dizziness Handicap Inventory (DHI) - Total Score
+  # CDEs: DHI total score combining emotional, functional, physical domains
+  # LOINC: 72102-0 "Dizziness Handicap Inventory"
+  #────────────────────────────────────────────────────────────────
+  DizzinessHandicapTotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score from the Dizziness Handicap Inventory (DHI), quantifying
+      the combined emotional, functional, and physical impact of dizziness
+      on daily life. Total score ranges from 0 to 100.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72102-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: dizziness_handicap_inventory
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 100
+
+  #────────────────────────────────────────────────────────────────
+  # DHI Emotional Subscore
+  # CDEs: fear, depression, frustration, embarrassment, relationship stress
+  #────────────────────────────────────────────────────────────────
+  DizzinessHandicapEmotionalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Emotional domain subscore of the Dizziness Handicap Inventory (DHI),
+      capturing impact on emotional well-being including depression,
+      frustration, fear, and embarrassment. Subscore ranges from 0 to 36.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72103-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: dizziness_handicap_inventory
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 36
+
+  #────────────────────────────────────────────────────────────────
+  # DHI Functional Subscore
+  # CDEs: job interference, reading difficulty, walking, travel restriction
+  #────────────────────────────────────────────────────────────────
+  DizzinessHandicapFunctionalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Functional domain subscore of the Dizziness Handicap Inventory (DHI),
+      capturing impact on daily functional activities including reading,
+      walking, job/household tasks, and social activities.
+      Subscore ranges from 0 to 36.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72104-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: dizziness_handicap_inventory
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 36
+
+  #────────────────────────────────────────────────────────────────
+  # DHI Physical Subscore
+  # CDEs: head movement, bending, looking up, turning in bed
+  #────────────────────────────────────────────────────────────────
+  DizzinessHandicapPhysicalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Physical domain subscore of the Dizziness Handicap Inventory (DHI),
+      capturing impact of physical movements and positions on dizziness
+      including head movements, bending, looking up, and turning in bed.
+      Subscore ranges from 0 to 28.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72105-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: dizziness_handicap_inventory
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 28

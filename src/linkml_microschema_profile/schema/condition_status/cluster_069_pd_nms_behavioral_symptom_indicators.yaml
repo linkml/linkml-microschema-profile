@@ -1,0 +1,120 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_069
+name: cluster_069_pd_nms_behavioral_symptom_indicators
+description: |-
+  Microschemas derived from CDE Cluster 069: PD NMS Behavioral Symptom Indicators
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Parkinson's Disease Non Motor Symptoms (PD NMS) Questionnaire
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PD NMS yes/no symptom indicators for
+  # neuropsychiatric, autonomic, sleep, sensory, and
+  # gastrointestinal symptom domains (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  PDNMSNeuropsychiatricIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      PD NMS questionnaire indicator for neuropsychiatric symptoms
+      experienced in the last month, including apathy, delusions,
+      hallucinations, anxiety, depression, and concentration difficulty.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: PD_NMS_neuropsychiatric
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PD_NMS_Questionnaire
+
+  PDNMSSleepIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      PD NMS questionnaire indicator for sleep-related symptoms
+      experienced in the last month, including insomnia, daytime
+      sleepiness, vivid dreams, restless legs, and sleep-related
+      movement or vocalizations.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: PD_NMS_sleep
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PD_NMS_Questionnaire
+
+  PDNMSAutonomicIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      PD NMS questionnaire indicator for autonomic symptoms
+      experienced in the last month, including orthostatic dizziness,
+      urinary urgency, nocturia, excessive sweating, dysphagia,
+      drooling, nausea, constipation, bowel incontinence, and
+      leg swelling.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: PD_NMS_autonomic
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PD_NMS_Questionnaire
+
+  PDNMSSensoryIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      PD NMS questionnaire indicator for sensory symptoms
+      experienced in the last month, including unexplained pain,
+      loss of taste/smell, double vision, and unexplained weight change.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: PD_NMS_sensory
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PD_NMS_Questionnaire
+
+  PDNMSSexualFunctionIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      PD NMS questionnaire indicator for sexual function symptoms
+      experienced in the last month, including changes in
+      sexual interest and difficulty with sexual activity.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: PD_NMS_sexual_function
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PD_NMS_Questionnaire

@@ -1,0 +1,57 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_108
+name: cluster_108_smoking_coping_behavior
+description: |-
+  Microschemas derived from CDE Cluster 108: Smoking Coping Behavior Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Smoking Coping Expectancies Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Smoking Coping Expectancies items
+  #   - PROMIS Smoking Emotional/Sensory Expectancies items
+  #   - PROMIS Smoking Social Motivations items
+  #   - PROMIS Smoking Nicotine Dependence items
+  #   - Various Likert scales (1-5)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISSmokingCopingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Smoking measures, including
+      Coping Expectancies, Emotional/Sensory Expectancies, Social
+      Motivations, and Nicotine Dependence subscales, assessing smoking
+      behaviors and motivations.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72028-5
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Smoking_Coping_Expectancies
+                - equals_string: PROMIS_Smoking_Emotional_Sensory
+                - equals_string: PROMIS_Smoking_Social_Motivations
+                - equals_string: PROMIS_Smoking_Nicotine_Dependence
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

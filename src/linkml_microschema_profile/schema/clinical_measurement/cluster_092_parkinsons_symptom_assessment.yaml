@@ -1,0 +1,143 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_092
+name: cluster_092_parkinsons_symptom_assessment
+description: |-
+  Microschemas derived from CDE Cluster 092: Parkinson's Symptom Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  UPDRSMotorExaminationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      MDS-UPDRS Part III motor examination items including finger tapping,
+      hand movements, pronation-supination, toe tapping, leg agility, gait,
+      arising from chair, postural stability, rigidity, and tremor assessments
+      scored on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MDS_UPDRS_motor_exam
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: MDS_UPDRS
+
+  UPDRSNonMotorExperienceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      MDS-UPDRS Part I non-motor experiences of daily living including
+      cognitive impairment, hallucinations, depressed mood, anxious mood,
+      apathy, dopamine dysregulation syndrome, sleep problems, pain,
+      urinary problems, constipation, lightheadedness, and fatigue scored
+      on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MDS_UPDRS_non_motor
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: MDS_UPDRS
+
+  UPDRSMotorExperienceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      MDS-UPDRS Part II motor experiences of daily living including speech,
+      saliva/drooling, eating tasks, dressing, hygiene, handwriting, walking,
+      balance, freezing, and tremor as reported by the patient scored on a
+      0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MDS_UPDRS_motor_experience
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: MDS_UPDRS
+
+  UPDRSMotorComplicationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      MDS-UPDRS Part IV motor complications including time spent with
+      dyskinesias, functional impact of dyskinesias, time spent in OFF state,
+      functional impact of fluctuations, and complexity of motor fluctuations
+      scored on a 0-4 severity scale.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MDS_UPDRS_motor_complication
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+            instrument:
+              any_of:
+                - equals_string: MDS_UPDRS
+
+  HoehnYahrStageRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Hoehn and Yahr staging of Parkinson's disease severity from
+      stage 0 (asymptomatic) through stage 5 (wheelchair bound or bedridden).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:77717-2
+                - equals_string: Hoehn_Yahr_stage
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+            instrument:
+              any_of:
+                - equals_string: MDS_UPDRS

@@ -1,0 +1,75 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_012
+name: cluster_012_child_environment_participation
+description: |-
+  Microschemas derived from CDE Cluster 012: Support and Environment Assessment for Children and Youth (SEACY)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Child and Adolescent Scale of Environment (CASE)
+  # CDEs: CASE composite scores, item-level scores, summary scores
+  #────────────────────────────────────────────────────────────────
+  ChildEnvironmentScaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Assessment of environmental barriers and supports for children and
+      adolescents using the Child and Adolescent Scale of Environment (CASE).
+      Captures composite scores, subsection scores, and summary scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:98148-8
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: case_child_adolescent_scale_of_environment
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100
+
+  #────────────────────────────────────────────────────────────────
+  # Child and Adolescent Scale of Participation (CASP)
+  # CDEs: CASP participation scales across home, school, community domains
+  #────────────────────────────────────────────────────────────────
+  ChildParticipationScaleRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Assessment of participation levels for children and adolescents across
+      home, school, and community domains using the Child and Adolescent
+      Scale of Participation (CASP). Items rated on a 1-4 scale from
+      unable to age-expected participation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:98149-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: casp_child_adolescent_scale_of_participation
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 4

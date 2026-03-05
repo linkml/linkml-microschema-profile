@@ -1,0 +1,103 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_058
+name: cluster_058_headache_survey_household
+description: |-
+  Microschemas derived from CDE Cluster 058: Headache Survey Household Data (HSHD)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  HeadacheDiagnosisRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Headache diagnosis type and migraine status from the Headache Screening Survey
+      (HSS), including headache type classification and whether severe headaches are
+      considered migraines.
+      Aligned CDEs: headache diagnosis type, severe headache considered migraine indicator,
+      migraine diagnosis age value, severe headache began age value
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: headache_diagnosis
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: UNKNOWN
+
+  HeadacheFrequencyRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Headache occurrence frequency from the Headache Screening Survey (HSS),
+      capturing household member headache frequency per week, month, and year,
+      and number of headache days in the last 3 months.
+      Aligned CDEs: headache occurrence week/month/year frequency, headache last 3 month days count
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: headache_frequency
+      - postconditions:
+          slot_conditions:
+            condition_severity:
+              any_of:
+                - equals_string: MILD
+                - equals_string: MODERATE
+                - equals_string: SEVERE
+
+  HeadacheImpactRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Headache impact on daily functioning from the Headache Screening Survey (HSS),
+      including missed work/school days, reduced productivity days, missed activity
+      days, and inability to do household work.
+      Aligned CDEs: missed work/school day count, reduced productivity day count,
+      missed activity day count, no household work day count, headache unable to work scale
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: headache_impact
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+
+  HeadacheTreatmentRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Headache treatment information from the Headache Screening Survey (HSS),
+      including treatment type, emergency care utilization, and medication usage.
+      Aligned CDEs: severe headaches treatment type, severe headache emergency care indicator,
+      severe headache previous medication indicator, other current daily medication type/occurrence
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: headache_treatment
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+                - equals_string: HISTORICAL

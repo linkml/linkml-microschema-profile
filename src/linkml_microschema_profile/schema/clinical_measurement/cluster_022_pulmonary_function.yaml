@@ -1,0 +1,220 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_022
+name: cluster_022_pulmonary_function
+description: |-
+  Microschemas derived from CDE Cluster 022: Pulmonary Function Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # FEV1 - Forced Expiratory Volume in 1 Second
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: FEV1 (LOINC:20150-9), FEV1 pre-BD, FEV1 post-BD,
+  #   FEV1 predicted, FEV1 % predicted, FEV1 % baseline
+  #────────────────────────────────────────────────────────────────
+
+  FEV1Record:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Forced expiratory volume in one second (FEV1), the volume of air
+      that can be forcibly exhaled in the first second of a forced
+      expiratory maneuver. Includes pre- and post-bronchodilator variants.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:20150-9
+                - equals_string: LOINC:20157-4
+                - equals_string: LOINC:20155-8
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+
+  FEV1PercentPredictedRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Forced expiratory volume in one second expressed as a percentage
+      of the predicted normal value for age, sex, height, and ethnicity.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:20152-5
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "%"
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+
+  #────────────────────────────────────────────────────────────────
+  # FVC - Forced Vital Capacity
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: FVC (LOINC:19868-9), FVC pre-BD, FVC post-BD,
+  #   FVC predicted
+  #────────────────────────────────────────────────────────────────
+
+  FVCRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Forced vital capacity (FVC), the total volume of air that can be
+      forcibly exhaled during a maximal expiratory effort from a position
+      of maximal inhalation. Includes pre- and post-bronchodilator variants.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:19868-9
+                - equals_string: LOINC:19876-2
+                - equals_string: LOINC:19874-7
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            context:
+              any_of:
+                - equals_string: before_bronchodilator
+                - equals_string: after_bronchodilator
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+
+  #────────────────────────────────────────────────────────────────
+  # FEV1/FVC Ratio
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: FEV1/FVC ratio (LOINC:19926-5), FEV1/FVC % predicted
+  #────────────────────────────────────────────────────────────────
+
+  FEV1FVCRatioRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Ratio of forced expiratory volume in one second to forced vital
+      capacity (FEV1/FVC), expressed as a percentage. This ratio is a
+      key diagnostic indicator for obstructive vs restrictive lung disease.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:19926-5
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: "%"
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 100
+            calculated_from:
+              equals_expression: "{FEV1Record} / {FVCRecord} * 100"
+
+  #────────────────────────────────────────────────────────────────
+  # FEF25-75% - Forced Expiratory Flow
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: FEF25-75 (LOINC:19874-7), FEF25%, FEF50%
+  #────────────────────────────────────────────────────────────────
+
+  FEFRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Forced expiratory flow rate, including FEF25-75% (mid-expiratory
+      flow), FEF25%, and FEF50%. These measure airflow at specific
+      points during forced exhalation and are sensitive markers of
+      small airway obstruction.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:19872-1
+                - equals_string: LOINC:19870-5
+                - equals_string: LOINC:19871-3
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L/s
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 20
+
+  #────────────────────────────────────────────────────────────────
+  # FEV6 - Forced Expiratory Volume in 6 Seconds
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: FEV6, FEV6 predicted, FEV1/FEV6 predicted
+  #────────────────────────────────────────────────────────────────
+
+  FEV6Record:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Forced expiratory volume in six seconds (FEV6), used as an
+      approximate surrogate for FVC when the subject does not exhale
+      completely. Includes the FEV1/FEV6 ratio as a diagnostic alternative.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:19932-3
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: L
+                - equals_string: mL
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10

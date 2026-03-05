@@ -1,0 +1,142 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_073
+name: cluster_073_concussion_memory_evaluation
+description: |-
+  Microschemas derived from CDE Cluster 073: Concussion Assessment and Memory Evaluation (CAME)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Military Acute Concussion Evaluation (MACE)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: MACE orientation, immediate memory, concentration,
+  # delayed recall, and total scores across forms A, B, C (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  MACEOrientationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military Acute Concussion Evaluation (MACE) orientation total score
+      (0-5), assessing knowledge of month, date, day of week, year, and time.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MACE_orientation
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  MACEImmediateMemoryRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military Acute Concussion Evaluation (MACE) immediate memory total
+      score (0-15), assessing recall of five words across three trials.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MACE_immediate_memory
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 15
+
+  MACEConcentrationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military Acute Concussion Evaluation (MACE) concentration total
+      score (0-5), assessing reverse digit span and reverse months.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MACE_concentration
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  MACEDelayedRecallRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military Acute Concussion Evaluation (MACE) delayed recall total
+      score (0-5), assessing recall of five words after a delay.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MACE_delayed_recall
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5
+
+  MACETotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Military Acute Concussion Evaluation (MACE) total score (0-30),
+      sum of orientation, immediate memory, concentration, and delayed
+      recall scores. Scores below 25 suggest possible concussion.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: MACE_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: MACE
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 30

@@ -1,0 +1,106 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_033
+name: cluster_033_electroretinography
+description: |-
+  Microschemas derived from CDE Cluster 033: Standardized ERG Data Collection Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  ErgWaveAmplitudeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Wave amplitude measurement from electroretinography (ERG), including
+      a-wave, b-wave, and flicker response amplitudes for left or right
+      retina under dark-adapted or light-adapted conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79894-2
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: uV
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 1000
+            instrument:
+              equals_string: ERG
+
+  ErgWaveImplicitTimeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Wave implicit time measurement from ERG, including a-wave, b-wave,
+      and flicker response implicit times for left or right retina under
+      dark-adapted or light-adapted conditions.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79895-9
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: ms
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 200
+            instrument:
+              equals_string: ERG
+
+  ErgOscillatoryPotentialsRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Oscillatory potentials finding from ERG for left or right retina,
+      recording presence/absence and waveform normality.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79896-7
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: ERG
+
+  ErgOverallInterpretationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Overall study interpretation of ERG results for left or right retina,
+      including full-field and multifocal results classification.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79897-5
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: string
+            instrument:
+              equals_string: ERG

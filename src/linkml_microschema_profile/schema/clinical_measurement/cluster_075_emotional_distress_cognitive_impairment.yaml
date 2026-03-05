@@ -1,0 +1,110 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_075
+name: cluster_075_emotional_distress_cognitive_impairment
+description: |-
+  Microschemas derived from CDE Cluster 075: Emotional Distress and Cognitive Impairment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Brief Symptom Inventory-18 (BSI-18)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: BSI-18 somatization, depression, and anxiety
+  # item scores (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  BSI18ItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Brief Symptom Inventory-18 (BSI-18) individual item distress score
+      rated from 0 (Not at all) to 4 (Extremely). Items assess
+      somatization (nausea, weakness, numbness), depression (feeling blue,
+      worthless, no interest), and anxiety (nervousness, fearfulness,
+      tension, panic, suddenly scared).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: BSI18_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: BSI-18
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  #────────────────────────────────────────────────────────────────
+  # Neurobehavioral Symptom Inventory (NSI)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: NSI vestibular, somatic, cognitive, and
+  # affective symptom item scores (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  NSIItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Neurobehavioral Symptom Inventory (NSI) individual item impairment
+      score rated from 0 (None) to 4 (Very severe). Items assess
+      vestibular (dizziness, balance, coordination), somatic (headaches,
+      nausea, vision, hearing, light/noise sensitivity, numbness,
+      taste/smell), cognitive (concentration, memory, slowed thinking,
+      decision-making), and affective (fatigue, sleep, depression,
+      anxiety, irritability, frustration, appetite) domains.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NSI_item
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NSI
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4
+
+  NSITotalRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Neurobehavioral Symptom Inventory (NSI) total score (range 0-88),
+      sum of all 22 item scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: NSI_total
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: NSI
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 88

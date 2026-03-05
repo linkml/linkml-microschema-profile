@@ -1,0 +1,103 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_067
+name: cluster_067_behavioral_disturbances_assessment
+description: |-
+  Microschemas derived from CDE Cluster 067: Behavioral Disturbances Assessment - Short Form (BDAS)
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Problem Behaviours Assessment - Short Form (PBA-S)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: PBA-S frequency, severity, and worst scores
+  # for behavioral and psychiatric symptoms (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  PBASFrequencyRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PBA-S frequency score for a behavioral symptom domain, rated from
+      0 (Never/almost never) to 4 (Daily/almost daily).
+      Domains include depressed mood, irritability, anxiety, apathy,
+      perseverative thinking, obsessive-compulsive behaviors,
+      angry/aggressive behavior, delusions/paranoid thinking,
+      hallucinations, disoriented behavior, and suicidal ideation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PBAS_frequency
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PBA-S
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 9
+
+  PBASSeverityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PBA-S severity score for a behavioral symptom domain, rated from
+      0 (absent/normal) to 4 (most severe).
+      Domains include depressed mood, irritability, anxiety, apathy,
+      perseverative thinking, obsessive-compulsive behaviors,
+      angry/aggressive behavior, delusions/paranoid thinking,
+      hallucinations, disoriented behavior, and suicidal ideation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PBAS_severity
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PBA-S
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 9
+
+  PBASWorstRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      PBA-S worst score for a behavioral symptom domain since last assessment,
+      rated from 0 (absent/normal) to 4 (most severe).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: PBAS_worst
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PBA-S
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 9

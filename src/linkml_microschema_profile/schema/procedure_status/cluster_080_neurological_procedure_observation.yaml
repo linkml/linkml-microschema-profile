@@ -1,0 +1,101 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_080
+name: cluster_080_neurological_procedure_observation
+description: |-
+  Microschemas derived from CDE Cluster 080: Neurological Procedure and Observation Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # EEG Procedure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - EEG activating procedures, artifact, behavioral state,
+  #     data purpose, duration, electrode type, ictal onset,
+  #     interictal discharge, and numerous other EEG-related
+  #     free-text specification fields
+  #────────────────────────────────────────────────────────────────
+
+  EEGProcedureRecord:
+    is_a: ProcedureStatusRecord
+    description: >-
+      Electroencephalography (EEG) procedure details, including activating
+      procedures, electrode types, ictal and interictal findings, seizure
+      onset patterns, and recording parameters. This record captures the
+      many supplemental free-text specification fields associated with
+      EEG studies in neurological research.
+    rules:
+      - preconditions:
+          slot_conditions:
+            procedure_type:
+              any_of:
+                - equals_string: electroencephalography
+                - equals_string: EEG
+
+  #────────────────────────────────────────────────────────────────
+  # Neuroimaging Procedure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Imaging acquisition type/reason, modality, scanner info,
+  #     anatomic site, contrast agent, pulse sequence, diffusion,
+  #     brain volume, lesion findings, MEG-related fields, and
+  #     numerous other imaging free-text specification fields
+  #────────────────────────────────────────────────────────────────
+
+  NeuroimagingProcedureRecord:
+    is_a: ProcedureStatusRecord
+    description: >-
+      Neuroimaging procedure details including MRI, CT, PET, MEG, and
+      other imaging modalities used in neurological assessment. Captures
+      acquisition parameters, scanner information, anatomic targets,
+      contrast agents, analysis methods, and incidental findings.
+    rules:
+      - preconditions:
+          slot_conditions:
+            procedure_type:
+              any_of:
+                - equals_string: neuroimaging
+                - equals_string: MRI
+                - equals_string: CT
+                - equals_string: PET
+                - equals_string: MEG
+
+  #────────────────────────────────────────────────────────────────
+  # Neurosurgical Procedure Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Animal pre/post-injury surgical procedure type
+  #   - Intracranial procedure type
+  #   - Stroke surgical/therapeutic procedure type
+  #   - Surgery post-operative complications
+  #   - Surgical complications intra/post-operative
+  #   - Surgical history, procedure anatomic site
+  #────────────────────────────────────────────────────────────────
+
+  NeurosurgicalProcedureRecord:
+    is_a: ProcedureStatusRecord
+    description: >-
+      Neurosurgical and therapeutic procedures including intracranial
+      surgeries, stroke interventions, cardiac surgeries, and related
+      intra-operative and post-operative complications. Covers both
+      animal model and human clinical surgical procedures.
+    rules:
+      - preconditions:
+          slot_conditions:
+            procedure_type:
+              any_of:
+                - equals_string: neurosurgery
+                - equals_string: intracranial_procedure
+                - equals_string: cardiac_surgery
+                - equals_string: stroke_therapeutic_procedure

@@ -1,0 +1,87 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_053
+name: cluster_053_neurophysical_assessment
+description: |-
+  Microschemas derived from CDE Cluster 053: Neurophysical Assessment Status Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Neurological Examination Status Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Cerebellar summary assessment status (Normal/Abnormal/Exam not done)
+  #   - Cerebellar finger-nose-finger assessment status
+  #   - Cerebellar gait assessment status
+  #   - Cranial nerve summary assessment status
+  #   - Motor summary assessment status
+  #   - Reflexes summary assessment status
+  #   - Sensory summary assessment status
+  #────────────────────────────────────────────────────────────────
+
+  NeurologicalExaminationStatusRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Neurological examination status assessment recording whether specific
+      components of the neurological exam (cerebellar, cranial nerves, motor,
+      reflexes, sensory) are Normal, Abnormal, or not performed. Individual
+      cerebellar sub-assessments (finger-nose-finger, gait, heel-knee-shin,
+      rapid alternating movements) are also captured.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70187-7
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum
+
+  #────────────────────────────────────────────────────────────────
+  # Physical Examination Status Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Abdomen summary assessment status
+  #   - Ears summary assessment status
+  #   - Extremities summary assessment status
+  #   - Eyes summary assessment status
+  #   - Head summary assessment status
+  #   - Heart summary assessment status
+  #   - Lungs summary assessment status
+  #   - Lymph nodes summary assessment status
+  #   - Musculoskeletal summary assessment status
+  #   - Neck summary assessment status
+  #   - Nose summary assessment status
+  #   - Skin summary assessment status
+  #   - Throat summary assessment status
+  #────────────────────────────────────────────────────────────────
+
+  PhysicalExaminationStatusRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      General physical examination status assessment recording whether body
+      system examinations (abdomen, ears, extremities, eyes, head, heart,
+      lungs, lymph nodes, musculoskeletal, neck, nose, skin, throat) are
+      Normal, Abnormal, or not performed.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70188-5
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: enum

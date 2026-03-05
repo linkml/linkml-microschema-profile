@@ -1,0 +1,58 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_034
+name: cluster_034_child_psychiatric_assessment
+description: |-
+  Microschemas derived from CDE Cluster 034: KSADS-PL Child Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  KsadsDiagnosisRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Psychiatric diagnosis record from the Kiddie Schedule for Affective
+      Disorders and Schizophrenia - Present and Lifetime Version (K-SADS-PL),
+      capturing lifetime diagnoses, episode certainty, and onset information
+      for conditions including mood disorders, anxiety disorders, psychotic
+      disorders, behavioral disorders, substance use, and tic disorders.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: K-SADS-PL Lifetime Diagnosis
+      - postconditions:
+          slot_conditions:
+            instrument:
+              equals_string: K-SADS-PL
+            condition_provenance:
+              equals_string: clinician-assessed
+
+  KsadsGlobalFunctioningRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Children's Global Assessment Scale (CGAS) scores recorded as part of
+      the K-SADS-PL, capturing current functioning, past year highest
+      functioning, and most severe past episode functioning scores.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: CGAS Functional Assessment
+      - postconditions:
+          slot_conditions:
+            instrument:
+              equals_string: K-SADS-PL / CGAS
+            condition_provenance:
+              equals_string: clinician-assessed

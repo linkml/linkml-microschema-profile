@@ -1,0 +1,76 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_017
+name: cluster_017_pronunciation_proficiency
+description: |-
+  Microschemas derived from CDE Cluster 017: Pronunciation Proficiency Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Wechsler Test of Adult Reading (WTAR) - Total Score
+  # CDEs: raw score, standard score, cumulative percentage
+  # LOINC: 70226-9 "WTAR"
+  #────────────────────────────────────────────────────────────────
+  WTARTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Summary scores from the Wechsler Test of Adult Reading (WTAR),
+      including raw score (number of correctly pronounced words out of 50),
+      standard score, and cumulative percentage. Used as an estimate
+      of premorbid intellectual functioning.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70226-9
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wtar_wechsler_test_of_adult_reading
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 50
+
+  #────────────────────────────────────────────────────────────────
+  # WTAR Individual Word Pronunciation Items
+  # CDEs: individual word pronunciation scores (0=incorrect, 1=correct)
+  #────────────────────────────────────────────────────────────────
+  WTARWordPronunciationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Individual word pronunciation item score from the Wechsler Test
+      of Adult Reading (WTAR). Each item scores 0 (incorrect) or 1
+      (correct pronunciation) for a specific English word.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:70227-7
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: wtar_wechsler_test_of_adult_reading
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 1

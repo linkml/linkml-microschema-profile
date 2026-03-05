@@ -1,0 +1,79 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_043
+name: cluster_043_ccb_medication_history
+description: |-
+  Microschemas derived from CDE Cluster 043: CCB Medication Start/Stop History Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # Calcium Channel Blocker (CCB) Medication Exposure
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Age started/stopped regularly taking CCB medication periods 1-3
+  #   - Currently taking CCB medication indicator
+  #   - Taken Amlodipine/Norvasc, Felodipine/Plendil, Isradipine/Dynacirc indicators
+  #   - Year not regularly taking CCB medication indicator
+  #────────────────────────────────────────────────────────────────
+
+  CalciumChannelBlockerExposureRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Record of calcium channel blocker (CCB) medication exposure history,
+      including start/stop ages across multiple periods, as captured by the
+      Risk Factor Questionnaire (RFQ) for NSAIDs and CCBs.
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: RxNorm:17767
+                - equals_string: RxNorm:3443
+                - equals_string: RxNorm:33910
+                - equals_string: RxNorm:51091
+      - postconditions:
+          slot_conditions:
+            route_of_administration:
+              any_of:
+                - equals_string: oral
+
+  #────────────────────────────────────────────────────────────────
+  # NSAID Medication Exposure
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Age started/stopped regularly taking aspirin
+  #   - Age started/stopped regularly taking ibuprofen-based medication
+  #   - Age started/stopped regularly taking anti-inflammatory medications
+  #   - Pills per week values for aspirin, ibuprofen, anti-inflammatory
+  #   - Currently taking aspirin/ibuprofen/anti-inflammatory indicators
+  #────────────────────────────────────────────────────────────────
+
+  NsaidExposureRecord:
+    is_a: DrugStatusRecord
+    description: >-
+      Record of NSAID medication exposure history, including aspirin and
+      ibuprofen-based medications, with start/stop ages and weekly pill
+      counts, as captured by the Risk Factor Questionnaire (RFQ).
+    rules:
+      - preconditions:
+          slot_conditions:
+            drug_type:
+              any_of:
+                - equals_string: RxNorm:1191
+                - equals_string: RxNorm:5640
+      - postconditions:
+          slot_conditions:
+            route_of_administration:
+              any_of:
+                - equals_string: oral

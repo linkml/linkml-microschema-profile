@@ -1,0 +1,78 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_061
+name: cluster_061_child_violence_exposure
+description: |-
+  Microschemas derived from CDE Cluster 061: Child Violence Exposure Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  LTVHDirectViolenceExposureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Indicator of direct exposure to violence from the Lifetime Trauma and
+      Victimization History (LTVH) instrument, capturing whether the child has
+      personally experienced violence including being shot at, stabbed, assaulted
+      with a weapon, hurt by a weapon, threatened, or involved in a serious accident.
+      Aligned CDEs: child shot/stabbed, child hurt by weapon, child threatened,
+      assaulted weapon, child serious accident, combat experience
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ltvh_direct_violence_exposure
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+
+  LTVHWitnessedViolenceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Indicator of witnessed violence from the Lifetime Trauma and Victimization
+      History (LTVH) instrument, capturing whether the child has witnessed acts of
+      violence including murder, threats, sexual attacks, and physical harm to others.
+      Aligned CDEs: child witnessed murder, child witnessed threats, child witnessed
+      sexual attack, child anyone murdered, child known someone murdered, have you
+      ever seen someone murdered or seriously injured, have you ever seen another
+      person physically harmed
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ltvh_witnessed_violence
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean
+
+  LTVHViolenceImpactRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Indicator of psychological impact of violence exposure from the LTVH instrument,
+      including whether the child could not stop what was happening, felt they might
+      die, or was injured as a result of violence.
+      Aligned CDEs: child could not stop, exposure to violence injury, exposure to
+      violence might die, child suicide, child war
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ltvh_violence_impact
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: boolean

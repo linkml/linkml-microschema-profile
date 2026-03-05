@@ -1,0 +1,158 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_029
+name: cluster_029_nihss_neurological_assessment
+description: |-
+  Microschemas derived from CDE Cluster 029: Pediatric NIHSS Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # NIHSS Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - NIHSS severity total score
+  #   - LOINC:72089-6 "NIHSS Total score"
+  #────────────────────────────────────────────────────────────────
+
+  NihssTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total severity score from the National Institutes of Health
+      Stroke Scale (NIHSS), a 15-item neurological examination tool
+      measuring stroke severity. Scores range from 0 (no deficits)
+      to 42 (severe stroke).
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72089-6
+            instrument:
+              any_of:
+                - equals_string: nihss
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 42
+
+  #────────────────────────────────────────────────────────────────
+  # Pediatric NIHSS Total Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - PedNIHSS items: level of consciousness (primary, secondary,
+  #     tertiary), best gaze, visual field, facial palsy, motor arm,
+  #     motor leg, limb ataxia, sensory, best language, dysarthria,
+  #     extinction and inattention
+  #   - No single total LOINC code for PedNIHSS; use panel concept
+  #────────────────────────────────────────────────────────────────
+
+  PedNihssTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total severity score from the Pediatric National Institutes of
+      Health Stroke Scale (PedNIHSS), adapted from the adult NIHSS
+      for use in children. Assesses level of consciousness, gaze,
+      visual fields, facial palsy, motor function, limb ataxia,
+      sensory abilities, language, dysarthria, and extinction/
+      inattention.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72090-4
+            instrument:
+              any_of:
+                - equals_string: pednihss
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 42
+
+  #────────────────────────────────────────────────────────────────
+  # NOS-TBI Total Score (without supplemental)
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - NOS-TBI Score without supplemental items
+  #   - Covers: level of consciousness, gaze, visual fields,
+  #     facial paresis, hearing, motor function, sensory, language,
+  #     dysarthria, neglect, pupillary response, smell
+  #────────────────────────────────────────────────────────────────
+
+  NosTbiTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total score (without supplemental items) from the Neurological
+      Outcome Scale for Traumatic Brain Injury (NOS-TBI), assessing
+      neurological function across multiple domains including level
+      of consciousness, gaze, visual fields, facial paresis, hearing,
+      motor function, sensory, language, dysarthria, neglect,
+      pupillary response, and smell.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71933-5
+            instrument:
+              any_of:
+                - equals_string: nos_tbi
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 70
+
+  #────────────────────────────────────────────────────────────────
+  # NOS-TBI Supplemental Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - NOS-TBI Score of supplemental items (gait ataxia, limb ataxia)
+  #────────────────────────────────────────────────────────────────
+
+  NosTbiSupplementalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Score for supplemental items from the Neurological Outcome Scale
+      for Traumatic Brain Injury (NOS-TBI), covering gait ataxia and
+      limb ataxia subscales.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71934-3
+            instrument:
+              any_of:
+                - equals_string: nos_tbi
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 4

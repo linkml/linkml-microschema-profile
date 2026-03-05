@@ -1,0 +1,163 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_002
+name: cluster_002_visuospatial_memory_assessment
+description: |-
+  Microschemas derived from CDE Cluster 002: BVMT-R Memory Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # BVMT-R Total Recall
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BVMT-R Total recall raw score (X1wjegw_Zn_g)
+  #   - BVMT-R Total recall t-score (7yOoeew_W3dg)
+  #   - BVMT-R Total recall percentile (XkUoexvZWhue)
+  #   - BVMT-R Trial 1/2/3 raw scores and T-scores
+  #────────────────────────────────────────────────────────────────
+
+  BVMTRTotalRecallRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Total Recall score from the Brief Visuospatial Memory Test - Revised
+      (BVMT-R), summing raw scores across three learning trials (0-12 each).
+      Total raw score range is 0-36.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72172-0
+            instrument:
+              any_of:
+                - equals_string: bvmt_r
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 36
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # BVMT-R Delayed Recall
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BVMT-R Delayed recall raw score (my9YelP__nue)
+  #   - BVMT-R Delayed recall T-score (mknFlxw_b3dx)
+  #   - BVMT-R Delayed recall percentile (71KFegD_Whdg)
+  #────────────────────────────────────────────────────────────────
+
+  BVMTRDelayedRecallRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Delayed Recall score from the BVMT-R, assessing retention of visual
+      information after a 25-minute delay. Raw score range is 0-12.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72173-8
+            instrument:
+              any_of:
+                - equals_string: bvmt_r
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 12
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # BVMT-R Recognition Discrimination Index
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - BVMT-R Recognition discrimination index raw score (mkRKxxvbbnul)
+  #   - BVMT-R Recognition hits raw score (mJQ9egvWZhOg)
+  #   - BVMT-R Recognition false alarm raw score (m1l9xxvb_hug)
+  #   - BVMT-R Recognition response bias raw score (mk9cllD_bnOe)
+  #────────────────────────────────────────────────────────────────
+
+  BVMTRRecognitionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Recognition Discrimination Index from the BVMT-R, calculated as
+      hits minus false alarms. Assesses the ability to discriminate
+      target designs from distractors. Range is 0-6.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72174-6
+            instrument:
+              any_of:
+                - equals_string: bvmt_r
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 6
+            unit:
+              any_of:
+                - equals_string: "{score}"
+
+  #────────────────────────────────────────────────────────────────
+  # D-KEFS Trail Making Test
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - D-KEFS TMT Part B T score (Xkw6qXcRc7)
+  #   - D-KEFS TMT Contrast scaled score (QkLacXc0cX)
+  #   - D-KEFS TMT Sum scaled score (7kg6cQc05X)
+  #────────────────────────────────────────────────────────────────
+
+  DKEFSTrailMakingRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Scores from the Delis-Kaplan Executive Function System (D-KEFS)
+      Trail Making Test, assessing visual scanning, number sequencing,
+      letter sequencing, and cognitive flexibility.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:72106-8
+            instrument:
+              any_of:
+                - equals_string: dkefs_tmt
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 19
+            unit:
+              any_of:
+                - equals_string: "{score}"

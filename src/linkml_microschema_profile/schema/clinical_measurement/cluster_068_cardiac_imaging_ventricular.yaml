@@ -1,0 +1,216 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_068
+name: cluster_068_cardiac_imaging_ventricular
+description: |-
+  Microschemas derived from CDE Cluster 068: Cardiac Imaging Ventricular Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+
+  #────────────────────────────────────────────────────────────────
+  # Cardiac Ventricular Volume Measurements
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs: Cardiac MRI and echocardiogram ventricular
+  # volume and mass measurements (NINDS)
+  #────────────────────────────────────────────────────────────────
+
+  VentricularVolumeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Ventricular volume measurement obtained by cardiac MRI or
+      echocardiography, including end-diastolic and end-systolic volumes
+      for left and right ventricles.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:10230-1
+                - equals_string: ventricular_volume
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mL
+            instrument:
+              any_of:
+                - equals_string: cardiac_MRI
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 600
+
+  VentricularVolumeIndexRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Ventricular volume index (volume divided by body surface area)
+      obtained by cardiac MRI or echocardiography for left and right ventricles.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ventricular_volume_index
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mL/m2
+            instrument:
+              any_of:
+                - equals_string: cardiac_MRI
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 300
+
+  VentricularMassRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Left ventricular mass measurement obtained by cardiac MRI or
+      echocardiography.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79993-6
+                - equals_string: ventricular_mass
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: g
+            instrument:
+              any_of:
+                - equals_string: cardiac_MRI
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 600
+
+  VentricularMassIndexRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Left ventricular mass index (mass divided by body surface area)
+      obtained by cardiac MRI or echocardiography.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ventricular_mass_index
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: g/m2
+            instrument:
+              any_of:
+                - equals_string: cardiac_MRI
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 300
+
+  RightVentricularSystolicPressureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Right ventricular systolic pressure measured by echocardiography.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:8064-3
+                - equals_string: RVSP
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mm[Hg]
+            instrument:
+              any_of:
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 120
+
+  LeftVentricularInternalDimensionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Left ventricular end-diastolic internal dimension (LVIDd)
+      measured by echocardiography.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:29430-6
+                - equals_string: LVIDd
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: cm
+                - equals_string: mm
+            instrument:
+              any_of:
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 10
+
+  LeftAtrialVolumeRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Left atrial volume measured by echocardiography.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: left_atrial_volume
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mL
+            instrument:
+              any_of:
+                - equals_string: echocardiogram
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 300

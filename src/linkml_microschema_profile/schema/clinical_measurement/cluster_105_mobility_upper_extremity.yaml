@@ -1,0 +1,86 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_105
+name: cluster_105_mobility_upper_extremity
+description: |-
+  Microschemas derived from CDE Cluster 105: Mobility and Upper Extremity Ability Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Mobility Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Mobility items (standing, walking, chair transfers)
+  #   - Neuro-QOL Lower Extremity Function items
+  #   - Scored 1 (Unable to Do) to 5 (Without any Difficulty)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISMobilityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Mobility or Neuro-QOL Lower
+      Extremity Function instrument, measuring the ability to perform
+      locomotor and transfer activities.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61582-4
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Mobility
+                - equals_string: NeuroQOL_Lower_Extremity
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Upper Extremity Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Upper Extremity items (grip, reach, dexterity, lifting)
+  #   - Neuro-QOL Upper Extremity items
+  #   - Scored 1 (Unable to Do / With much difficulty) to 5 (Without any Difficulty)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISUpperExtremityRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Upper Extremity or Neuro-QOL
+      Upper Extremity instrument, measuring the ability to perform
+      activities requiring arm and hand function.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61587-3
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Upper_Extremity
+                - equals_string: NeuroQOL_Upper_Extremity
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5

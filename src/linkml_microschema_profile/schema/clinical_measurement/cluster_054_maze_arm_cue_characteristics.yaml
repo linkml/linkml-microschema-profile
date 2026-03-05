@@ -1,0 +1,110 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_054
+name: cluster_054_maze_arm_cue_characteristics
+description: |-
+  Microschemas derived from CDE Cluster 054: Maze Arm and Cue Characteristics Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  MazeArmDimensionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of maze arm physical dimensions (length, width, height)
+      for behavioral testing apparatus such as Elevated Plus Maze, Elevated Zero Maze,
+      and Radial Arm Maze (RAM).
+      Aligned CDEs: arm length value, arm width value, arm height value, arm length value (RAM)
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: maze_arm_dimension
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: cm
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 500
+
+  MazePlatformDimensionRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of central platform dimensions (diameter, height, elevation)
+      for Radial Arm Maze (RAM) apparatus.
+      Aligned CDEs: diameter of central platform, height of central platform, maze elevation value
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: maze_platform_dimension
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: cm
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 500
+
+  MazeConfigurationRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical measurement of maze configuration parameters including number of arms,
+      number of baited arms, number of cues, number of guillotine doors, and cue area.
+      Aligned CDEs: arms number, baited arms number, cue number, guillotine doors number, cue area measure
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: maze_configuration
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 100
+
+  RadialArmMazePerformanceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Preclinical behavioral performance outcomes from Radial Arm Maze testing including
+      baited arm entries count, unbaited arm entries count, testing duration, and
+      testing interval.
+      Aligned CDEs: RAMRM baited arm entries count, RAMRM unbaited arms entry count,
+      RAMWM testing time duration, RAMWM total duration, RAMWM between testing interval
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: ram_performance
+      - postconditions:
+          slot_conditions:
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0

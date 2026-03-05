@@ -1,0 +1,74 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_083
+name: cluster_083_family_history_diagnostic_criteria
+description: |-
+  Microschemas derived from CDE Cluster 083: Family History Diagnostic Criteria Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # FH-RDC Diagnostic Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - FH-RDC assortative mating study selection indicator
+  #   - FH-RDC child/sibling/parent relationship grades
+  #   - FH-RDC diagnostic codes for relatives (alcohol dependence,
+  #     antisocial personality, bipolar, depression, drug abuse,
+  #     panic disorder, schizophrenia, etc.)
+  #   - FH-RDC informant relationship and reliability
+  #   - FH-RDC interview completion indicators
+  #────────────────────────────────────────────────────────────────
+
+  FHRDCDiagnosticRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Family history diagnostic assessments using the Family History -
+      Research Diagnostic Criteria (FH-RDC), a structured interview for
+      assessing psychiatric disorders in first-degree relatives. Captures
+      diagnostic codes for conditions including alcohol/drug dependence,
+      antisocial personality disorder, bipolar disorder, major depression,
+      panic disorder, schizophrenia, and schizoaffective disorder.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: family_history_psychiatric_diagnosis
+            instrument:
+              any_of:
+                - equals_string: fh_rdc
+            relationship_to_participant:
+              any_of:
+                - equals_string: first_degree_relative
+
+  #────────────────────────────────────────────────────────────────
+  # Specimen Collection Age Record
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs:
+  #   - Age at specimen collection (EKNkZehqjU)
+  #   - Age of onset (QkYmu9jhse)
+  #────────────────────────────────────────────────────────────────
+
+  DiagnosticOnsetAgeRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Age-related data elements associated with diagnostic criteria,
+      including age at specimen collection and age of onset for
+      conditions assessed in the family history context.
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: diagnostic_onset_age

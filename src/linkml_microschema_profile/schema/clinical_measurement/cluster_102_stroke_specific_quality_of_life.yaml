@@ -1,0 +1,82 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_102
+name: cluster_102_stroke_specific_quality_of_life
+description: |-
+  Microschemas derived from CDE Cluster 102: Quality of Life Impact Scale (QOLIS) - Stroke Specific
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # SS-QOL Item Score
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - SS-QOL subscale items (mobility, self-care, energy, upper extremity,
+  #     language, thinking, mood, personality, family roles, social roles,
+  #     vision, work/productivity)
+  #   - All items scored 1-5 Likert scale
+  #────────────────────────────────────────────────────────────────
+
+  StrokeQualityOfLifeItemRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the Stroke Specific Quality of Life Scale
+      (SS-QOL), a patient-reported outcome measure assessing health-related
+      quality of life in stroke survivors across 12 domains.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71940-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SS-QOL
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # SS-QOL Total Score
+  #────────────────────────────────────────────────────────────────
+
+  StrokeQualityOfLifeTotalScoreRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      The total score from the Stroke Specific Quality of Life Scale (SS-QOL),
+      computed as the sum or mean of all 49 item responses.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:71940-2
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: SS-QOL
+            method:
+              any_of:
+                - equals_string: calculated
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 49
+              maximum_value: 245

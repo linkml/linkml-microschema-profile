@@ -1,0 +1,86 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_116
+name: cluster_116_pain_interference_behavior
+description: |-
+  Microschemas derived from CDE Cluster 116: PROMIS Pain Interference & Behavior Scale
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Pain Interference Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Pain Interference items (pain interfering with work,
+  #     social activities, household chores, enjoyment, mood)
+  #   - Scored 1 (Not at all) to 5 (Very much)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISPainInterferenceRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Pain Interference instrument,
+      measuring the extent to which pain interferes with daily activities,
+      social participation, work, and emotional well-being over the past
+      7 days.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61758-0
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Pain_Interference
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 1
+              maximum_value: 5
+
+  #────────────────────────────────────────────────────────────────
+  # PROMIS Pain Behavior Item
+  #────────────────────────────────────────────────────────────────
+  # Aligned CDEs from cde-harmonization:
+  #   - PROMIS Pain Behavior items (guarding, bracing, rubbing,
+  #     limping, grimacing, asking for help)
+  #   - Scored 0 (Had no pain) to 5 (Always)
+  #────────────────────────────────────────────────────────────────
+
+  PROMISPainBehaviorRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      A single item response from the PROMIS Pain Behavior instrument,
+      measuring observable or self-reported behaviors indicative of pain
+      such as guarding, bracing, limping, and grimacing over the past
+      7 days.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:61760-6
+      - postconditions:
+          slot_conditions:
+            instrument:
+              any_of:
+                - equals_string: PROMIS_Pain_Behavior
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 5

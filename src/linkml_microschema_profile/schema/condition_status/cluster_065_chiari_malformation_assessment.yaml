@@ -1,0 +1,89 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_065
+name: cluster_065_chiari_malformation_assessment
+description: |-
+  Microschemas derived from CDE Cluster 065: Chiari I Malformation Neurological Assessment Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  ChiariSymptomIndicatorRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Symptom indicator for Chiari I malformation, capturing the presence or absence
+      of characteristic signs and symptoms including generalized weakness/stiffness
+      of arms and legs, dizziness with position changes, and unsteadiness when
+      standing or walking, along with imbalance/dizziness severity and importance scales.
+      Aligned CDEs: Chiari I malformation (generalized weakness, position change dizzy,
+      unsteady stand/walk) symptom indicators, imbalance/dizziness severity and importance scales
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: chiari_symptom_indicator
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+
+  ChiariNeurologicalExamRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Neurological examination findings for Chiari I malformation, capturing normal
+      or abnormal indicators across multiple neurological domains including mental
+      status (alert/oriented, attention/memory), cranial nerves (nystagmus, dysphasia,
+      dysarthria, facial asymmetry, facial sensation, funduscopic exam, visual fields,
+      hearing, gag reflex), motor function (muscle strength/bulk, tone, pronator drift,
+      coordination/rapid alternating movements), sensation (primary and secondary
+      modalities), reflexes (deep tendon, corneal, abdominal, plantar), and gait
+      (normal gait, heel/toe walking, tandem standing/walking, Romberg).
+      Aligned CDEs: Chiari malformation neurological exam normal/absent indicators
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: chiari_neurological_exam
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT
+
+  ChiariTetheredCordSymptomRecord:
+    is_a: ConditionStatusRecord
+    description: >-
+      Tethered spinal cord symptom indicators associated with Chiari malformation,
+      capturing presence or absence of symptoms including persistent low back pain,
+      leg pain, decreased pelvic sensation, sole numbness, urinary incontinence,
+      incomplete urination, fecal incontinence, restless leg syndrome, loss of
+      sexual function, and symptoms with stair walking.
+      Aligned CDEs: Chiari malformation tethered spinal cord symptom indicators
+      (low back pain, leg pain, pelvic sensation, sole numbness, urinary/fecal
+      incontinence, restless leg, sexual function, stair walk symptoms)
+    rules:
+      - preconditions:
+          slot_conditions:
+            condition_type:
+              any_of:
+                - equals_string: chiari_tethered_cord_symptom
+      - postconditions:
+          slot_conditions:
+            condition_status:
+              any_of:
+                - equals_string: PRESENT
+                - equals_string: ABSENT

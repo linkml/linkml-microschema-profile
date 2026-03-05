@@ -1,0 +1,133 @@
+---
+id: https://w3id.org/linkml/linkml-microschema-profile/cluster_032
+name: cluster_032_ophthalmic_refraction_pressure
+description: |-
+  Microschemas derived from CDE Cluster 032: National Eye Institute Data Standardization Cluster
+  Source: https://github.com/monarch-initiative/cde-clustering
+
+prefixes:
+  coms: https://w3id.org/linkml/linkml-microschema-profile/
+  linkml: https://w3id.org/linkml/
+  LOINC: https://loinc.org/
+  OBA: http://purl.obolibrary.org/obo/OBA_
+  OMOP: https://athena.ohdsi.org/search-terms/terms/
+
+imports:
+  - linkml:types
+  - ../../linkml_microschema_profile
+
+classes:
+  AxialLengthRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Axial length measurement of the eye, typically measured by A-scan
+      ultrasonography or optical biometry.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79893-4
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mm
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 15
+              maximum_value: 40
+
+  RefractionSphereRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Sphere component of ocular refraction (objective or subjective,
+      with or without cycloplegia) for left or right eye.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79846-2
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: diopter
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: -30
+              maximum_value: 30
+
+  RefractionCylinderRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Cylinder component of ocular refraction (objective or subjective,
+      with or without cycloplegia) for left or right eye.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79847-0
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: diopter
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: -20
+              maximum_value: 0
+
+  RefractionAxisRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Axis component of ocular refraction (objective or subjective,
+      with or without cycloplegia) for left or right eye.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:79848-8
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: deg
+            data_type:
+              equals_string: integer
+            measurement_value:
+              range: integer
+              minimum_value: 0
+              maximum_value: 180
+
+  IntraocularPressureRecord:
+    is_a: ClinicalMeasurementRecord
+    description: >-
+      Intraocular pressure measurement for left or right eye,
+      as standardized by the NEI eyeGENE network.
+    rules:
+      - preconditions:
+          slot_conditions:
+            measurement_type:
+              any_of:
+                - equals_string: LOINC:56844-1
+      - postconditions:
+          slot_conditions:
+            unit:
+              any_of:
+                - equals_string: mmHg
+            data_type:
+              equals_string: decimal
+            measurement_value:
+              range: decimal
+              minimum_value: 0
+              maximum_value: 80
