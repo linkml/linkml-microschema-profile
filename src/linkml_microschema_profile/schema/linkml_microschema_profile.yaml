@@ -283,14 +283,15 @@ classes:
             unit:
               any_of:
                 - equals_string: kg
-                - equals_string: [lb_av]
+                - equals_string: "[lb_av]"
                 - equals_string: g
             instrument:
               any_of:
                 - equals_string: mechanical_beam_balance_scale
                 - equals_string: digital_scale
-                - equals_string: spring_scale          
-            data_type: decimal
+                - equals_string: spring_scale
+            data_type:
+              equals_string: decimal
             measurement_value:
               range: decimal
               maximum_value: 700
@@ -347,10 +348,12 @@ classes:
             unit:
               any_of:
                 - equals_string: kg/m2
+                - equals_string: "[lb_av]/[in_i]2"
             method:
               any_of:
                 - equals_string: calculated
-            data_type: decimal
+            data_type:
+              equals_string: decimal
             measurement_value:
               range: decimal
               maximum_value: 200
