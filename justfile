@@ -191,17 +191,40 @@ _test-schema:
 _test-python: gen-python
   uv run python -m pytest
 
-# Run example tests
-_test-examples: _ensure_examples_output
-  uv run linkml-run-examples \
-    --input-formats json \
-    --input-formats yaml \
-    --output-formats json \
-    --output-formats yaml \
-    --counter-example-input-directory tests/data/invalid \
-    --input-directory tests/data/valid \
-    --output-directory examples/output \
-    --schema {{clinical_schema_path}} > examples/output/README.md
+# Validate example data files against the clinical schema
+_test-examples:
+    #!{{shebang}}
+    import subprocess, sys, pathlib
+    schema = "{{clinical_schema_path}}"
+    failed = False
+    # Valid examples – must pass validation
+    for f in sorted(pathlib.Path("tests/data/valid").glob("*.yaml")):
+        cls = f.stem.split("-")[0]
+        r = subprocess.run(
+            ["uv", "run", "linkml-validate", "-s", schema, "-C", cls, str(f)],
+            capture_output=True, text=True,
+        )
+        if r.returncode != 0:
+            print(f"FAIL (expected valid): {f}\n{r.stdout}{r.stderr}")
+            failed = True
+        else:
+            print(f"OK (valid): {f}")
+    # Invalid examples – must fail validation
+    for f in sorted(pathlib.Path("tests/data/invalid").glob("*.yaml")):
+        if f.name == ".gitkeep":
+            continue
+        cls = f.stem.split("-")[0]
+        r = subprocess.run(
+            ["uv", "run", "linkml-validate", "-s", schema, "-C", cls, str(f)],
+            capture_output=True, text=True,
+        )
+        if r.returncode == 0:
+            print(f"FAIL (expected invalid): {f}")
+            failed = True
+        else:
+            print(f"OK (invalid): {f}")
+    if failed:
+        sys.exit(1)
 
 # Generate merged model
 _gen-yaml:
@@ -245,10 +268,6 @@ _clean_project:
             shutil.rmtree(d, ignore_errors=True)
         else:
             d.unlink()
-
-_ensure_examples_output:  # Ensure a clean examples/output directory exists
-  -mkdir -p examples/output
-  -rm -rf examples/output/*.*
 
 # ============== Include project-specific recipes ==============
 
