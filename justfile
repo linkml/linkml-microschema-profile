@@ -37,6 +37,8 @@ src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
 source_schema_path := source_schema_dir / schema_name + ".yaml"
+clinical_schema_name := schema_name + "_clinical"
+clinical_schema_path := source_schema_dir / clinical_schema_name + ".yaml"
 docdir := "docs/elements"  # Directory for generated documentation
 merged_schema_path := "docs/schema" / schema_name + ".yaml"
 
@@ -105,6 +107,8 @@ testdoc: gen-doc _serve
 gen-python:
   uv run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+  uv run gen-python {{clinical_schema_path}} > {{pymodel}}/{{clinical_schema_name}}.py
+  uv run gen-pydantic {{gen_pydantic_args}} {{clinical_schema_path}} > {{pymodel}}/{{clinical_schema_name}}_pydantic.py
 
 # Generate project files including Python data model
 [group('model development')]
@@ -112,6 +116,8 @@ gen-project:
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
   mv {{dest}}/*.py {{pymodel}}
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
+  uv run gen-python {{clinical_schema_path}} > {{pymodel}}/{{clinical_schema_name}}.py
+  uv run gen-pydantic {{gen_pydantic_args}} {{clinical_schema_path}} > {{pymodel}}/{{clinical_schema_name}}_pydantic.py
   uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
   @if [ ! ${{gen_owl_args}} ]; then \
     mkdir -p {{dest}}/owl && \
@@ -195,7 +201,7 @@ _test-examples: _ensure_examples_output
     --counter-example-input-directory tests/data/invalid \
     --input-directory tests/data/valid \
     --output-directory examples/output \
-    --schema {{source_schema_path}} > examples/output/README.md
+    --schema {{clinical_schema_path}} > examples/output/README.md
 
 # Generate merged model
 _gen-yaml:
