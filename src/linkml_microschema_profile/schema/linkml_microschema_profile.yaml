@@ -26,7 +26,6 @@ prefixes:
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   ISO11179: http://purl.org/iso11179/
   example: http://www.example.org/rdf#
-default_prefix: coms
 default_range: string
 
 imports:
