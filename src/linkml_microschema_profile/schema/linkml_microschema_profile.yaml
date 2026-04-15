@@ -11,7 +11,6 @@ see_also:
   - https://linkml.github.io/linkml-microschema-profile
 
 prefixes:
-  coms: https://w3id.org/linkml/linkml-microschema-profile/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
@@ -40,7 +39,6 @@ classes:
   #────────────────────────────────────────────────────────────────
 
   MicroschemaDefinition:
-    class_uri: coms:MicroschemaDefinition
     abstract: true
     description: >-
       A metaclass for classes that conform to the Microschema profile.
@@ -55,7 +53,6 @@ classes:
       - domain_of_use
 
   ValueMicroschemaDefinition:
-    class_uri: coms:ValueMicroschemaDefinition
     is_a: MicroschemaDefinition
     abstract: true
     description: >-
@@ -123,8 +120,11 @@ classes:
       domain_of_use: clinical
     slots:
       - subject_identifier
+        required: true
       - measurement_type
+        required: true
       - measurement_value
+        required: true
       - unit
       - method
       - instrument
@@ -136,6 +136,7 @@ classes:
       - collected_by
       - data_type
       - age_at_measurement
+        required: true
 
   ConditionStatusRecord:
     instantiates:
@@ -147,14 +148,19 @@ classes:
       domain_of_use: clinical
     slots:
       - subject_identifier
+        required: true
       - condition_type
+        required: true
       - associated_evidence
       - instrument
-      - age_at_condition
+      - age_at_condition_start
+      - age_at_condition_end
       - condition_status
+        required: true
       - condition_provenance
       - condition_severity
       - relationship_to_participant
+        required: true
 
   DrugStatusRecord:
     instantiates:
@@ -166,10 +172,13 @@ classes:
       domain_of_use: clinical
     slots:
       - subject_identifier
+        required: true
       - drug_type
+        required: true
       - method
       - collected_by
-      - age_at_drug
+      - age_at_drug_start
+      - age_at_drug_end
       - route_of_administration
       - dose
       - frequency
@@ -185,10 +194,13 @@ classes:
       domain_of_use: clinical
     slots:
       - subject_identifier
+        required: true
       - procedure_type
+        required: true
       - method
       - collected_by
-      - age_at_procedure
+      - age_at_procedure_start
+      - age_at_procedure_end
 
 #────────────────────────────────────────────────────────────────
 # EXAMPLES
@@ -207,7 +219,7 @@ classes:
                 - equals_string: OBA:VT0001253
                 - equals_string: OMOP:903133
                 - equals_string: LOINC:3036277
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
@@ -222,15 +234,8 @@ classes:
                 - equals_string: portable_stadiometer
                 - equals_string: anthropometer_rod
                 - equals_string: sonar_stadiometer
-            body_position:
-              any_of:
-                - range: BodyPositionEnum
             data_type:
               equals_string: decimal
-            measurement_value:
-              range: decimal
-              maximum_value: 300
-              minimum_value: 0
 
   HumanBodyHeightRecord001:
     is_a: HumanBodyHeightRecord
@@ -249,7 +254,7 @@ classes:
             body_position:
               any_of:
                 - equals_string: standing
-      - postconditions:
+        postconditions:
           slot_conditions:
             measurement_value:
               range: decimal
@@ -266,7 +271,7 @@ classes:
   #   - LOINC:3142-7 "Body weight Stated" (PhenX/LOINC)
   #────────────────────────────────────────────────────────────────
 
-  BodyWeightRecord:
+  HumanBodyWeightRecord:
     is_a: ClinicalMeasurementRecord
     description: >-
       Measurement of the force exerted by a human body on a scale due to gravity
@@ -278,7 +283,7 @@ classes:
                 - equals_string: OBA:VT0001259
                 - equals_string: OMOP:903121
                 - equals_string: LOINC:29463-7
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
@@ -292,12 +297,8 @@ classes:
                 - equals_string: spring_scale
             data_type:
               equals_string: decimal
-            measurement_value:
-              range: decimal
-              maximum_value: 700
-              minimum_value: 0
 
-  BodyWeightRecord001:
+  HumanBodyWeightRecord001:
     is_a: BodyWeightRecord
     description: >-
       Measurement of the force exerted by a human body on a mechanical beam balance due
@@ -343,12 +344,11 @@ classes:
                 - equals_string: OBA:0002045455
                 - equals_string: OMOP:3038553
                 - equals_string: LOINC:39156-5
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
                 - equals_string: kg/m2
-                - equals_string: "[lb_av]/[in_i]2"
             method:
               any_of:
                 - equals_string: calculated
@@ -359,7 +359,7 @@ classes:
               maximum_value: 200
               minimum_value: 5
             calculated_from:
-              equals_expression: "{BodyWeightRecord001} / ({HumanBodyHeightRecord001} / 100)^2"
+              equals_expression: "{HumanBodyWeightRecord001} / ({HumanBodyHeightRecord001} / 100)^2"
 
   HumanFvcRecord:
     is_a: ClinicalMeasurementRecord
