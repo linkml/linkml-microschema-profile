@@ -46,17 +46,32 @@ classes:
       - Classes instantiating this SHOULD NOT have identifier slots
       - Classes instantiating this SHOULD be used with inlined=true
       - Classes instantiating this MAY compose other microschemas via attributes
+    annotations:
+      - must_not_have_id_slot: true
+      - must_be_inlined: true
     slots:
       - profile_version
-      - semantic_mapping
       - domain_of_use
+      - subject
+      - observation_type
+      - location
+      - temporality
+      - methodology
+      - observation_result
 
-  ValueMicroschemaDefinition:
-    is_a: MicroschemaDefinition
+  ValueMicroschemaDefinition:      
     abstract: true
+    comments:
+      - Classes instantiating this SHOULD NOT have identifier slots
+      - Classes instantiating this SHOULD be used with inlined=true
+      - Classes instantiating this MAY compose other microschemas via attributes
+    annotations:
+      - must_not_have_id_slot: true
+      - must_be_inlined: true    
     description: >-
       A microschema representing a typed value with optional unit/system.
-      Examples: Quantity, Timepoint, CodedValue, Range.
+      Examples: Quantity, Timepoint, CodedValue, Range. This is the range for
+      observation result
 
   #────────────────────────────────────────────────────────────────
   # VALUE MICROSCHEMAS: Leaf value types
@@ -65,9 +80,8 @@ classes:
   Quantity:
     instantiates:
       - ValueMicroschemaDefinition
-    class_uri: schema:QuantitativeValue
     description: >-
-      A value with optional unit
+      A numerical value with unit
     slots:
       - quantity_value
       - quantity_unit
@@ -82,6 +96,7 @@ classes:
       - datetime
       - relative_to_event
       - offset
+      - subject_age
 
   TimeInterval:
     instantiates:
@@ -606,17 +621,45 @@ slots:
     range: string
     description: Version of microschema profile this conforms to
 
-  semantic_mapping:
-    range: uriorcurie
-    multivalued: true
-    description: >-
-      URIs/CURIEs mapping this microschema to external standards
-      (ISO-11179 DEC, NIH CDE, etc.)
-
   domain_of_use:
     range: string
     multivalued: true
     description: Domains where this microschema is applicable
+  
+  subject:
+    required: true
+    description: >-
+      Entity being measured, observed, or interviewed - person, animal, specimen, or
+      environmental material
+  
+  observation_type:
+    required: true
+    description: >-
+      Question being asked, measurement being taken, quality being observed
+      
+  location:
+    required: true
+    description: >-
+      Spatial metadata specifying where the observation was made - geolocation,
+      place name, site id, environment, or biome
+  
+  temporality:
+    required: true
+    description: >-
+      Temporal metadata specifying when an observation was made. This can be relative
+      or absolute - datetime, age of person, season, or geologic era
+  
+  methodology:
+    required: true
+    description: >-
+      Information about how an observation was made - method, instrument, reagent kit,
+      statistical modifier
+
+  observation_result:
+    required: true
+    range: ValueMicroschemaDefinition
+    description: >-
+      The outcome of the observation type - answer, value, result, determination
 
   # Value microschema slots
   quantity_value:
@@ -626,6 +669,7 @@ slots:
 
   quantity_unit:
     range: uriorcurie
+    required: true 
     slot_uri: schema:unitCode
     description: Unit (UCUM, UO, QUDT, etc.)
 
