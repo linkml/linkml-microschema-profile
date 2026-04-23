@@ -1030,16 +1030,12 @@ enums:
     permissible_values:
       lt:
         description: Less than
-        meaning: coms:lt
       le:
         description: Less than or equal to
-        meaning: coms:le
       ge:
         description: Greater than or equal to
-        meaning: coms:ge
       gt:
         description: Greater than
-        meaning: coms:gt
 
   DataTypeEnum:
     description: The data type of an observation value
