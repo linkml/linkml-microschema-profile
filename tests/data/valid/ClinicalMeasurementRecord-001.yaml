@@ -2,7 +2,7 @@
 ---
 subject_identifier: subject001
 measurement_type: LOINC:1558-6
-unit: UCUM:mg/dL
+measurement_value: "95.0"
 body_position: sitting
 context: fasted_12_hrs
 collected_by: technician

@@ -26,6 +26,7 @@ prefixes:
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   ISO11179: http://purl.org/iso11179/
   example: http://www.example.org/rdf#
+  coms: https://w3id.org/linkml/comparators/
 default_range: string
 
 imports:
@@ -46,17 +47,32 @@ classes:
       - Classes instantiating this SHOULD NOT have identifier slots
       - Classes instantiating this SHOULD be used with inlined=true
       - Classes instantiating this MAY compose other microschemas via attributes
+    annotations:
+      - must_not_have_id_slot: true
+      - must_be_inlined: true
     slots:
       - profile_version
-      - semantic_mapping
       - domain_of_use
+      - subject
+      - observation_type
+      - location
+      - temporality
+      - methodology
+      - observation_result
 
-  ValueMicroschemaDefinition:
-    is_a: MicroschemaDefinition
+  ValueMicroschemaDefinition:      
     abstract: true
+    comments:
+      - Classes instantiating this SHOULD NOT have identifier slots
+      - Classes instantiating this SHOULD be used with inlined=true
+      - Classes instantiating this MAY compose other microschemas via attributes
+    annotations:
+      - must_not_have_id_slot: true
+      - must_be_inlined: true    
     description: >-
       A microschema representing a typed value with optional unit/system.
-      Examples: Quantity, Timepoint, CodedValue, Range.
+      Examples: Quantity, Timepoint, CodedValue, Range. This is the range for
+      observation result
 
   #────────────────────────────────────────────────────────────────
   # VALUE MICROSCHEMAS: Leaf value types
@@ -65,9 +81,8 @@ classes:
   Quantity:
     instantiates:
       - ValueMicroschemaDefinition
-    class_uri: schema:QuantitativeValue
     description: >-
-      A value with optional unit
+      A numerical value with unit
     slots:
       - quantity_value
       - quantity_unit
@@ -82,6 +97,7 @@ classes:
       - datetime
       - relative_to_event
       - offset
+      - subject_age
 
   TimeInterval:
     instantiates:
@@ -606,17 +622,45 @@ slots:
     range: string
     description: Version of microschema profile this conforms to
 
-  semantic_mapping:
-    range: uriorcurie
-    multivalued: true
-    description: >-
-      URIs/CURIEs mapping this microschema to external standards
-      (ISO-11179 DEC, NIH CDE, etc.)
-
   domain_of_use:
     range: string
     multivalued: true
     description: Domains where this microschema is applicable
+  
+  subject:
+    required: true
+    description: >-
+      Entity being measured, observed, or interviewed - person, animal, specimen, or
+      environmental material
+  
+  observation_type:
+    required: true
+    description: >-
+      Question being asked, measurement being taken, quality being observed
+      
+  location:
+    required: true
+    description: >-
+      Spatial metadata specifying where the observation was made - geolocation,
+      place name, site id, environment, or biome
+  
+  temporality:
+    required: true
+    description: >-
+      Temporal metadata specifying when an observation was made. This can be relative
+      or absolute - datetime, age of person, season, or geologic era
+  
+  methodology:
+    required: true
+    description: >-
+      Information about how an observation was made - method, instrument, reagent kit,
+      statistical modifier
+
+  observation_result:
+    required: true
+    range: ValueMicroschemaDefinition
+    description: >-
+      The outcome of the observation type - answer, value, result, determination
 
   # Value microschema slots
   quantity_value:
@@ -626,6 +670,7 @@ slots:
 
   quantity_unit:
     range: uriorcurie
+    required: true 
     slot_uri: schema:unitCode
     description: Unit (UCUM, UO, QUDT, etc.)
 
@@ -645,6 +690,11 @@ slots:
     range: Quantity
     inlined: true
     description: Offset from event (e.g., "+3 days")
+
+  subject_age:
+    range: Quantity
+    inlined: true
+    description: Age of the subject at this timepoint (e.g., age when the event occurred)
 
   interval_start:
     range: Timepoint
@@ -789,11 +839,6 @@ slots:
     range: RouteAdminEnum
     description: Routes of drug administration
   measurement_value:
-    any_of:
-      - range: Quantity
-      - range: Timepoint
-      - range: TimeInterval
-      - range: CodedValue
     description: The "value" in the observation key/value pair
   predicted_value:
     range: decimal
@@ -954,27 +999,6 @@ enums:
       intraperitoneal:
         description: Intraperitoneal administration
         meaning: OMOP:4243022
-      intrathecal:
-        description: Intrathecal administration
-        meaning: OMOP:4217202
-      epidural:
-        description: Epidural administration
-        meaning: OMOP:4225555
-      intra_arterial:
-        description: Intra-arterial administration
-        meaning: OMOP:4240824
-      ophthalmic:
-        description: Ophthalmic administration
-        meaning: OMOP:4184451
-      otic:
-        description: Otic (ear) administration
-        meaning: OMOP:4023156
-      enteral:
-        description: Enteral administration
-        meaning: OMOP:4167540
-      percutaneous:
-        description: Percutaneous administration
-        meaning: OMOP:4177987
 
   ComparatorEnum:
     description: Comparator for quantity values
@@ -1116,6 +1140,7 @@ enums:
         description: While taking diabetes medication
       lowest:
         description: Lowest recorded value
+
   CollectedByEnum:
     description: Who collected the measurement
     permissible_values:
@@ -1131,6 +1156,7 @@ enums:
         description: Collected by the first examiner
       second_examiner:
         description: Collected by the second examiner
+
   AssociatedEvidenceEnum:
     description: The method used for diagnosis
     permissible_values:
