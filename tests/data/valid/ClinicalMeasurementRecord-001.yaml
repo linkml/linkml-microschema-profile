@@ -10,3 +10,6 @@ data_type: decimal
 age_at_measurement:
   quantity_value: 45.5
   quantity_unit: UCUM:a
+measurement_value:
+  quantity_value: 80
+  quantity_unit: UCUM:mg/L
