@@ -1003,3 +1003,162 @@ enums:
       intraperitoneal:
         description: Intraperitoneal administration
         meaning: OMOP:4243022
+
+  ComparatorEnum:
+    description: Comparator for quantity values
+    permissible_values:
+      lt:
+        description: Less than
+      le:
+        description: Less than or equal to
+      ge:
+        description: Greater than or equal to
+      gt:
+        description: Greater than
+
+  DataTypeEnum:
+    description: The data type of an observation value
+    permissible_values:
+      decimal:
+        description: Decimal number
+      integer:
+        description: Integer number
+      enum:
+        description: Enumerated value
+      boolean:
+        description: Boolean value
+
+  MethodEnum:
+    description: The method used for a measurement or observation
+    permissible_values:
+      survey:
+        description: >-
+          list of questions given to a participant for data collection purposes - the
+          survey is filled out by the participant independently
+      interview:
+        description: >-
+          series of questions posed to a participant by an interviewer for data
+          collection purposes
+      calculated:
+        description: >-
+          clinical record that results from a calculation rather than being directly
+          measured
+      spirometry:
+        description: >-
+          breathing test used to assess lung function
+      body_plesmography:
+        description: >-
+          precise pulmonary function test where the patient sits in a sealed chamber and
+          breathes into a specialized mouthpiece. This method uses Boyle's Law and is
+          considered a "gold standard"
+      gli:
+        description: >-
+          a standard reference range and calculator for spirometry and lung function
+          tests published by the Global Lung Function Initiative in 2012
+      gli_global:
+        description: >-
+          a standard reference range and calculator for spirometry and lung function
+          tests published by the Global Lung Function Initiative in 2022. This is an
+          update of the 2012 standard that is more ethnically diverse
+      nhanesiii:
+        description: >-
+          standard reference equations for spirometry published in 2005
+
+  InstrumentEnum:
+    description: The instrument used for a measurement
+    permissible_values:
+      wall_mounted_stadiometer:
+        description: >-
+          fixed, high-precision medical device used to measure human height, consisting
+          of a vertical measuring rod or tape fastened to a wall with a sliding headpiece
+        meaning: MMO:0000105
+      mechanical_beam_balance_scale:
+        description: >-
+          medical device used to measure human weight
+        meaning: MMO:0000087
+      digital_scale:
+        description: >-
+          electronic device used to measure human weight using strain gauge sensors
+        meaning: MMO:0000087
+      spring_scale:
+        description: >-
+          mechanical device that measures weight by the displacement of a spring
+      spirometer:
+        description: >-
+          medical device that measures lung function by recording the amount and speed
+          of air a person can inhale and exhale
+      vitalograph:
+        description: >-
+          a portable medical device that measures lung function by recording the amount
+          and speed of air a person can inhale and exhale
+      body_plesmograph:
+        description: >-
+          sealed, clear chamber with a mouthpiece for a person to breath through
+      peak_flow_meter:
+        description: >-
+          portable, handheld device used to measure how fast and hard a person can
+          exhale
+
+  ReagentKitEnum:
+    description: The reagent kit used for a measurement
+    permissible_values:
+      placeholder:
+        description: Placeholder value
+
+  BodyPositionEnum:
+    description: The body position during a measurement
+    permissible_values:
+      supine:
+        description: Lying face up
+      standing:
+        description: Standing upright
+      sitting:
+        description: Seated position
+
+  ContextEnum:
+    description: The context in which a measurement was taken
+    permissible_values:
+      fasted_8_hrs:
+        description: Fasted for 8 hours
+      fasted_12_hrs:
+        description: Fasted for 12 hours
+      before_bronchodilator:
+        description: Before bronchodilator administration
+      after_bronchodilator:
+        description: After bronchodilator administration
+      taking_lipid_lowering_medications:
+        description: While taking lipid-lowering medications
+      before_physical_activity:
+        description: Before physical activity
+      during_physical_activity:
+        description: During physical activity
+      after_physical_activity:
+        description: After physical activity
+      during_procedure:
+        description: During a procedure
+      taking_diabetes_medication:
+        description: While taking diabetes medication
+      lowest:
+        description: Lowest recorded value
+
+  CollectedByEnum:
+    description: Who collected the measurement
+    permissible_values:
+      doctor:
+        description: Collected by a doctor
+      nurse:
+        description: Collected by a nurse
+      technician:
+        description: Collected by a technician
+      self_administered:
+        description: Self-administered by the patient
+      first_examiner:
+        description: Collected by the first examiner
+      second_examiner:
+        description: Collected by the second examiner
+
+  AssociatedEvidenceEnum:
+    description: The method used for diagnosis
+    permissible_values:
+      placeholder:
+        description: Placeholder value
