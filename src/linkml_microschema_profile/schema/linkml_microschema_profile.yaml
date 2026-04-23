@@ -71,8 +71,8 @@ classes:
       - must_be_inlined: true    
     description: >-
       A microschema representing a typed value with optional unit/system.
-      Examples: Quantity, Timepoint, CodedValue, Range. This is the range for
-      observation result
+      Examples: Quantity, Timepoint, CodedValue, Range. Used as the range
+      for the observation_result slot in MicroschemaDefinition.
 
   #────────────────────────────────────────────────────────────────
   # VALUE MICROSCHEMAS: Leaf value types
