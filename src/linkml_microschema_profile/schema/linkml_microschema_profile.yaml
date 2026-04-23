@@ -11,7 +11,6 @@ see_also:
   - https://linkml.github.io/linkml-microschema-profile
 
 prefixes:
-  coms: https://w3id.org/linkml/linkml-microschema-profile/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   PATO: http://purl.obolibrary.org/obo/PATO_
@@ -27,7 +26,6 @@ prefixes:
   RxNorm: http://purl.bioontology.org/ontology/RXNORM/
   ISO11179: http://purl.org/iso11179/
   example: http://www.example.org/rdf#
-default_prefix: coms
 default_range: string
 
 imports:
@@ -40,7 +38,6 @@ classes:
   #────────────────────────────────────────────────────────────────
 
   MicroschemaDefinition:
-    class_uri: coms:MicroschemaDefinition
     abstract: true
     description: >-
       A metaclass for classes that conform to the Microschema profile.
@@ -55,7 +52,6 @@ classes:
       - domain_of_use
 
   ValueMicroschemaDefinition:
-    class_uri: coms:ValueMicroschemaDefinition
     is_a: MicroschemaDefinition
     abstract: true
     description: >-
@@ -136,6 +132,15 @@ classes:
       - collected_by
       - data_type
       - age_at_measurement
+    slot_usage:
+      subject_identifier:
+        required: true
+      measurement_type:
+        required: true
+      measurement_value:
+        required: true
+      age_at_measurement:
+        required: true
 
   ConditionStatusRecord:
     instantiates:
@@ -150,11 +155,21 @@ classes:
       - condition_type
       - associated_evidence
       - instrument
-      - age_at_condition
+      - age_at_condition_start
+      - age_at_condition_end
       - condition_status
       - condition_provenance
       - condition_severity
       - relationship_to_participant
+    slot_usage:
+      subject_identifier:
+        required: true
+      condition_type:
+        required: true
+      condition_status:
+        required: true
+      relationship_to_participant:
+        required: true
 
   DrugStatusRecord:
     instantiates:
@@ -169,11 +184,17 @@ classes:
       - drug_type
       - method
       - collected_by
-      - age_at_drug
+      - age_at_drug_start
+      - age_at_drug_end
       - route_of_administration
       - dose
       - frequency
       - indication
+    slot_usage:
+      subject_identifier:
+        required: true
+      drug_type:
+        required: true
 
   ProcedureStatusRecord:
     instantiates:
@@ -188,7 +209,13 @@ classes:
       - procedure_type
       - method
       - collected_by
-      - age_at_procedure
+      - age_at_procedure_start
+      - age_at_procedure_end
+    slot_usage:
+      subject_identifier:
+        required: true
+      procedure_type:
+        required: true
 
 #────────────────────────────────────────────────────────────────
 # EXAMPLES
@@ -207,7 +234,7 @@ classes:
                 - equals_string: OBA:VT0001253
                 - equals_string: OMOP:903133
                 - equals_string: LOINC:3036277
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
@@ -222,15 +249,8 @@ classes:
                 - equals_string: portable_stadiometer
                 - equals_string: anthropometer_rod
                 - equals_string: sonar_stadiometer
-            body_position:
-              any_of:
-                - range: BodyPositionEnum
             data_type:
               equals_string: decimal
-            measurement_value:
-              range: decimal
-              maximum_value: 300
-              minimum_value: 0
 
   HumanBodyHeightRecord001:
     is_a: HumanBodyHeightRecord
@@ -249,7 +269,7 @@ classes:
             body_position:
               any_of:
                 - equals_string: standing
-      - postconditions:
+        postconditions:
           slot_conditions:
             measurement_value:
               range: decimal
@@ -266,7 +286,7 @@ classes:
   #   - LOINC:3142-7 "Body weight Stated" (PhenX/LOINC)
   #────────────────────────────────────────────────────────────────
 
-  BodyWeightRecord:
+  HumanBodyWeightRecord:
     is_a: ClinicalMeasurementRecord
     description: >-
       Measurement of the force exerted by a human body on a scale due to gravity
@@ -278,7 +298,7 @@ classes:
                 - equals_string: OBA:VT0001259
                 - equals_string: OMOP:903121
                 - equals_string: LOINC:29463-7
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
@@ -292,13 +312,9 @@ classes:
                 - equals_string: spring_scale
             data_type:
               equals_string: decimal
-            measurement_value:
-              range: decimal
-              maximum_value: 700
-              minimum_value: 0
 
-  BodyWeightRecord001:
-    is_a: BodyWeightRecord
+  HumanBodyWeightRecord001:
+    is_a: HumanBodyWeightRecord
     description: >-
       Measurement of the force exerted by a human body on a mechanical beam balance due
       to gravity
@@ -343,12 +359,11 @@ classes:
                 - equals_string: OBA:0002045455
                 - equals_string: OMOP:3038553
                 - equals_string: LOINC:39156-5
-      - postconditions:
+        postconditions:
           slot_conditions:
             unit:
               any_of:
                 - equals_string: kg/m2
-                - equals_string: "[lb_av]/[in_i]2"
             method:
               any_of:
                 - equals_string: calculated
@@ -359,7 +374,7 @@ classes:
               maximum_value: 200
               minimum_value: 5
             calculated_from:
-              equals_expression: "{BodyWeightRecord001} / ({HumanBodyHeightRecord001} / 100)^2"
+              equals_expression: "{HumanBodyWeightRecord001} / ({HumanBodyHeightRecord001} / 100)^2"
 
   HumanFvcRecord:
     is_a: ClinicalMeasurementRecord
@@ -400,6 +415,9 @@ classes:
               any_of:
                 - equals_string: spirometry
                 - equals_string: body_plesmography
+    slots:
+      - predicted_value
+      - percent_predicted_value
     slot_usage:
       predicted_value:
         required: true
@@ -571,6 +589,8 @@ classes:
 
   Relativity:
     mixin: true
+    description: >-
+      A mixin providing slots for predicted and normalized reference values relative to a population.
     slots:
       - predicted_value
       - lower_limit_normal
@@ -724,6 +744,12 @@ slots:
   age_at_condition:
     range: TimeInterval
     description: Age of the subject at the start and end of the condition
+  age_at_condition_start:
+    range: Quantity
+    description: Age of the subject at the start of the condition
+  age_at_condition_end:
+    range: Quantity
+    description: Age of the subject at the end of the condition
   condition_status:
     range: HistoricalStatusEnum
     description: >-
@@ -744,9 +770,21 @@ slots:
   age_at_drug:
     range: TimeInterval
     description: Age of the subject at the start and end of drug exposure
+  age_at_drug_start:
+    range: Quantity
+    description: Age of the subject at the start of drug exposure
+  age_at_drug_end:
+    range: Quantity
+    description: Age of the subject at the end of drug exposure
   age_at_procedure:
     range: Quantity
     description: Age of the subject at the time of the procedure
+  age_at_procedure_start:
+    range: Quantity
+    description: Age of the subject at the start of the procedure
+  age_at_procedure_end:
+    range: Quantity
+    description: Age of the subject at the end of the procedure
   route_of_administration:
     range: RouteAdminEnum
     description: Routes of drug administration
@@ -785,89 +823,89 @@ enums:
     description: >-
       Indicates whether something is present, absent, historical, or its status is unknown.
     permissible_values:
-      PRESENT:
+      present:
         description: Was present in the patient at observation time.
-      ABSENT:
+      absent:
         description: Was absent in the patient at observation time.
-      UNKNOWN:
+      unknown:
         description: Was of unknown status in the patient at observation time.
-      HISTORICAL:
+      historical:
         description: Was present in the patient historically.
 
   ProvenanceEnum:
     description: A set of values indicating the source or origin of a clinical record.
     permissible_values:
-      EHR_BILLING_DIAGNOSIS:
+      ehr_billing_diagnosis:
         description: Diagnosis from EHR billing.
-      EHR_CHIEF_COMPLAINT:
+      ehr_chief_complaint:
         description: Chief complaint from EHR.
-      EHR_ENCOUNTER_DIAGNOSIS:
+      ehr_encounter_diagnosis:
         description: Encounter diagnosis from EHR.
-      EHR_EPISODE_ENTRY:
+      ehr_episode_entry:
         description: Episode entry from EHR.
-      EHR_PROBLEM_LIST_ENTRY:
+      ehr_problem_list_entry:
         description: Problem list entry from EHR.
-      FIRST_POSITION_CONDITION:
+      first_position_condition:
         description: First position condition.
-      PRIMARY_CONDITION:
+      primary_condition:
         description: Primary condition.
-      SECONDARY_CONDITION:
+      secondary_condition:
         description: Secondary condition.
-      NLP_DERIVED:
+      nlp_derived:
         description: Derived from natural language processing.
-      OBSERVATION_RECORDED_FROM_EHR:
+      observation_recorded_from_ehr:
         description: Observation recorded from EHR.
-      PATIENT_SELF_REPORTED_CONDITION:
+      patient_self_reported_condition:
         description: Patient self-reported condition.
-      REFERRAL_RECORD:
+      referral_record:
         description: From referral record.
-      TUMOR_REGISTRY:
+      tumor_registry:
         description: From tumor registry.
-      WORKING_DIAGNOSIS:
+      working_diagnosis:
         description: Working diagnosis.
-      CLINICAL_DIAGNOSIS:
+      clinical_diagnosis:
         description: Clinical diagnosis.
 
   ConditionSeverityEnum:
     description: A subjective assessment of the severity of a condition.
     permissible_values:
-      MILD:
+      mild:
         description: Lower intensity condition.
         meaning: OMOP:4116992
-      MODERATE:
+      moderate:
         description: Medium intensity condition.
         meaning: OMOP:3272197
-      SEVERE:
+      severe:
         description: Higher intensity condition.
         meaning: OMOP:4087703
 
   FamilyRelationshipEnum:
     description: Values describing kinship connections between individuals.
     permissible_values:
-      ONESELF:
+      oneself:
         description: Self-reference.
-      NATURAL_PARENT:
+      natural_parent:
         description: Mother or father unspecified.
         meaning: OMOP:4029630
-      NATURAL_FATHER:
+      natural_father:
         description: Biological father.
         meaning: OMOP:4321888
-      NATURAL_MOTHER:
+      natural_mother:
         description: Biological mother.
         meaning: OMOP:4277283
-      NATURAL_SIBLING:
+      natural_sibling:
         description: Sister or brother unspecified.
         meaning: OMOP:4218412
-      NATURAL_BROTHER:
+      natural_brother:
         description: Biological brother.
         meaning: OMOP:4263682
-      NATURAL_SISTER:
+      natural_sister:
         description: Biological sister.
         meaning: OMOP:4251326
-      NATURAL_CHILD:
+      natural_child:
         description: Biological offspring.
         meaning: OMOP:4326600
-      BLOOD_RELATIVE:
+      blood_relative:
         description: Generic consanguineous relation.
         meaning: OMOP:4053608
 
@@ -989,16 +1027,16 @@ enums:
           precise pulmonary function test where the patient sits in a sealed chamber and
           breathes into a specialized mouthpiece. This method uses Boyle's Law  and is
           considered a "gold standard"
-      GLI:
+      gli:
         description: >-
-          a standard reference range and calculator for spirometry and lung function 
+          a standard reference range and calculator for spirometry and lung function
           tests published by the Global Lung Function Initiative in 2012
-      GLI-Global:
+      gli_global:
         description: >-
-          a standard reference range and calculator for spirometry and lung function 
+          a standard reference range and calculator for spirometry and lung function
           tests published by the Global Lung Function Initiative in 2022. This is an
           update of the 2012 standard that is more ethnically diverse
-      NHANESIII:
+      nhanesiii:
         description: >-
           standard reference equations for spirometry published in 2005
 
