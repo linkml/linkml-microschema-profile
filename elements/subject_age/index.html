@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/Nodeidentifier/">
+        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/subject_age/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Type: Nodeidentifier - linkml-microschema-profile</title>
+        <title>Slot: subject_age - linkml-microschema-profile</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#type-nodeidentifier" class="md-skip">
+        <a href="#slot-subject_age" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Type: Nodeidentifier
+              Slot: subject_age
             
           </span>
         </div>
@@ -325,6 +325,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applicable Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -363,6 +385,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -383,19 +416,32 @@
   
 
 
-<h1 id="type-nodeidentifier">Type: Nodeidentifier</h1>
-<p><em>A URI, CURIE or BNODE that represents a node in a model.</em></p>
-<p>URI: <a href="http://www.w3.org/ns/shex#nonLiteral">shex:nonLiteral</a></p>
+<h1 id="slot-subject_age">Slot: subject_age</h1>
+<p><em>Age of the subject at this timepoint (e.g., age when the event occurred)</em></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/subject_age">https://w3id.org/linkml/linkml-microschema-profile/subject_age</a>
+Alias: subject_age</p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../Timepoint/">Timepoint</a></td>
+<td>A point in time, potentially relative</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p><a href="https://w3id.org/linkml/base">base</a>: NodeIdentifier</p>
-</li>
-<li>
-<p><a href="https://w3id.org/linkml/uri">uri</a>: shex:nonLiteral</p>
-</li>
-<li>
-<p><a href="https://w3id.org/linkml/repr">repr</a>: str</p>
-</li>
+<li>Range: <a href="../Quantity/">Quantity</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -413,14 +459,30 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>shex:nonLiteral</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/subject_age</td>
 </tr>
 <tr>
 <td>native</td>
-<td>https://w3id.org/linkml/linkml-microschema-profile/nodeidentifier</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/subject_age</td>
 </tr>
 </tbody>
 </table>
+<h2 id="linkml-source">LinkML Source</h2>
+<details>
+
+<pre><code class="language-yaml">name: subject_age
+description: Age of the subject at this timepoint (e.g., age when the event occurred)
+from_schema: https://w3id.org/linkml/linkml-microschema-profile
+rank: 1000
+alias: subject_age
+domain_of:
+- Timepoint
+range: Quantity
+inlined: true
+
+</code></pre>
+
+</details>
 
 
 

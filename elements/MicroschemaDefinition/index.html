@@ -171,15 +171,6 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
-<span class="md-ellipsis">
-      
-        Inheritance
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       
@@ -207,6 +198,15 @@
 </a>
 <nav aria-label="Identifier and Mapping Information" class="md-nav">
 <ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#annotations">
+<span class="md-ellipsis">
+      
+        Annotations
+      
+    </span>
+</a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#schema-source">
 <span class="md-ellipsis">
@@ -271,28 +271,38 @@
 <ul>
 <li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
 </ul>
-<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition">coms:MicroschemaDefinition</a></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition">https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition</a></p>
 <div class="mermaid"> classDiagram
     class MicroschemaDefinition
     click MicroschemaDefinition href "../MicroschemaDefinition/"
-      MicroschemaDefinition &lt;|-- ValueMicroschemaDefinition
+      MicroschemaDefinition : domain_of_use
+
+      MicroschemaDefinition : location
+
+      MicroschemaDefinition : methodology
+
+      MicroschemaDefinition : observation_result
+
+
+
+
+
+        MicroschemaDefinition --&gt; "1" ValueMicroschemaDefinition : observation_result
         click ValueMicroschemaDefinition href "../ValueMicroschemaDefinition/"
 
-      MicroschemaDefinition : domain_of_use
+
+
+      MicroschemaDefinition : observation_type
 
       MicroschemaDefinition : profile_version
 
-      MicroschemaDefinition : semantic_mapping
+      MicroschemaDefinition : subject
+
+      MicroschemaDefinition : temporality
 
 
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>MicroschemaDefinition</strong><ul>
-<li><a href="../ValueMicroschemaDefinition/">ValueMicroschemaDefinition</a></li>
-</ul>
-</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -311,15 +321,45 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../semantic_mapping/">semantic_mapping</a></td>
-<td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>URIs/CURIEs mapping this microschema to external standards (ISO-11179 DEC, NI...</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../domain_of_use/">domain_of_use</a></td>
 <td>* <br/> <a href="../String/">String</a></td>
 <td>Domains where this microschema is applicable</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../subject/">subject</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Entity being measured, observed, or interviewed - person, animal, specimen, o...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../observation_type/">observation_type</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Question being asked, measurement being taken, quality being observed</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../location/">location</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Spatial metadata specifying where the observation was made - geolocation, pla...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../temporality/">temporality</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Temporal metadata specifying when an observation was made</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../methodology/">methodology</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Information about how an observation was made - method, instrument, reagent k...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../observation_result/">observation_result</a></td>
+<td>1 <br/> <a href="../ValueMicroschemaDefinition/">ValueMicroschemaDefinition</a></td>
+<td>The outcome of the observation type - answer, value, result, determination</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -331,6 +371,25 @@
 <li>Classes instantiating this MAY compose other microschemas via attributes</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="annotations">Annotations</h3>
+<table>
+<thead>
+<tr>
+<th>property</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>must_not_have_id_slot</td>
+<td>True</td>
+</tr>
+<tr>
+<td>must_be_inlined</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://w3id.org/linkml/linkml-microschema-profile</li>
@@ -346,11 +405,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>coms:MicroschemaDefinition</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:MicroschemaDefinition</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition</td>
 </tr>
 </tbody>
 </table>
@@ -359,6 +418,13 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: MicroschemaDefinition
+annotations:
+  must_not_have_id_slot:
+    tag: must_not_have_id_slot
+    value: true
+  must_be_inlined:
+    tag: must_be_inlined
+    value: true
 description: A metaclass for classes that conform to the Microschema profile. Classes
   that instantiate this are designed for inline composition.
 comments:
@@ -369,15 +435,26 @@ from_schema: https://w3id.org/linkml/linkml-microschema-profile
 abstract: true
 slots:
 - profile_version
-- semantic_mapping
 - domain_of_use
-class_uri: coms:MicroschemaDefinition
+- subject
+- observation_type
+- location
+- temporality
+- methodology
+- observation_result
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: MicroschemaDefinition
+annotations:
+  must_not_have_id_slot:
+    tag: must_not_have_id_slot
+    value: true
+  must_be_inlined:
+    tag: must_be_inlined
+    value: true
 description: A metaclass for classes that conform to the Microschema profile. Classes
   that instantiate this are designed for inline composition.
 comments:
@@ -397,18 +474,6 @@ attributes:
     domain_of:
     - MicroschemaDefinition
     range: string
-  semantic_mapping:
-    name: semantic_mapping
-    description: URIs/CURIEs mapping this microschema to external standards (ISO-11179
-      DEC, NIH CDE, etc.)
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    rank: 1000
-    alias: semantic_mapping
-    owner: MicroschemaDefinition
-    domain_of:
-    - MicroschemaDefinition
-    range: uriorcurie
-    multivalued: true
   domain_of_use:
     name: domain_of_use
     description: Domains where this microschema is applicable
@@ -420,7 +485,76 @@ attributes:
     - MicroschemaDefinition
     range: string
     multivalued: true
-class_uri: coms:MicroschemaDefinition
+  subject:
+    name: subject
+    description: Entity being measured, observed, or interviewed - person, animal,
+      specimen, or environmental material
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: subject
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  observation_type:
+    name: observation_type
+    description: Question being asked, measurement being taken, quality being observed
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: observation_type
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  location:
+    name: location
+    description: Spatial metadata specifying where the observation was made - geolocation,
+      place name, site id, environment, or biome
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: location
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  temporality:
+    name: temporality
+    description: Temporal metadata specifying when an observation was made. This can
+      be relative or absolute - datetime, age of person, season, or geologic era
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: temporality
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  methodology:
+    name: methodology
+    description: Information about how an observation was made - method, instrument,
+      reagent kit, statistical modifier
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: methodology
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  observation_result:
+    name: observation_result
+    description: The outcome of the observation type - answer, value, result, determination
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: observation_result
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: ValueMicroschemaDefinition
+    required: true
 
 </code></pre>
 </details>

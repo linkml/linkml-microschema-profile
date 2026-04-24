@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/Nodeidentifier/">
+        <link rel="canonical" href="https://linkml.github.io/linkml-microschema-profile/elements/methodology/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Type: Nodeidentifier - linkml-microschema-profile</title>
+        <title>Slot: methodology - linkml-microschema-profile</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#type-nodeidentifier" class="md-skip">
+        <a href="#slot-methodology" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Type: Nodeidentifier
+              Slot: methodology
             
           </span>
         </div>
@@ -325,6 +325,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#applicable-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applicable Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Properties
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -363,6 +385,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LinkML Source
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -383,18 +416,36 @@
   
 
 
-<h1 id="type-nodeidentifier">Type: Nodeidentifier</h1>
-<p><em>A URI, CURIE or BNODE that represents a node in a model.</em></p>
-<p>URI: <a href="http://www.w3.org/ns/shex#nonLiteral">shex:nonLiteral</a></p>
+<h1 id="slot-methodology">Slot: methodology</h1>
+<p><em>Information about how an observation was made - method, instrument, reagent kit, statistical modifier</em></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/methodology">https://w3id.org/linkml/linkml-microschema-profile/methodology</a>
+Alias: methodology</p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Modifies Slot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../MicroschemaDefinition/">MicroschemaDefinition</a></td>
+<td>A metaclass for classes that conform to the Microschema profile</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p><a href="https://w3id.org/linkml/base">base</a>: NodeIdentifier</p>
+<p>Range: <a href="../String/">String</a></p>
 </li>
 <li>
-<p><a href="https://w3id.org/linkml/uri">uri</a>: shex:nonLiteral</p>
-</li>
-<li>
-<p><a href="https://w3id.org/linkml/repr">repr</a>: str</p>
+<p>Required: True</p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -413,14 +464,31 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>shex:nonLiteral</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/methodology</td>
 </tr>
 <tr>
 <td>native</td>
-<td>https://w3id.org/linkml/linkml-microschema-profile/nodeidentifier</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/methodology</td>
 </tr>
 </tbody>
 </table>
+<h2 id="linkml-source">LinkML Source</h2>
+<details>
+
+<pre><code class="language-yaml">name: methodology
+description: Information about how an observation was made - method, instrument, reagent
+  kit, statistical modifier
+from_schema: https://w3id.org/linkml/linkml-microschema-profile
+rank: 1000
+alias: methodology
+domain_of:
+- MicroschemaDefinition
+range: string
+required: true
+
+</code></pre>
+
+</details>
 
 
 

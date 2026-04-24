@@ -2,62 +2,27 @@ name: linkml-microschema-profile
 description: 'A LinkML schema defining the Microschema Profile for composable data
   elements.
 
-  Microschemas are designed for inline composition without identifiers.'
+  Microschemas are designed for inline composition without identifiers.
+
+  Domain-specific record and example microschemas live in downstream schemas
+
+  (e.g., https://w3id.org/linkml/clinical-microschemas).'
 title: LinkML Microschema Profile
 see_also:
 - https://linkml.github.io/linkml-microschema-profile
 id: https://w3id.org/linkml/linkml-microschema-profile
-version: 0.2.0
+version: 0.3.0
 imports:
 - linkml:types
 license: MIT
 prefixes:
-  coms:
-    prefix_prefix: coms
-    prefix_reference: https://w3id.org/linkml/linkml-microschema-profile/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
   schema:
     prefix_prefix: schema
     prefix_reference: http://schema.org/
-  PATO:
-    prefix_prefix: PATO
-    prefix_reference: http://purl.obolibrary.org/obo/PATO_
-  bdchm:
-    prefix_prefix: bdchm
-    prefix_reference: https://w3id.org/bdchm/
-  OBA:
-    prefix_prefix: OBA
-    prefix_reference: http://purl.obolibrary.org/obo/OBA_
-  OMOP:
-    prefix_prefix: OMOP
-    prefix_reference: https://athena.ohdsi.org/search-terms/terms/
-  LOINC:
-    prefix_prefix: LOINC
-    prefix_reference: https://loinc.org/
-  UCUM:
-    prefix_prefix: UCUM
-    prefix_reference: https://units-of-measurement.org/
-  UBERON:
-    prefix_prefix: UBERON
-    prefix_reference: http://purl.obolibrary.org/obo/UBERON_
-  MONDO:
-    prefix_prefix: MONDO
-    prefix_reference: http://purl.obolibrary.org/obo/MONDO_
-  HP:
-    prefix_prefix: HP
-    prefix_reference: http://purl.obolibrary.org/obo/HP_
-  RxNorm:
-    prefix_prefix: RxNorm
-    prefix_reference: http://purl.bioontology.org/ontology/RXNORM/
-  ISO11179:
-    prefix_prefix: ISO11179
-    prefix_reference: http://purl.org/iso11179/
-  example:
-    prefix_prefix: example
-    prefix_reference: http://www.example.org/rdf#
-default_prefix: coms
+default_prefix: https://w3id.org/linkml/linkml-microschema-profile/
 default_range: string
 types:
   string:
@@ -329,96 +294,6 @@ types:
     uri: xsd:string
     repr: str
 enums:
-  RouteAdminEnum:
-    name: RouteAdminEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/RouteAdminEnum
-    description: Routes of drug administration
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      oral:
-        text: oral
-        description: Oral administration
-        meaning: OMOP:4132161
-      intravenous:
-        text: intravenous
-        description: Intravenous administration
-        meaning: OMOP:4171047
-      intramuscular:
-        text: intramuscular
-        description: Intramuscular administration
-        meaning: OMOP:4302612
-      subcutaneous:
-        text: subcutaneous
-        description: Subcutaneous administration
-        meaning: OMOP:4142048
-      intradermal:
-        text: intradermal
-        description: Intradermal administration
-        meaning: OMOP:4156706
-      transdermal:
-        text: transdermal
-        description: Transdermal administration
-        meaning: OMOP:4262099
-      rectal:
-        text: rectal
-        description: Rectal administration
-        meaning: OMOP:4290759
-      vaginal:
-        text: vaginal
-        description: Vaginal administration
-        meaning: OMOP:4057765
-      nasal:
-        text: nasal
-        description: Nasal administration
-        meaning: OMOP:4262914
-      topical:
-        text: topical
-        description: Topical administration
-        meaning: OMOP:4263689
-      sublingual:
-        text: sublingual
-        description: Sublingual administration
-        meaning: OMOP:4292110
-      buccal:
-        text: buccal
-        description: Buccal administration
-        meaning: OMOP:4181897
-      intra_articular:
-        text: intra_articular
-        description: Intra-articular administration
-        meaning: OMOP:4006860
-      intraperitoneal:
-        text: intraperitoneal
-        description: Intraperitoneal administration
-        meaning: OMOP:4243022
-      intrathecal:
-        text: intrathecal
-        description: Intrathecal administration
-        meaning: OMOP:4217202
-      epidural:
-        text: epidural
-        description: Epidural administration
-        meaning: OMOP:4225555
-      intra_arterial:
-        text: intra_arterial
-        description: Intra-arterial administration
-        meaning: OMOP:4240824
-      ophthalmic:
-        text: ophthalmic
-        description: Ophthalmic administration
-        meaning: OMOP:4184451
-      otic:
-        text: otic
-        description: Otic (ear) administration
-        meaning: OMOP:4023156
-      enteral:
-        text: enteral
-        description: Enteral administration
-        meaning: OMOP:4167540
-      percutaneous:
-        text: percutaneous
-        description: Percutaneous administration
-        meaning: OMOP:4177987
   ComparatorEnum:
     name: ComparatorEnum
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ComparatorEnum
@@ -428,191 +303,115 @@ enums:
       lt:
         text: lt
         description: Less than
-        meaning: coms:lt
       le:
         text: le
         description: Less than or equal to
-        meaning: coms:le
       ge:
         text: ge
         description: Greater than or equal to
-        meaning: coms:ge
       gt:
         text: gt
         description: Greater than
-        meaning: coms:gt
-  DataTypeEnum:
-    name: DataTypeEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DataTypeEnum
-    description: The data type of an observation value
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      decimal:
-        text: decimal
-        description: Decimal number
-      integer:
-        text: integer
-        description: Integer number
-      enum:
-        text: enum
-        description: Enumerated value
-      boolean:
-        text: boolean
-        description: Boolean value
-  MethodEnum:
-    name: MethodEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/MethodEnum
-    description: The method used for a measurement or observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      placeholder:
-        text: placeholder
-        description: Placeholder value
-  InstrumentEnum:
-    name: InstrumentEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/InstrumentEnum
-    description: The instrument used for a measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      placeholder:
-        text: placeholder
-        description: Placeholder value
-  ReagentKitEnum:
-    name: ReagentKitEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ReagentKitEnum
-    description: The reagent kit used for a measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      placeholder:
-        text: placeholder
-        description: Placeholder value
-  BodyPositionEnum:
-    name: BodyPositionEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/BodyPositionEnum
-    description: The body position during a measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      supine:
-        text: supine
-        description: Lying face up
-      standing:
-        text: standing
-        description: Standing upright
-      sitting:
-        text: sitting
-        description: Seated position
-  ContextEnum:
-    name: ContextEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ContextEnum
-    description: The context in which a measurement was taken
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      fasted_8_hrs:
-        text: fasted_8_hrs
-        description: Fasted for 8 hours
-      fasted_12_hrs:
-        text: fasted_12_hrs
-        description: Fasted for 12 hours
-      before_bronchodilator:
-        text: before_bronchodilator
-        description: Before bronchodilator administration
-      after_bronchodilator:
-        text: after_bronchodilator
-        description: After bronchodilator administration
-      taking_lipid_lowering_medications:
-        text: taking_lipid_lowering_medications
-        description: While taking lipid-lowering medications
-      before_physical_activity:
-        text: before_physical_activity
-        description: Before physical activity
-      during_physical_activity:
-        text: during_physical_activity
-        description: During physical activity
-      after_physical_activity:
-        text: after_physical_activity
-        description: After physical activity
-      during_procedure:
-        text: during_procedure
-        description: During a procedure
-      taking_diabetes_medication:
-        text: taking_diabetes_medication
-        description: While taking diabetes medication
-      lowest:
-        text: lowest
-        description: Lowest recorded value
-  CollectedByEnum:
-    name: CollectedByEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/CollectedByEnum
-    description: Who collected the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      doctor:
-        text: doctor
-        description: Collected by a doctor
-      nurse:
-        text: nurse
-        description: Collected by a nurse
-      technician:
-        text: technician
-        description: Collected by a technician
-      self_administered:
-        text: self_administered
-        description: Self-administered by the patient
-      first_examiner:
-        text: first_examiner
-        description: Collected by the first examiner
-      second_examiner:
-        text: second_examiner
-        description: Collected by the second examiner
-  DiagnosisMethodEnum:
-    name: DiagnosisMethodEnum
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DiagnosisMethodEnum
-    description: The method used for diagnosis
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    permissible_values:
-      placeholder:
-        text: placeholder
-        description: Placeholder value
 slots:
   profile_version:
     name: profile_version
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/profile_version
     description: Version of microschema profile this conforms to
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:profile_version
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/profile_version
     owner: MicroschemaDefinition
     domain_of:
     - MicroschemaDefinition
     range: string
-  semantic_mapping:
-    name: semantic_mapping
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/semantic_mapping
-    description: URIs/CURIEs mapping this microschema to external standards (ISO-11179
-      DEC, NIH CDE, etc.)
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:semantic_mapping
-    owner: MicroschemaDefinition
-    domain_of:
-    - MicroschemaDefinition
-    range: uriorcurie
-    multivalued: true
   domain_of_use:
     name: domain_of_use
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/domain_of_use
     description: Domains where this microschema is applicable
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:domain_of_use
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/domain_of_use
     owner: MicroschemaDefinition
     domain_of:
     - MicroschemaDefinition
     range: string
     multivalued: true
+  subject:
+    name: subject
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/subject
+    description: Entity being measured, observed, or interviewed - person, animal,
+      specimen, or environmental material
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/subject
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  observation_type:
+    name: observation_type
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/observation_type
+    description: Question being asked, measurement being taken, quality being observed
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/observation_type
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  location:
+    name: location
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/location
+    description: Spatial metadata specifying where the observation was made - geolocation,
+      place name, site id, environment, or biome
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/location
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  temporality:
+    name: temporality
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/temporality
+    description: Temporal metadata specifying when an observation was made. This can
+      be relative or absolute - datetime, age of person, season, or geologic era
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/temporality
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  methodology:
+    name: methodology
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/methodology
+    description: Information about how an observation was made - method, instrument,
+      reagent kit, statistical modifier
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/methodology
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: string
+    required: true
+  observation_result:
+    name: observation_result
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/observation_result
+    description: The outcome of the observation type - answer, value, result, determination
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/observation_result
+    owner: MicroschemaDefinition
+    domain_of:
+    - MicroschemaDefinition
+    range: ValueMicroschemaDefinition
+    required: true
+    inlined: true
+    inlined_as_list: true
   quantity_value:
     name: quantity_value
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/quantity_value
     description: The numeric value
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:quantity_value
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/quantity_value
     owner: Quantity
     domain_of:
     - Quantity
@@ -630,12 +429,13 @@ slots:
     domain_of:
     - Quantity
     range: uriorcurie
+    required: true
   comparator:
     name: comparator
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/comparator
     description: Comparison operator (less than, greater than, etc.) or exact if null
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:comparator
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/comparator
     owner: Quantity
     domain_of:
     - Quantity
@@ -645,7 +445,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/datetime
     description: Absolute timestamp
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:datetime
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/datetime
     owner: Timepoint
     domain_of:
     - Timepoint
@@ -655,7 +455,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/relative_to_event
     description: Event this is relative to
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:relative_to_event
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/relative_to_event
     owner: Timepoint
     domain_of:
     - Timepoint
@@ -665,7 +465,19 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/offset
     description: Offset from event (e.g., "+3 days")
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:offset
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/offset
+    owner: Timepoint
+    domain_of:
+    - Timepoint
+    range: Quantity
+    inlined: true
+    inlined_as_list: true
+  subject_age:
+    name: subject_age
+    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/subject_age
+    description: Age of the subject at this timepoint (e.g., age when the event occurred)
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/subject_age
     owner: Timepoint
     domain_of:
     - Timepoint
@@ -677,7 +489,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/interval_start
     description: Start of the interval
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:interval_start
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/interval_start
     owner: TimeInterval
     domain_of:
     - TimeInterval
@@ -689,7 +501,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/interval_end
     description: End of the interval
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:interval_end
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/interval_end
     owner: TimeInterval
     domain_of:
     - TimeInterval
@@ -701,7 +513,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/duration
     description: Duration as alternative to start/end
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:duration
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/duration
     owner: TimeInterval
     domain_of:
     - TimeInterval
@@ -713,7 +525,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/code
     description: The code value as a CURIE
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:code
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/code
     owner: CodedValue
     domain_of:
     - CodedValue
@@ -724,7 +536,7 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/code_label
     description: Human-readable label for the code
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:code_label
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/code_label
     owner: CodedValue
     domain_of:
     - CodedValue
@@ -734,304 +546,22 @@ slots:
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/code_system
     description: The code system URI
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:code_system
+    slot_uri: https://w3id.org/linkml/linkml-microschema-profile/code_system
     owner: CodedValue
     domain_of:
     - CodedValue
     range: uriorcurie
-  subject_identifier:
-    name: subject_identifier
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/subject_identifier
-    description: An identifier for the subject of the datum
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:subject_identifier
-    owner: ProcedureStatusRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    - ConditionStatusRecord
-    - DrugStatusRecord
-    - ProcedureStatusRecord
-    range: string
-  measurement_type:
-    name: measurement_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/measurement_type
-    description: A CURIE from OBA, OMOP, or LOINC
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:observation_type
-    slot_uri: bdchm:observation_type
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: uriorcurie
-  unit:
-    name: unit
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/unit
-    description: A unit from UCUM
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:unit
-    slot_uri: bdchm:unit
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: uriorcurie
-  method:
-    name: method
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/method
-    description: The method used for the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:method_type
-    slot_uri: bdchm:method_type
-    owner: ProcedureStatusRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    - ConditionStatusRecord
-    - DrugStatusRecord
-    - ProcedureStatusRecord
-    range: MethodEnum
-  instrument:
-    name: instrument
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/instrument
-    description: The instrument used for the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:instrument
-    owner: ConditionStatusRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    - ConditionStatusRecord
-    range: InstrumentEnum
-  reagent_kit:
-    name: reagent_kit
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/reagent_kit
-    description: The reagent kit used for the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:reagent_kit
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: ReagentKitEnum
-  ulod:
-    name: ulod
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ulod
-    description: Upper limit of detection
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:ulod
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  llod:
-    name: llod
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/llod
-    description: Lower limit of detection
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:llod
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  calculated_from:
-    name: calculated_from
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/calculated_from
-    description: An expression pointing at other CDE classes
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:calculated_from
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: string
-  body_location:
-    name: body_location
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/body_location
-    description: A CURIE from UBERON
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:BodySite
-    slot_uri: bdchm:BodySite
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: uriorcurie
-  body_position:
-    name: body_position
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/body_position
-    description: The body position during measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:body_position
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: BodyPositionEnum
-  context:
-    name: context
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/context
-    description: The context of the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:context
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: ContextEnum
-  collected_by:
-    name: collected_by
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/collected_by
-    description: Who collected the measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:collected_by
-    owner: ProcedureStatusRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    - DrugStatusRecord
-    - ProcedureStatusRecord
-    range: CollectedByEnum
-  condition_type:
-    name: condition_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/condition_type
-    description: A CURIE from MONDO or HPO
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:condition_concept
-    slot_uri: bdchm:condition_concept
-    owner: ConditionStatusRecord
-    domain_of:
-    - ConditionStatusRecord
-    range: uriorcurie
-  diagnosis_method:
-    name: diagnosis_method
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/diagnosis_method
-    description: The method used for diagnosis
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:diagnosis_method
-    owner: ConditionStatusRecord
-    domain_of:
-    - ConditionStatusRecord
-    range: DiagnosisMethodEnum
-  drug_type:
-    name: drug_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/drug_type
-    description: A CURIE from RxNorm
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:drug_concept
-    slot_uri: bdchm:drug_concept
-    owner: DrugStatusRecord
-    domain_of:
-    - DrugStatusRecord
-    range: uriorcurie
-  procedure_type:
-    name: procedure_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/procedure_type
-    description: A CURIE from OMOP
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:procedure_concept
-    slot_uri: bdchm:procedure_concept
-    owner: ProcedureStatusRecord
-    domain_of:
-    - ProcedureStatusRecord
-    range: uriorcurie
-  data_type:
-    name: data_type
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/data_type
-    description: The data type of the observation
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:data_type
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: DataTypeEnum
-  age_at_measurement:
-    name: age_at_measurement
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_measurement
-    description: Age of the subject at the time of measurement
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_measurement
-    owner: ClinicalMeasurementRecord
-    domain_of:
-    - ClinicalMeasurementRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  age_at_condition_start:
-    name: age_at_condition_start
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_condition_start
-    description: Age of the subject at the start of the condition
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_condition_start
-    owner: ConditionStatusRecord
-    domain_of:
-    - ConditionStatusRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  age_at_condition_end:
-    name: age_at_condition_end
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_condition_end
-    description: Age of the subject at the end of the condition
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_condition_end
-    owner: ConditionStatusRecord
-    domain_of:
-    - ConditionStatusRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  age_at_drug_start:
-    name: age_at_drug_start
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_drug_start
-    description: Age of the subject at the start of drug exposure
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_drug_start
-    owner: DrugStatusRecord
-    domain_of:
-    - DrugStatusRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  age_at_drug_end:
-    name: age_at_drug_end
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_drug_end
-    description: Age of the subject at the end of drug exposure
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_drug_end
-    owner: DrugStatusRecord
-    domain_of:
-    - DrugStatusRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  age_at_procedure:
-    name: age_at_procedure
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/age_at_procedure
-    description: Age of the subject at the time of the procedure
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:age_at_procedure
-    owner: ProcedureStatusRecord
-    domain_of:
-    - ProcedureStatusRecord
-    range: Quantity
-    inlined: true
-    inlined_as_list: true
-  route_of_administration:
-    name: route_of_administration
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/route_of_administration
-    description: Routes of drug administration
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    slot_uri: coms:route_of_administration
-    owner: DrugStatusRecord
-    domain_of:
-    - DrugStatusRecord
-    range: RouteAdminEnum
 classes:
   MicroschemaDefinition:
     name: MicroschemaDefinition
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition
+    annotations:
+      must_not_have_id_slot:
+        tag: must_not_have_id_slot
+        value: true
+      must_be_inlined:
+        tag: must_be_inlined
+        value: true
     description: A metaclass for classes that conform to the Microschema profile.
       Classes that instantiate this are designed for inline composition.
     comments:
@@ -1039,43 +569,49 @@ classes:
     - Classes instantiating this SHOULD be used with inlined=true
     - Classes instantiating this MAY compose other microschemas via attributes
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - coms:MicroschemaDefinition
     abstract: true
     slots:
     - profile_version
-    - semantic_mapping
     - domain_of_use
-    class_uri: coms:MicroschemaDefinition
+    - subject
+    - observation_type
+    - location
+    - temporality
+    - methodology
+    - observation_result
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/MicroschemaDefinition
   ValueMicroschemaDefinition:
     name: ValueMicroschemaDefinition
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ValueMicroschemaDefinition
+    annotations:
+      must_not_have_id_slot:
+        tag: must_not_have_id_slot
+        value: true
+      must_be_inlined:
+        tag: must_be_inlined
+        value: true
     description: 'A microschema representing a typed value with optional unit/system.
-      Examples: Quantity, Timepoint, CodedValue, Range.'
+      Examples: Quantity, Timepoint, CodedValue, Range. This is the range for observation
+      result'
+    comments:
+    - Classes instantiating this SHOULD NOT have identifier slots
+    - Classes instantiating this SHOULD be used with inlined=true
+    - Classes instantiating this MAY compose other microschemas via attributes
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - coms:ValueMicroschemaDefinition
-    is_a: MicroschemaDefinition
     abstract: true
-    slots:
-    - profile_version
-    - semantic_mapping
-    - domain_of_use
-    class_uri: coms:ValueMicroschemaDefinition
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/ValueMicroschemaDefinition
   Quantity:
     name: Quantity
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/Quantity
     instantiates:
     - ValueMicroschemaDefinition
-    description: A value with optional unit
+    description: A numerical value with unit
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - schema:QuantitativeValue
     slots:
     - quantity_value
     - quantity_unit
     - comparator
-    class_uri: schema:QuantitativeValue
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/Quantity
   Timepoint:
     name: Timepoint
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/Timepoint
@@ -1087,7 +623,8 @@ classes:
     - datetime
     - relative_to_event
     - offset
-    class_uri: coms:Timepoint
+    - subject_age
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/Timepoint
   TimeInterval:
     name: TimeInterval
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/TimeInterval
@@ -1099,7 +636,7 @@ classes:
     - interval_start
     - interval_end
     - duration
-    class_uri: coms:TimeInterval
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/TimeInterval
   CodedValue:
     name: CodedValue
     definition_uri: https://w3id.org/linkml/linkml-microschema-profile/CodedValue
@@ -1111,108 +648,10 @@ classes:
     - code
     - code_label
     - code_system
-    class_uri: coms:CodedValue
-  ClinicalMeasurementRecord:
-    name: ClinicalMeasurementRecord
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ClinicalMeasurementRecord
-    instantiates:
-    - MicroschemaDefinition
-    annotations:
-      domain_of_use:
-        tag: domain_of_use
-        value: clinical
-    description: A data structure with key and value attributes that represents a
-      single observation. This can include results of clinical labs, scores and indices,
-      socioeconomic, or behavioral observations.
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:Observation
-    slots:
-    - subject_identifier
-    - measurement_type
-    - unit
-    - method
-    - instrument
-    - reagent_kit
-    - ulod
-    - llod
-    - calculated_from
-    - body_location
-    - body_position
-    - context
-    - collected_by
-    - data_type
-    - age_at_measurement
-    class_uri: bdchm:Observation
-  ConditionStatusRecord:
-    name: ConditionStatusRecord
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ConditionStatusRecord
-    instantiates:
-    - MicroschemaDefinition
-    annotations:
-      domain_of_use:
-        tag: domain_of_use
-        value: clinical
-    description: Record suggesting the presence of a disease or medical condition
-      stated as a diagnosis, sign, or symptom
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:Condition
-    slots:
-    - subject_identifier
-    - condition_type
-    - method
-    - diagnosis_method
-    - instrument
-    - age_at_condition_start
-    - age_at_condition_end
-    class_uri: bdchm:Condition
-  DrugStatusRecord:
-    name: DrugStatusRecord
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/DrugStatusRecord
-    instantiates:
-    - MicroschemaDefinition
-    annotations:
-      domain_of_use:
-        tag: domain_of_use
-        value: clinical
-    description: Record suggesting exposure to a medication
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:DrugExposure
-    slots:
-    - subject_identifier
-    - drug_type
-    - method
-    - collected_by
-    - age_at_drug_start
-    - age_at_drug_end
-    - route_of_administration
-    class_uri: bdchm:DrugExposure
-  ProcedureStatusRecord:
-    name: ProcedureStatusRecord
-    definition_uri: https://w3id.org/linkml/linkml-microschema-profile/ProcedureStatusRecord
-    instantiates:
-    - MicroschemaDefinition
-    annotations:
-      domain_of_use:
-        tag: domain_of_use
-        value: clinical
-    description: Record of activity or process ordered by or carried out by a healthcare
-      provider for a diagnostic or therapeutic reason
-    from_schema: https://w3id.org/linkml/linkml-microschema-profile
-    mappings:
-    - bdchm:Procedure
-    slots:
-    - subject_identifier
-    - procedure_type
-    - method
-    - collected_by
-    - age_at_procedure
-    class_uri: bdchm:Procedure
+    class_uri: https://w3id.org/linkml/linkml-microschema-profile/CodedValue
 metamodel_version: 1.7.0
 source_file: linkml_microschema_profile.yaml
-source_file_date: '2026-01-30T21:02:19'
-source_file_size: 16096
-generation_date: '2026-01-30T21:02:32'
+source_file_date: '2026-04-24T14:09:48'
+source_file_size: 7338
+generation_date: '2026-04-24T14:09:57'
 

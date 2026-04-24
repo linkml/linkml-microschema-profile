@@ -259,7 +259,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-timepoint">Class: Timepoint</h1>
 <p><em>A point in time, potentially relative</em></p>
-<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/Timepoint">coms:Timepoint</a></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/Timepoint">https://w3id.org/linkml/linkml-microschema-profile/Timepoint</a></p>
 <div class="mermaid"> classDiagram
     class Timepoint
     click Timepoint href "../Timepoint/"
@@ -277,6 +277,17 @@
 
 
       Timepoint : relative_to_event
+
+      Timepoint : subject_age
+
+
+
+
+
+        Timepoint --&gt; "0..1" Quantity : subject_age
+        click Quantity href "../Quantity/"
+
+
 
 
 </div>
@@ -308,6 +319,12 @@
 <td><a href="../offset/">offset</a></td>
 <td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
 <td>Offset from event (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../subject_age/">subject_age</a></td>
+<td>0..1 <br/> <a href="../Quantity/">Quantity</a></td>
+<td>Age of the subject at this timepoint (e</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -353,11 +370,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>coms:Timepoint</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/Timepoint</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:Timepoint</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/Timepoint</td>
 </tr>
 </tbody>
 </table>
@@ -374,6 +391,7 @@ slots:
 - datetime
 - relative_to_event
 - offset
+- subject_age
 
 </code></pre>
 </details>
@@ -411,6 +429,17 @@ attributes:
     from_schema: https://w3id.org/linkml/linkml-microschema-profile
     rank: 1000
     alias: offset
+    owner: Timepoint
+    domain_of:
+    - Timepoint
+    range: Quantity
+    inlined: true
+  subject_age:
+    name: subject_age
+    description: Age of the subject at this timepoint (e.g., age when the event occurred)
+    from_schema: https://w3id.org/linkml/linkml-microschema-profile
+    rank: 1000
+    alias: subject_age
     owner: Timepoint
     domain_of:
     - Timepoint

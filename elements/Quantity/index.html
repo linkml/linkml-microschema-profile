@@ -258,8 +258,8 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-quantity">Class: Quantity</h1>
-<p><em>A value with optional unit</em></p>
-<p>URI: <a href="http://schema.org/QuantitativeValue">schema:QuantitativeValue</a></p>
+<p><em>A numerical value with unit</em></p>
+<p>URI: <a href="https://w3id.org/linkml/linkml-microschema-profile/Quantity">https://w3id.org/linkml/linkml-microschema-profile/Quantity</a></p>
 <div class="mermaid"> classDiagram
     class Quantity
     click Quantity href "../Quantity/"
@@ -300,7 +300,7 @@
 </tr>
 <tr>
 <td><a href="../quantity_unit/">quantity_unit</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td>Unit (UCUM, UO, QUDT, etc</td>
 <td>direct</td>
 </tr>
@@ -330,56 +330,14 @@
 <td><a href="./">Quantity</a></td>
 </tr>
 <tr>
+<td><a href="../Timepoint/">Timepoint</a></td>
+<td><a href="../subject_age/">subject_age</a></td>
+<td>range</td>
+<td><a href="./">Quantity</a></td>
+</tr>
+<tr>
 <td><a href="../TimeInterval/">TimeInterval</a></td>
 <td><a href="../duration/">duration</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
-<td><a href="../ulod/">ulod</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
-<td><a href="../llod/">llod</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
-<td><a href="../age_at_measurement/">age_at_measurement</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ConditionStatusRecord/">ConditionStatusRecord</a></td>
-<td><a href="../age_at_condition_start/">age_at_condition_start</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ConditionStatusRecord/">ConditionStatusRecord</a></td>
-<td><a href="../age_at_condition_end/">age_at_condition_end</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
-<td><a href="../age_at_drug_start/">age_at_drug_start</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../DrugStatusRecord/">DrugStatusRecord</a></td>
-<td><a href="../age_at_drug_end/">age_at_drug_end</a></td>
-<td>range</td>
-<td><a href="./">Quantity</a></td>
-</tr>
-<tr>
-<td><a href="../ProcedureStatusRecord/">ProcedureStatusRecord</a></td>
-<td><a href="../age_at_procedure/">age_at_procedure</a></td>
 <td>range</td>
 <td><a href="./">Quantity</a></td>
 </tr>
@@ -401,11 +359,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:QuantitativeValue</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/Quantity</td>
 </tr>
 <tr>
 <td>native</td>
-<td>coms:Quantity</td>
+<td>https://w3id.org/linkml/linkml-microschema-profile/Quantity</td>
 </tr>
 </tbody>
 </table>
@@ -416,13 +374,12 @@
 <pre><code class="language-yaml">name: Quantity
 instantiates:
 - ValueMicroschemaDefinition
-description: A value with optional unit
+description: A numerical value with unit
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 slots:
 - quantity_value
 - quantity_unit
 - comparator
-class_uri: schema:QuantitativeValue
 
 </code></pre>
 </details>
@@ -431,7 +388,7 @@ class_uri: schema:QuantitativeValue
 <pre><code class="language-yaml">name: Quantity
 instantiates:
 - ValueMicroschemaDefinition
-description: A value with optional unit
+description: A numerical value with unit
 from_schema: https://w3id.org/linkml/linkml-microschema-profile
 attributes:
   quantity_value:
@@ -456,6 +413,7 @@ attributes:
     domain_of:
     - Quantity
     range: uriorcurie
+    required: true
   comparator:
     name: comparator
     description: Comparison operator (less than, greater than, etc.) or exact if null
@@ -466,7 +424,6 @@ attributes:
     domain_of:
     - Quantity
     range: ComparatorEnum
-class_uri: schema:QuantitativeValue
 
 </code></pre>
 </details>

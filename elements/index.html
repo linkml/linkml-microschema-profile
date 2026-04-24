@@ -507,7 +507,9 @@
 
 <h1 id="linkml-microschema-profile">LinkML Microschema Profile</h1>
 <p>A LinkML schema defining the Microschema Profile for composable data elements.
-Microschemas are designed for inline composition without identifiers.</p>
+Microschemas are designed for inline composition without identifiers.
+Domain-specific record and example microschemas live in downstream schemas
+(e.g., https://w3id.org/linkml/clinical-microschemas).</p>
 <p>URI: https://w3id.org/linkml/linkml-microschema-profile</p>
 <p>Name: linkml-microschema-profile</p>
 <h2 id="classes">Classes</h2>
@@ -520,36 +522,16 @@ Microschemas are designed for inline composition without identifiers.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="ClinicalMeasurementRecord/">ClinicalMeasurementRecord</a></td>
-<td>A data structure with key and value attributes that represents a single obser...</td>
-</tr>
-<tr>
 <td><a href="CodedValue/">CodedValue</a></td>
 <td>A value from a controlled vocabulary</td>
-</tr>
-<tr>
-<td><a href="ConditionStatusRecord/">ConditionStatusRecord</a></td>
-<td>Record suggesting the presence of a disease or medical condition stated as a ...</td>
-</tr>
-<tr>
-<td><a href="DrugStatusRecord/">DrugStatusRecord</a></td>
-<td>Record suggesting exposure to a medication</td>
 </tr>
 <tr>
 <td><a href="MicroschemaDefinition/">MicroschemaDefinition</a></td>
 <td>A metaclass for classes that conform to the Microschema profile</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ValueMicroschemaDefinition/">ValueMicroschemaDefinition</a></td>
-<td>A microschema representing a typed value with optional unit/system</td>
-</tr>
-<tr>
-<td><a href="ProcedureStatusRecord/">ProcedureStatusRecord</a></td>
-<td>Record of activity or process ordered by or carried out by a healthcare provi...</td>
-</tr>
-<tr>
 <td><a href="Quantity/">Quantity</a></td>
-<td>A value with optional unit</td>
+<td>A numerical value with unit</td>
 </tr>
 <tr>
 <td><a href="TimeInterval/">TimeInterval</a></td>
@@ -558,6 +540,10 @@ Microschemas are designed for inline composition without identifiers.</p>
 <tr>
 <td><a href="Timepoint/">Timepoint</a></td>
 <td>A point in time, potentially relative</td>
+</tr>
+<tr>
+<td><a href="ValueMicroschemaDefinition/">ValueMicroschemaDefinition</a></td>
+<td>A microschema representing a typed value with optional unit/system</td>
 </tr>
 </tbody>
 </table>
@@ -571,42 +557,6 @@ Microschemas are designed for inline composition without identifiers.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="age_at_condition_end/">age_at_condition_end</a></td>
-<td>Age of the subject at the end of the condition</td>
-</tr>
-<tr>
-<td><a href="age_at_condition_start/">age_at_condition_start</a></td>
-<td>Age of the subject at the start of the condition</td>
-</tr>
-<tr>
-<td><a href="age_at_drug_end/">age_at_drug_end</a></td>
-<td>Age of the subject at the end of drug exposure</td>
-</tr>
-<tr>
-<td><a href="age_at_drug_start/">age_at_drug_start</a></td>
-<td>Age of the subject at the start of drug exposure</td>
-</tr>
-<tr>
-<td><a href="age_at_measurement/">age_at_measurement</a></td>
-<td>Age of the subject at the time of measurement</td>
-</tr>
-<tr>
-<td><a href="age_at_procedure/">age_at_procedure</a></td>
-<td>Age of the subject at the time of the procedure</td>
-</tr>
-<tr>
-<td><a href="body_location/">body_location</a></td>
-<td>A CURIE from UBERON</td>
-</tr>
-<tr>
-<td><a href="body_position/">body_position</a></td>
-<td>The body position during measurement</td>
-</tr>
-<tr>
-<td><a href="calculated_from/">calculated_from</a></td>
-<td>An expression pointing at other CDE classes</td>
-</tr>
-<tr>
 <td><a href="code/">code</a></td>
 <td>The code value as a CURIE</td>
 </tr>
@@ -619,48 +569,20 @@ Microschemas are designed for inline composition without identifiers.</p>
 <td>The code system URI</td>
 </tr>
 <tr>
-<td><a href="collected_by/">collected_by</a></td>
-<td>Who collected the measurement</td>
-</tr>
-<tr>
 <td><a href="comparator/">comparator</a></td>
 <td>Comparison operator (less than, greater than, etc</td>
-</tr>
-<tr>
-<td><a href="condition_type/">condition_type</a></td>
-<td>A CURIE from MONDO or HPO</td>
-</tr>
-<tr>
-<td><a href="context/">context</a></td>
-<td>The context of the measurement</td>
-</tr>
-<tr>
-<td><a href="data_type/">data_type</a></td>
-<td>The data type of the observation</td>
 </tr>
 <tr>
 <td><a href="datetime/">datetime</a></td>
 <td>Absolute timestamp</td>
 </tr>
 <tr>
-<td><a href="diagnosis_method/">diagnosis_method</a></td>
-<td>The method used for diagnosis</td>
-</tr>
-<tr>
 <td><a href="domain_of_use/">domain_of_use</a></td>
 <td>Domains where this microschema is applicable</td>
 </tr>
 <tr>
-<td><a href="drug_type/">drug_type</a></td>
-<td>A CURIE from RxNorm</td>
-</tr>
-<tr>
 <td><a href="duration/">duration</a></td>
 <td>Duration as alternative to start/end</td>
-</tr>
-<tr>
-<td><a href="instrument/">instrument</a></td>
-<td>The instrument used for the measurement</td>
 </tr>
 <tr>
 <td><a href="interval_end/">interval_end</a></td>
@@ -671,24 +593,24 @@ Microschemas are designed for inline composition without identifiers.</p>
 <td>Start of the interval</td>
 </tr>
 <tr>
-<td><a href="llod/">llod</a></td>
-<td>Lower limit of detection</td>
+<td><a href="location/">location</a></td>
+<td>Spatial metadata specifying where the observation was made - geolocation, pla...</td>
 </tr>
 <tr>
-<td><a href="measurement_type/">measurement_type</a></td>
-<td>A CURIE from OBA, OMOP, or LOINC</td>
+<td><a href="methodology/">methodology</a></td>
+<td>Information about how an observation was made - method, instrument, reagent k...</td>
 </tr>
 <tr>
-<td><a href="method/">method</a></td>
-<td>The method used for the measurement</td>
+<td><a href="observation_result/">observation_result</a></td>
+<td>The outcome of the observation type - answer, value, result, determination</td>
+</tr>
+<tr>
+<td><a href="observation_type/">observation_type</a></td>
+<td>Question being asked, measurement being taken, quality being observed</td>
 </tr>
 <tr>
 <td><a href="offset/">offset</a></td>
 <td>Offset from event (e</td>
-</tr>
-<tr>
-<td><a href="procedure_type/">procedure_type</a></td>
-<td>A CURIE from OMOP</td>
 </tr>
 <tr>
 <td><a href="profile_version/">profile_version</a></td>
@@ -703,32 +625,20 @@ Microschemas are designed for inline composition without identifiers.</p>
 <td>The numeric value</td>
 </tr>
 <tr>
-<td><a href="reagent_kit/">reagent_kit</a></td>
-<td>The reagent kit used for the measurement</td>
-</tr>
-<tr>
 <td><a href="relative_to_event/">relative_to_event</a></td>
 <td>Event this is relative to</td>
 </tr>
 <tr>
-<td><a href="route_of_administration/">route_of_administration</a></td>
-<td>Routes of drug administration</td>
+<td><a href="subject/">subject</a></td>
+<td>Entity being measured, observed, or interviewed - person, animal, specimen, o...</td>
 </tr>
 <tr>
-<td><a href="semantic_mapping/">semantic_mapping</a></td>
-<td>URIs/CURIEs mapping this microschema to external standards (ISO-11179 DEC, NI...</td>
+<td><a href="subject_age/">subject_age</a></td>
+<td>Age of the subject at this timepoint (e</td>
 </tr>
 <tr>
-<td><a href="subject_identifier/">subject_identifier</a></td>
-<td>An identifier for the subject of the datum</td>
-</tr>
-<tr>
-<td><a href="ulod/">ulod</a></td>
-<td>Upper limit of detection</td>
-</tr>
-<tr>
-<td><a href="unit/">unit</a></td>
-<td>A unit from UCUM</td>
+<td><a href="temporality/">temporality</a></td>
+<td>Temporal metadata specifying when an observation was made</td>
 </tr>
 </tbody>
 </table>
@@ -742,44 +652,8 @@ Microschemas are designed for inline composition without identifiers.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="BodyPositionEnum/">BodyPositionEnum</a></td>
-<td>The body position during a measurement</td>
-</tr>
-<tr>
-<td><a href="CollectedByEnum/">CollectedByEnum</a></td>
-<td>Who collected the measurement</td>
-</tr>
-<tr>
 <td><a href="ComparatorEnum/">ComparatorEnum</a></td>
 <td>Comparator for quantity values</td>
-</tr>
-<tr>
-<td><a href="ContextEnum/">ContextEnum</a></td>
-<td>The context in which a measurement was taken</td>
-</tr>
-<tr>
-<td><a href="DataTypeEnum/">DataTypeEnum</a></td>
-<td>The data type of an observation value</td>
-</tr>
-<tr>
-<td><a href="DiagnosisMethodEnum/">DiagnosisMethodEnum</a></td>
-<td>The method used for diagnosis</td>
-</tr>
-<tr>
-<td><a href="InstrumentEnum/">InstrumentEnum</a></td>
-<td>The instrument used for a measurement</td>
-</tr>
-<tr>
-<td><a href="MethodEnum/">MethodEnum</a></td>
-<td>The method used for a measurement or observation</td>
-</tr>
-<tr>
-<td><a href="ReagentKitEnum/">ReagentKitEnum</a></td>
-<td>The reagent kit used for a measurement</td>
-</tr>
-<tr>
-<td><a href="RouteAdminEnum/">RouteAdminEnum</a></td>
-<td>Routes of drug administration</td>
 </tr>
 </tbody>
 </table>
